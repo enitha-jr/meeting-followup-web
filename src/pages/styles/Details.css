@@ -1,0 +1,22 @@
+.meet-content{
+    position: relative;
+    top: 110px;
+    left: 470px;
+    display:flex;
+    flex-direction: column;
+    justify-content:space-around;
+    padding: 20px;
+    background-color: rgb(214, 214, 214); 
+    border-radius: 10px;
+    height: 60vh;
+    width: 40vw;
+}
+
+.meet-content div{
+  display:flex;
+}
+
+.detail-item{
+  display: flex;
+  justify-content: space-evenly;
+}

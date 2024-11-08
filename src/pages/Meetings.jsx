@@ -1,62 +1,71 @@
 import React, { useState, useEffect } from 'react'
 import './styles/Meetings.css'
 import axios from 'axios';
-import schedule from '../assets/schedule.png'
-import calendar from '../assets/calendar.png'
-import person from '../assets/person.png'
-import apt from '../assets/apartment.png'
-import meeting from '../assets/meeting.png'
+import schedule from '../assets/icons/schedule.png'
+import calendar from '../assets/icons/calendar.png'
+import person from '../assets/icons/person.png'
+import venue from '../assets/icons/apartment.png'
+import meetimg from '../assets/icons/meeting.png'
+import { useNavigate } from 'react-router-dom';
+import Nav1 from './Nav1'
 
 const Meetings = () => {
 
-  const [details, setDetails] = useState([]);
+    const [details, setDetails] = useState([]);
 
-  useEffect(() => {
-    axios.get("http://localhost:5000/newmeetings")
-      .then((response) => {
-        setDetails(response.data);
-      }).catch((error) => {
-        console.log(error);
-      });
-  }, [])
+    useEffect(() => {
+        axios.get("http://localhost:5000/newmeetings")
+        .then((response) => {
+            setDetails(response.data);
+        }).catch((error) => {
+            console.log(error);
+        });
+    }, [])
 
-  return (
-    <div className='meeting'>
-      <nav>
-        <div>Upcoming</div>
-        <div>Completed</div>
-        <div>My Meetings</div>
-      </nav>
-      <div className="meet-body">
-        {details.map((detail) => (
-          <div className="meet-container" key={detail.id}>
-            <div className="headings">
-              <p className="meeting-heading">{detail.title}</p>
-              <p className="host">{detail.dept}</p>
+    const navigate = useNavigate()
+
+    const handleDetail=(id)=>{ 
+        navigate(`/meetings/${id}/details`);
+    }
+
+    return (
+        <div className='meeting-container'>
+            <div>
+                <Nav1/>
             </div>
-            <div className="meet-detail">
-              <div className="persondiv">
-                <div><img src={person} className="size" /></div>
-                <p>{detail.host}</p>
-              </div>
-              <div className="calendar">
-                <div><img src={calendar} className="size" /></div>
-                <p>{detail.date}</p>
-              </div>
-              <div className="schedulediv">
-                <div><img src={schedule} className="size" /></div>
-                <div className="time"><p>{detail.time}</p></div>
-              </div>
-              <div className="apt">
-                <div><img src={apt} className="size" /></div>
-                <p>{detail.venue}</p>
-              </div>
+            <div className="meet-body">
+                {details.map((detail) => (
+                    <div className='meet-overview' key={detail.id} onClick={()=>handleDetail(detail.id)}>
+                            <div className='image'>
+                                <img src={meetimg} width="140"/>
+                            </div>
+                            <div className='meet-head'>
+                                <div className='meet-title'>{detail.title}</div>
+                                <div className='meet-by'>by {detail.dept}</div>
+                            </div>
+                            <div className='meet-details'>
+                                <div className='meet-details-container'>
+                                    <img src={person} width={22} />
+                                    <div>{detail.host}</div>
+                                </div>
+                                <div className='meet-details-container'>
+                                    <img src={calendar} width={22} />
+                                    <div>{detail.date}</div>
+                                </div>
+                                <div className='meet-details-container'>
+                                    <img src={venue} width={22} />
+                                    <div>{detail.venue}</div>
+                                </div>
+                                <div className='meet-details-container'>
+                                    <img src={schedule} width={22} />
+                                    <div>{detail.time}</div>
+                                </div>
+                            </div>
+                        </div>
+                ))}
             </div>
-          </div>
-        ))}
-      </div>
-    </div>
-  )
+        </div>
+    )
 }
 
 export default Meetings

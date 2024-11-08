@@ -20,7 +20,8 @@ function NewMeeting() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const newMeeting = { followup, title, meetid, dept, host, date, time, venue, desc, members };
+    const newDate = new Date(date).toISOString().slice(0,10);
+    const newMeeting = { followup, title, meetid, dept, host, date:newDate, time, venue, desc, members };
     axios.post("http://localhost:5000/newmeeting/post", newMeeting)
       .then((response) => {
         console.log(response.data);
@@ -41,8 +42,7 @@ function NewMeeting() {
   }
 
   return (
-    <div className='new-meeting'>
-      <div className="container">
+    <div className='container'>
         <div className="head3">
           <h3>NEW-MEETING</h3>
         </div>
@@ -110,7 +110,6 @@ function NewMeeting() {
             <button type="submit">CREATE MEETING</button>
           </div>
         </form>
-      </div>
     </div>
   )
 }
