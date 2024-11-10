@@ -1,0 +1,3 @@
+[submodule "meeting-web"]
+	path = meeting-web
+	url = https://github.com/pskillbitsathy/7376232IT141-MEETING-FOLLOW-UP.git
