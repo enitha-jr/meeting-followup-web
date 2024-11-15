@@ -1,0 +1,73 @@
+.meet-content{
+    position: relative;
+    top: 110px;
+    left: 470px;
+    display:flex;
+    flex-direction: column;
+    justify-content:space-around;
+    padding: 20px;
+    background-color: rgb(214, 214, 214); 
+    border-radius: 10px;
+    height: 60vh;
+    width: 40vw;
+}
+
+.meet-content div{
+  display:flex;
+}
+
+.detail-item{
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.action-buttons{
+  position:relative;
+  left:450px;
+  top:140px;
+  display:flex;
+  justify-content: space-around;
+}
+
+.action-buttons button{
+  width: 13vw;
+  height: 5vh;
+  border-radius: 7px;
+  background-color: #0077B5;
+  color: white;
+  font-weight:bold;
+  border: none;
+}
+
+.action-buttons {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+}
+
+.end-meeting-btn,
+.follow-up-btn {
+  border-radius: 4px;
+  border: none;
+  color: white;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.end-meeting-btn {
+  background-color: #0077B5;
+}
+
+.end-meeting-btn.completed {
+  background-color: #28a745;
+}
+
+.follow-up-btn {
+  background-color: #0077B5;
+}
+
+.end-meeting-btn:hover,
+.follow-up-btn:hover {
+  opacity: 0.9;
+}

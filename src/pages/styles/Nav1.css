@@ -1,0 +1,30 @@
+.navbar1 {
+    display: flex;
+    position: fixed;
+    z-index: 100;
+    background-color: white;
+    border:2px solid;
+    /* height: auto; */
+    border: 2px solid;
+}
+
+.navbar1 div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 5vh;
+    padding: 5px 15px;
+}
+
+.navbar1 > a{
+    text-decoration: none;
+    color: rgb(0, 0, 54);
+    font-weight: 600;
+}
+
+.navbar1 > .active{
+    border-radius: 10px;
+    background-color: #0077B5;
+    color: white;
+    cursor: pointer;
+}
