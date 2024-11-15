@@ -1,0 +1,93 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 100px;
+  margin-left: 400px;
+  background-color: white;
+  box-shadow: 8.0px 8.0px 16.0px 16px hsla(0, 0%, 0%, 0.125);
+  padding: 25px 50px;
+}
+
+.head3,
+.btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.details {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  font-weight: 600;
+  gap: 25px;
+}
+
+.left,
+.right {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.details .left div,
+.details .right div {
+  display: flex;
+  flex-direction: column;
+}
+
+label {
+  display: block;
+  font-size: 1rem;
+  color: #555;
+  margin-bottom: 5px;
+}
+
+input[type="text"],
+input[type="datetime-local"],
+select,
+textarea {
+  width: 25vw;
+  padding: 10px;
+  border: 1px solid #0077B5;
+  border-radius: 2.5px;
+  font-size: 1rem;
+  background-color: #F6F9FF;
+
+}
+
+textarea {
+  resize: none;
+  min-height: 80px;
+}
+
+input[type="text"]:focus,
+input[type="datetime-local"]:focus,
+select:focus,
+textarea:focus {
+  outline: none;
+  border-color: #0077B5;
+}
+
+.btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.btn button[type="submit"] {
+  padding: 10px 20px;
+  font-size: 1rem;
+  font-family: Arial;
+  color: #fff;
+  background-color: #0077B5;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.btn button[type="submit"]:hover {
+  background-color: #005f8b;
+}
