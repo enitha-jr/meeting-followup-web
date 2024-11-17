@@ -14,33 +14,26 @@ const Sidebar = () => {
                 <img src={logo} width="100px"/>
                 <div>MEETMINUTES</div>
             </div>
-            <div className='sidebar-item'>
-                <div className="sidebar-link">
-                    <NavLink to='/newmeeting' className='custom-link inner'>
-                        <img src={add} />
-                        <div className="sidebar-component">New Meeting</div>
-                    </NavLink>
-                </div>
-                <div className="sidebar-link">
-                    <NavLink to='/meetings' className='custom-link inner'>
-                        <img src={groups} />
-                        <div className="sidebar-component">Meetings</div>
-                    </NavLink>
-                </div>
-                <div className="sidebar-link">
-                    <NavLink to='/tasks' className='custom-link inner'>
-                        <img src={task} />
-                        <div className="sidebar-component">Tasks</div>
-                    </NavLink>
-                </div>
-                <div className="sidebar-link">
-                    <NavLink to='/calendar' className='custom-link inner'>
-                        <img src={calendar} />
-                        <div className="sidebar-component">Calendar</div>
-                    </NavLink>
-                </div>
+            <div>
+
             </div>
-        </div>
+                <NavLink to='/newmeeting' className='custom-link inner'>
+                    <img src={add} />
+                    <div className="sidebar-title">New Meeting</div>
+                </NavLink>
+                <NavLink to='/meetings' className='custom-link inner'>
+                    <img src={groups} />
+                    <div className="sidebar-title">Meetings</div>
+                </NavLink>
+                <NavLink to='/tasks' className='custom-link inner'>
+                    <img src={task} />
+                    <div className="sidebar-title">Tasks</div>
+                </NavLink>
+                <NavLink to='/calendar' className='custom-link inner'>
+                    <img src={calendar} />
+                    <div className="sidebar-title">Calendar</div>
+                </NavLink>    
+            </div>
     )
 }
 

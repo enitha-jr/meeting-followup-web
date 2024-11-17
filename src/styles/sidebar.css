@@ -1,14 +1,11 @@
 .sidebar {
-    position: fixed;
-    left: 0;
-    bottom: 0;
-    top: 0;
+    min-width: 230px;
     width: 20vw;
+    min-height: 100vh;
     background-color: #0077B5;
-    color: white;
-    z-index: 101; 
-    padding-top: 5px;
+    color: white; 
     font-weight: bold;
+    /* border: 2px solid red; */
 }
 
 .logo-box {
@@ -16,28 +13,23 @@
     align-items: center;
 }
 
-.sidebar-link {
-    padding-left: 25px;
+.logo-box img{
+    /* width: 100px; */
+    height: auto;
 }
 
-.sidebar-component {
+.sidebar-title {
     padding-left: 15px;
     font-size: 17px;
 }
 
 .custom-link {
+    margin-left: 25px;
     display: flex;
     align-items: center;
     color: white;
     text-decoration: none;
     padding: 15px 0 15px 15px;
-}
-
-.sidebar-link{
-    background-color: #0077B5;
-    color: white;
-    border-radius: 100px 0px 0px 100px;
-    font-weight: bold;
 }
 
 .custom-link:hover{
@@ -47,7 +39,7 @@
     font-weight: bold;
 }
 
-.sidebar-link > .active{
+.active{
     background-color: white !important;
     color: #0077B5;
     border-radius: 100px 0px 0px 100px;

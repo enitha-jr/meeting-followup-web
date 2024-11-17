@@ -6,12 +6,15 @@ import Sidebar from './sidebar'
 
 
 const App = () => {
-    const navigate = useNavigate()
     return (
         <div className="content">
             <Sidebar />
-            <Header />
-            <Outlet />
+            <div className="anti-sidebar">
+                <Header />
+                <div className="outlet-container">
+                    <Outlet />
+                </div>
+            </div>
         </div>
     )
 }

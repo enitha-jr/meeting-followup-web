@@ -1,7 +1,4 @@
-.meet-content{
-    position: relative;
-    top: 110px;
-    left: 470px;
+.details-content{
     display:flex;
     flex-direction: column;
     justify-content:space-around;
@@ -10,9 +7,11 @@
     border-radius: 10px;
     height: 60vh;
     width: 40vw;
+    margin: auto;
+    margin-top: 40px;
 }
 
-.meet-content div{
+.details-content div{
   display:flex;
 }
 
@@ -22,15 +21,13 @@
 }
 
 .action-buttons{
-  position:relative;
-  left:450px;
-  top:140px;
+  margin-top: 20px;
   display:flex;
   justify-content: space-around;
 }
 
 .action-buttons button{
-  width: 13vw;
+  width: 11vw;
   height: 5vh;
   border-radius: 7px;
   background-color: #0077B5;

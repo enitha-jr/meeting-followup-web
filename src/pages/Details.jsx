@@ -7,7 +7,6 @@ import './styles/Details.css';
 import Nav2 from './Nav2';
 
 
-
 const Details = () => {
     // const location = useLocation();
     // const { id } = location.state || {};
@@ -37,11 +36,10 @@ const Details = () => {
         </div>
       )
     }  
-    // console.log("Meeting Title:", meetingdetails.title);
+    console.log("Meeting Title:", meetingdetails.title);
 
     const handleEndMeeting = () => {
       setIsCompleted(true);
-      
     };
     
     const handleFollowUp = () => {
@@ -50,10 +48,7 @@ const Details = () => {
     
     return (
       <div>
-        <div>
-          <Nav2/>
-        </div>
-        <div className="meet-content">
+        <div className="details-content">
           <EachDetail label='Title' value={meetingdetails.title}/>
           <EachDetail label="Meeting ID" value={meetingdetails.meetid} />
           <EachDetail label="Team" value={meetingdetails.dept} />
