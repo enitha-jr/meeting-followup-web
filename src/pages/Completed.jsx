@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import './styles/Meetings.css'
+// import './styles/Meetings.css'
 import axios from 'axios';
 import schedule from '../assets/icons/schedule.png'
 import calendar from '../assets/icons/calendar.png'
@@ -7,7 +7,6 @@ import person from '../assets/icons/person.png'
 import venue from '../assets/icons/apartment.png'
 import meetimg from '../assets/icons/meeting.png'
 import { useNavigate } from 'react-router-dom';
-import Nav1 from './Nav1'
 
 const Completed = () => {
 
@@ -25,7 +24,7 @@ const Completed = () => {
     const navigate = useNavigate()
 
     const handleDetail=(id)=>{ 
-        navigate(`/meetings/${id}/details`);
+        navigate(`/meetings/${id}`);
     }
 
     return (

@@ -7,6 +7,7 @@ import Calendar from "../pages/Calendar"
 import Details from "../pages/Details"
 import Completed from "../pages/Completed"
 import Upcoming from '../pages/Upcoming';
+import Meetinfo from '../pages/MeetInfo';
 const routes = [
     {
         path: '/',
@@ -43,10 +44,19 @@ const routes = [
         element: <Calendar/>
     },
     {
-        path: '/meetings/:id/details',
-        element: <Details />
+        path: '/meetings/:id',
+        element: <Meetinfo/>,
+        children: [
+            {
+                path: '',
+                element: <Navigate to="details" />  
+            },
+            {
+                path: 'details',
+                element: <Details />
+            },
+        ]
     }
-
 ]
 
 export default routes;

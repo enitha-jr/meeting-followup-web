@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+// import './styles/Meetings.css'
 import axios from 'axios';
 import schedule from '../assets/icons/schedule.png'
 import calendar from '../assets/icons/calendar.png'
@@ -22,10 +23,9 @@ function Upcoming() {
     const navigate = useNavigate()
 
     const handleDetail=(id)=>{ 
-        navigate(`/meetings/${id}/details`);
+        navigate(`/meetings/${id}`);
     }
     return (
-        <div>
             <div className="meet-body">
                 {details.map((detail) => (
                     <div className='meet-overview' key={detail.id} onClick={() => handleDetail(detail.id)}>
@@ -57,7 +57,6 @@ function Upcoming() {
                     </div>
                 ))}
             </div>
-        </div>
     )
 }
 

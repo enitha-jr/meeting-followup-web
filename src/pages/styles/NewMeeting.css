@@ -1,13 +1,16 @@
 .container {
+  width:60vw;
+  height: 75vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin-top: 100px;
-  margin-left: 400px;
+  margin-top: 50px;
+  margin-left: 150px;
+  border-radius: 10px;
   background-color: white;
-  box-shadow: 8.0px 8.0px 16.0px 16px hsla(0, 0%, 0%, 0.125);
-  padding: 25px 50px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  padding: 10px 0px;
 }
 
 .head3,
@@ -18,8 +21,9 @@
 }
 
 .details {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+  display: flex;
+  /* display: grid;
+  grid-template-columns: 1fr 1fr; */
   font-weight: 600;
   gap: 25px;
 }
@@ -48,7 +52,7 @@ input[type="text"],
 input[type="datetime-local"],
 select,
 textarea {
-  width: 25vw;
+  width: 20vw;
   padding: 10px;
   border: 1px solid #0077B5;
   border-radius: 2.5px;
