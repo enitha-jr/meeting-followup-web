@@ -14,6 +14,11 @@ function Upcoming() {
     useEffect(() => {
         axios.get("http://localhost:5000/meetings/upcoming")
         .then((response) => {
+            for (let item of response.data) {
+                if (item.date) {
+                    item.date = String(item.date).split('T')[0];
+                }
+            }
             setDetails(response.data);
         }).catch((error) => {
             console.log(error);

@@ -19,6 +19,11 @@ const Details = () => {
       if (id) {
           axios.get(`http://localhost:5000/meetings/${id}`)
               .then((response) => {
+                for (let item of response.data) {
+                  if (item.date) {
+                      item.date = String(item.date).split('T')[0];
+                  }
+                }
                 // console.log('API Response:', response.data);
                 setMeetingdetails(response.data[0]); 
               })
