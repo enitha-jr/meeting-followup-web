@@ -10,14 +10,14 @@ import Nav2 from './Nav2';
 const Details = () => {
     // const location = useLocation();
     // const { id } = location.state || {};
-    const { id } = useParams(); 
+    const { meetingid } = useParams(); 
     const [meetingdetails,setMeetingdetails] =useState([]);
     const [isCompleted, setIsCompleted] = useState(false);
     const navigate = useNavigate()
 
     useEffect(() => {
-      if (id) {
-          axios.get(`http://localhost:5000/meetings/${id}`)
+      if (meetingid) {
+          axios.get(`http://localhost:5000/meetings/${meetingid}/details`)
               .then((response) => {
                 for (let item of response.data) {
                   if (item.date) {
@@ -31,7 +31,7 @@ const Details = () => {
                 console.error('Error fetching meeting details:', error);
               });
       }
-    }, [id]);
+    }, [meetingid]);
 
     function EachDetail({label, value}) {
       return (
@@ -55,7 +55,7 @@ const Details = () => {
       <div>
         <div className="details-content">
           <EachDetail label='Title' value={meetingdetails.title}/>
-          <EachDetail label="Meeting ID" value={meetingdetails.meetid} />
+          <EachDetail label="MID" value={meetingdetails.mid} />
           <EachDetail label="Team" value={meetingdetails.dept} />
           <EachDetail label="Host" value={meetingdetails.host} />
           <EachDetail label="Date" value={meetingdetails.date} />

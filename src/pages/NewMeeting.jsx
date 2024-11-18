@@ -7,7 +7,7 @@ import axios from 'axios';
 function NewMeeting() {
   const [followup, setFollowup] = useState('');
   const [title, setTitle] = useState('');
-  const [meetid, setMeetid] = useState('');
+  const [mid, setMid] = useState('');
   const [dept, setDept] = useState('');
   const [host, setHost] = useState('');
   const [date, setDate] = useState('');
@@ -21,7 +21,7 @@ function NewMeeting() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const newDate = new Date(date).toISOString().slice(0,10);
-    const newMeeting = { followup, title, meetid, dept, host, date:newDate, time, venue, desc, members };
+    const newMeeting = { followup, title, mid, dept, host, date:newDate, time, venue, desc, members };
     axios.post("http://localhost:5000/newmeeting/post", newMeeting)
       .then((response) => {
         console.log(response.data);
@@ -31,7 +31,7 @@ function NewMeeting() {
       });
     setFollowup('');
     setTitle('');
-    setMeetid('');
+    setMid('');
     setDept('');
     setHost('');
     setDate('');
@@ -63,9 +63,9 @@ function NewMeeting() {
                   value={title} onChange={e => setTitle(e.target.value)} required />
               </div>
               <div>
-                <label htmlFor="meet-id">ID:</label>
-                <input type="text" name="meet-id" placeholder="98765"
-                  value={meetid} onChange={e => setMeetid(e.target.value)} required />
+                <label htmlFor="mid">MID:</label>
+                <input type="number" name="mid" placeholder="98765"
+                  value={mid} onChange={e => setMid(e.target.value)} required />
               </div>
               <div>
                 <label htmlFor="dept">Dept/Team:</label>
@@ -73,32 +73,34 @@ function NewMeeting() {
                   value={dept} onChange={e => setDept(e.target.value)} required />
               </div>
               <div>
+                <label htmlFor="desc">Description:</label>
+                <textarea name="desc" value={desc}
+                  onChange={e => setDesc(e.target.value)}> </textarea>
+              </div>
+              
+            </div>
+            <div className="right">
+            <div>
                 <label htmlFor="host">Host:</label>
                 <input type="text" name="host" placeholder="Mr.Dharnesh"
                   value={host} onChange={e => setHost(e.target.value)} required />
               </div>
-            </div>
-            <div className="right">
               <div>
-                <label htmlFor="date">Date</label>
+                <label htmlFor="date">Date:</label>
                 <input type="date" name="date"
                   value={date} onChange={e => setDate(e.target.value)} required />
               </div>
               <div>
-                <label htmlFor="time">Time</label>
+                <label htmlFor="time">Time:</label>
                 <input type="time" name="time"
                   value={time} onChange={e => setTime(e.target.value)} required />
               </div>
               <div>
                 <label htmlFor="venue">Venue:</label>
                 <input type="text" name="venue" placeholder="WW101"
-                  value={venue} onChange={e => setVenue(e.target.value)} />
+                  value={venue} onChange={e => setVenue(e.target.value)} required/>
               </div>
-              <div>
-                <label htmlFor="desc">Description:</label>
-                <textarea name="desc" value={desc}
-                  onChange={e => setDesc(e.target.value)}> </textarea>
-              </div>
+              
               <div>
                 <label htmlFor="members">Members:</label>
                 <textarea name="members" value={members}

@@ -27,13 +27,13 @@ function Upcoming() {
 
     const navigate = useNavigate()
 
-    const handleDetail=(id)=>{ 
-        navigate(`/meetings/${id}`);
+    const handleDetail=(meetingid)=>{ 
+        navigate(`/meetings/${meetingid}`);
     }
     return (
             <div className="meet-body">
                 {details.map((detail) => (
-                    <div className='meet-overview' key={detail.id} onClick={() => handleDetail(detail.id)}>
+                    <div className='meet-overview' key={detail.meetingid} onClick={() => handleDetail(detail.meetingid)}>
                         <div className='image'>
                             <img src={meetimg} width="140" />
                         </div>

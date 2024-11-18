@@ -50,7 +50,7 @@ const routes = [
         element: <Calendar/>
     },
     {
-        path: '/meetings/:id',
+        path: '/meetings/:meetingid',
         element: <Meetinfo/>,
         children: [
             {
