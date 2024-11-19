@@ -1,0 +1,66 @@
+.minute-container {
+    margin-top: 50px;
+    margin-left:50px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: rgba(241, 241, 241, 0.526);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 55vw;
+}
+.minute-table{
+    border-collapse: collapse;
+    width: calc(100% - 40px);
+    margin: 0px 20px;
+    /* border:2px solid red; */
+}
+.minute-table tr{
+    border-bottom: 1px solid #0076b55a;
+}
+.minute-table td {
+  padding: 7px;
+  font-size: 17px;
+}
+.minute-table-row td:first-child {
+    font-weight:500;
+    width: 30px;
+    color: rgb(0, 0, 54);
+    text-align: center;
+}
+.minute-table-row td:nth-child(2) {
+    width: calc(100% - 30px);
+}
+
+.minute-input{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    height: 50px;
+    margin: 0px 20px;
+}
+
+.minute-input input[type="text"] {
+    width: 60vw;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-right: 5px;
+    box-shadow: 0 5px 5px rgba(0, 0, 0, 0.1);
+
+}
+.minute-input button.minute-add {
+    padding: 10px 15px;
+    font-size: 16px;
+    background-color: #0076b5;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    box-shadow: 0 5px 5px rgba(0, 0, 0, 0.1);
+}
+.minute-input button.minute-add:hover {
+    background-color: #005a8c;
+}
+
+

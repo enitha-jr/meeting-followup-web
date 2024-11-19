@@ -2,6 +2,7 @@ import React from 'react'
 import { useParams } from 'react-router-dom'
 import { useState, useEffect } from 'react'
 import axios from 'axios';
+import './styles/Minutes.css'
 
 const Minutes = () => {
     const { meetingid } = useParams()
@@ -30,24 +31,26 @@ const Minutes = () => {
             console.log(error);
         });
     }, [])
+    // console.log(response.data);
 
 
   return (
     <div>
       <div className="minute-container">
-        <h5>MINUTES</h5>
-        {minutelist.map((eachminute)=>(
-          <div className='minute-table' key={eachminute.minuteid}>
-            <ul>
-              <li>{eachminute.minute}</li>
-            </ul>
-          </div>
-        ))}
+        <table className='minute-table'>
+          <tbody>
+              {minutelist.map((eachminute,index)=>(
+              <tr className='minute-table-row' key={eachminute.minuteid}>
+                <td>{index+1}</td><td>{eachminute.minute}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
       </div>
       <div className="minute-input">
         <form onSubmit={handleSubmit}>
               <input type="text" value={note} placeholder="Enter minutes" 
-              onChange={e => setNote(e.target.value)} />
+              onChange={e => setNote(e.target.value)} required/>
               <button type="submit" className="minute-add"> + </button>
         </form>
       </div>
