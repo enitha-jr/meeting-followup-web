@@ -1,0 +1,29 @@
+body {
+    font-family: "DM Sans", sans-serif;
+    margin: 0px;
+    padding: 0;
+    /* box-sizing: border-box; */
+    /* overflow-x: hidden; */
+}
+
+.content{
+    display: flex;
+    height: 100vh;
+    /* border: 2px solid red; */
+    /* overflow: hidden; */
+}
+
+.anti-sidebar{
+    width: 80vw;
+    height:100vh;
+}
+/* .outlet-container{
+    height: calc(100vh - 55px);
+} */
+
+
+
+
+
+
+

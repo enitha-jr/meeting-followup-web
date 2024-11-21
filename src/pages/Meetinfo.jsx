@@ -1,14 +1,16 @@
-import React, { useState, useEffect } from 'react'
-import './styles/Meetings.css'
 import { Outlet } from 'react-router-dom';
-import Nav1 from './Nav1'
+import Nav2 from './Nav2'
+import {useParams} from 'react-router-dom'
 
-const Meetings = () => {
+
+const Meetinfo = () => {
+
+    const { meetingid } = useParams()
 
     return (
         <div className='meeting-container'>
             <div className='nav-container'>
-                <Nav1/>
+                <Nav2 meetingid={meetingid}/>
             </div>
             <div className='main-content'>
                 <Outlet />
@@ -17,4 +19,4 @@ const Meetings = () => {
     )
 }
 
-export default Meetings
+export default Meetinfo
