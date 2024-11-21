@@ -1,6 +1,14 @@
+.minute-content{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    /* align-items: center; */
+    height: 100%;
+    overflow-y: auto;
+}
+
 .minute-container {
-    margin-top: 50px;
-    margin-left:50px;
+    margin: 50px 0 100px 50px;
     padding: 10px;
     border: 1px solid #ddd;
     border-radius: 8px;
@@ -12,11 +20,15 @@
     border-collapse: collapse;
     width: calc(100% - 40px);
     margin: 0px 20px;
-    /* border:2px solid red; */
 }
 .minute-table tr{
     border-bottom: 1px solid #0076b55a;
 }
+
+.minute-table tr:last-child{
+    border-bottom: none;
+}
+
 .minute-table td {
   padding: 7px;
   font-size: 17px;
@@ -32,35 +44,49 @@
 }
 
 .minute-input{
+    position: absolute;
+    bottom: 0;
     display:flex;
     justify-content: center;
     align-items: center;
     height: 50px;
-    margin: 0px 20px;
+    padding: 5px;
+    margin-left: 50px;
+    margin-bottom: 15px;
+    /* border:  2px solid #0076b5; */
 }
 
 .minute-input input[type="text"] {
     width: 60vw;
-    padding: 10px;
     font-size: 16px;
     border: 1px solid #ccc;
     border-radius: 5px;
-    margin-right: 5px;
+    margin-right: 8px;
     box-shadow: 0 5px 5px rgba(0, 0, 0, 0.1);
 
 }
+.minute-input form{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 .minute-input button.minute-add {
-    padding: 10px 15px;
-    font-size: 16px;
+    padding: 3px 4px;
+    font-size:25px;
     background-color: #0076b5;
     color: white;
     border: none;
     border-radius: 5px;
     cursor: pointer;
     box-shadow: 0 5px 5px rgba(0, 0, 0, 0.1);
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
 }
 .minute-input button.minute-add:hover {
     background-color: #005a8c;
 }
+
+
 
 

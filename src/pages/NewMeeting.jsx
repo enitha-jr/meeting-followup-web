@@ -22,7 +22,7 @@ function NewMeeting() {
     e.preventDefault();
     const newDate = new Date(date).toISOString().slice(0,10);
     const newMeeting = { followup, title, mid, dept, host, date:newDate, time, venue, desc, members };
-    axios.post("http://localhost:5000/newmeeting/post", newMeeting)
+    axios.post("http://localhost:5000/newmeeting", newMeeting)
       .then((response) => {
         console.log(response.data);
         navigate("/meetings/upcoming")
