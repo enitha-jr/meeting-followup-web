@@ -1,0 +1,22 @@
+.meettask-content{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    /* align-items: center; */
+    height: 100%;
+    overflow-y: auto;
+}
+
+.add-button{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 5vw;
+    height: 5vh;
+    border-radius: 7px;
+    background-color: #0077B5;
+    color: white;
+    margin: 50px 0 100px 50px;
+    cursor: pointer;
+    padding: 2px;
+}

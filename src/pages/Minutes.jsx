@@ -61,12 +61,11 @@ const Minutes = () => {
           </table>
         </div>
       }
-
       <div className="minute-input">
         <form onSubmit={handleSubmit}>
           <input type="text" value={note} placeholder="Enter minutes"
             onChange={e => setNote(e.target.value)} required />
-          <button type="submit" className="minute-add"> <FiPlus /> </button>
+          <button type="submit" className="minute-add"> <FiPlus/> </button>
         </form>
       </div>
     </div>
