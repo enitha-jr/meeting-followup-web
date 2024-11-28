@@ -14,6 +14,11 @@ function Upcoming() {
     useEffect(() => {
         axios.get("http://localhost:5000/meetings/upcoming")
         .then((response) => {
+            for (let item of response.data) {
+                if (item.date) {
+                    item.date = String(item.date).split('T')[0];
+                }
+            }
             setDetails(response.data);
         }).catch((error) => {
             console.log(error);
@@ -22,13 +27,13 @@ function Upcoming() {
 
     const navigate = useNavigate()
 
-    const handleDetail=(id)=>{ 
-        navigate(`/meetings/${id}`);
+    const handleDetail=(meetingid)=>{ 
+        navigate(`/meetings/${meetingid}`);
     }
     return (
             <div className="meet-body">
                 {details.map((detail) => (
-                    <div className='meet-overview' key={detail.id} onClick={() => handleDetail(detail.id)}>
+                    <div className='meet-overview' key={detail.meetingid} onClick={() => handleDetail(detail.meetingid)}>
                         <div className='image'>
                             <img src={meetimg} width="140" />
                         </div>

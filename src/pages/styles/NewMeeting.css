@@ -1,11 +1,11 @@
 .container {
   width:60vw;
-  height: 75vh;
+  height: 80vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin-top: 50px;
+  margin-top: 35px;
   margin-left: 150px;
   border-radius: 10px;
   background-color: white;
@@ -39,6 +39,7 @@
 .details .right div {
   display: flex;
   flex-direction: column;
+  margin-top: 10px;
 }
 
 label {
@@ -49,8 +50,9 @@ label {
 }
 
 input[type="text"],
-input[type="datetime-local"],
-select,
+input[type="date"],
+input[type="time"],
+input[type="number"],
 textarea {
   width: 20vw;
   padding: 10px;
@@ -58,7 +60,24 @@ textarea {
   border-radius: 2.5px;
   font-size: 1rem;
   background-color: #F6F9FF;
+}
 
+input[type="date"],
+input[type="time"]{
+  padding: 8px;
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+}
+
+select{
+  padding: 10px;
+  border: 1px solid #0077B5;
+  border-radius: 2.5px;
+  font-size: 1rem;
+  background-color: #F6F9FF;
 }
 
 textarea {
@@ -67,7 +86,9 @@ textarea {
 }
 
 input[type="text"]:focus,
-input[type="datetime-local"]:focus,
+input[type="date"]:focus,
+input[type="time"]:focus,
+input[type="number"]:focus,
 select:focus,
 textarea:focus {
   outline: none;

@@ -8,70 +8,73 @@ import Nav2 from './Nav2';
 
 
 const Details = () => {
-    // const location = useLocation();
-    // const { id } = location.state || {};
-    const { id } = useParams(); 
-    const [meetingdetails,setMeetingdetails] =useState([]);
-    const [isCompleted, setIsCompleted] = useState(false);
-    const navigate = useNavigate()
+  // const location = useLocation();
+  // const { id } = location.state || {};
+  const { meetingid } = useParams();
+  const [meetingdetails, setMeetingdetails] = useState([]);
+  const [isCompleted, setIsCompleted] = useState(false);
+  const navigate = useNavigate()
 
-    useEffect(() => {
-      if (id) {
-          axios.get(`http://localhost:5000/meetings/${id}`)
-              .then((response) => {
-                // console.log('API Response:', response.data);
-                setMeetingdetails(response.data[0]); 
-              })
-              .catch((error) => {
-                console.error('Error fetching meeting details:', error);
-              });
-      }
-    }, [id]);
+  useEffect(() => {
+    if (meetingid) {
+      axios.get(`http://localhost:5000/meetings/${meetingid}/details`)
+        .then((response) => {
+          for (let item of response.data) {
+            if (item.date) {
+              item.date = String(item.date).split('T')[0];
+            }
+          }
+          // console.log('API Response:', response.data);
+          setMeetingdetails(response.data[0]);
+        })
+        .catch((error) => {
+          console.error('Error fetching meeting details:', error);
+        });
+    }
+  }, [meetingid]);
 
-    function EachDetail({label, value}) {
-      return (
-        <div className="detail-item">
-          <div>{label}</div>
-          <div>{value}</div>
-        </div>
-      )
-    }  
-    console.log("Meeting Title:", meetingdetails.title);
-
-    const handleEndMeeting = () => {
-      setIsCompleted(true);
-    };
-    
-    const handleFollowUp = () => {
-      navigate('/newmeeting');
-    };
-    
+  function EachDetail({ label, value }) {
     return (
-      <div>
-        <div className="details-content">
-          <EachDetail label='Title' value={meetingdetails.title}/>
-          <EachDetail label="Meeting ID" value={meetingdetails.meetid} />
-          <EachDetail label="Team" value={meetingdetails.dept} />
-          <EachDetail label="Host" value={meetingdetails.host} />
-          <EachDetail label="Date" value={meetingdetails.date} />
-          <EachDetail label="Time" value={meetingdetails.time} />
-          <EachDetail label="Venue" value={meetingdetails.venue} />
-          <EachDetail label="Description" value={meetingdetails.description} />
-          <EachDetail label="Members" value={meetingdetails.members} />
-        </div>
-        <div className="action-buttons">
-          <button 
-              className={`end-meeting-btn ${isCompleted ? 'completed' : ''}`}
-              onClick={handleEndMeeting}
-          >
-          {isCompleted ? 'COMPLETED' : 'END THE MEETING'}
-          </button>
-          <button className="follow-up-btn" onClick={handleFollowUp}>
-            FOLLOW UP
-          </button>
-        </div>
+      <div className="detail-item">
+        <div>{label}</div>
+        <div>{value}</div>
       </div>
     )
+  }
+  console.log("Meeting Title:", meetingdetails.title);
+
+
+  const handleFollowUp = () => {
+    navigate('/newmeeting');
+  };
+
+  console.log(meetingdetails.status)
+
+  return (
+    <div>
+      <div className="details-content">
+        <EachDetail label='Title' value={meetingdetails.title} />
+        <EachDetail label="MID" value={meetingdetails.mid} />
+        <EachDetail label="Team" value={meetingdetails.dept} />
+        <EachDetail label="Host" value={meetingdetails.host} />
+        <EachDetail label="Date" value={meetingdetails.date} />
+        <EachDetail label="Time" value={meetingdetails.time} />
+        <EachDetail label="Venue" value={meetingdetails.venue} />
+        <EachDetail label="Description" value={meetingdetails.description} />
+        <EachDetail label="Members" value={meetingdetails.members} />
+      </div>
+      <div className="action-buttons">
+        {meetingdetails.status !== "completed" &&
+          <button>
+           END THE MEETING
+          </button>
+        }
+        <button className="follow-up-btn" onClick={handleFollowUp}>
+          FOLLOW UP
+        </button>
+      </div>
+    </div>
+  )
 }
 
 export default Details

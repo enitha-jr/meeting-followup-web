@@ -4,10 +4,16 @@ import NewMeeting from "../pages/NewMeeting"
 import Meetings from "../pages/Meetings"
 import Tasks from "../pages/Tasks"
 import Calendar from "../pages/Calendar"
-import Details from "../pages/Details"
 import Completed from "../pages/Completed"
 import Upcoming from '../pages/Upcoming';
 import Meetinfo from '../pages/MeetInfo';
+import Details from "../pages/Details"
+import Minutes from '../pages/Minutes';
+import MeetTasks from '../pages/MeetTasks';
+import Attendance from '../pages/Attendance';
+import Report from '../pages/Report';
+
+
 const routes = [
     {
         path: '/',
@@ -44,7 +50,7 @@ const routes = [
         element: <Calendar/>
     },
     {
-        path: '/meetings/:id',
+        path: '/meetings/:meetingid',
         element: <Meetinfo/>,
         children: [
             {
@@ -54,6 +60,22 @@ const routes = [
             {
                 path: 'details',
                 element: <Details />
+            },
+            {
+                path: 'minutes',
+                element: <Minutes/>
+            },
+            {
+                path: 'tasks',
+                element: <MeetTasks />
+            },
+            {
+                path: 'attendance',
+                element: <Attendance/>
+            },
+            {
+                path: 'report',
+                element: <Report/>
             },
         ]
     }

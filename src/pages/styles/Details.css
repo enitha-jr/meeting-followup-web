@@ -3,21 +3,21 @@
     flex-direction: column;
     justify-content:space-around;
     padding: 20px;
-    background-color: rgb(214, 214, 214); 
+    background-color: white; 
     border-radius: 10px;
     height: 60vh;
     width: 40vw;
     margin: auto;
     margin-top: 40px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
 }
 
-.details-content div{
-  display:flex;
-}
 
 .detail-item{
-  display: flex;
-  justify-content: space-evenly;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  width: 100%;
+  justify-items: center;
 }
 
 .action-buttons{
