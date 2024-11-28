@@ -22,6 +22,8 @@ const Minutes = () => {
     setNote('');
   }
 
+  //changes added
+
   const [minutelist, setMinutelist] = useState([]);
 
   useEffect(() => {
