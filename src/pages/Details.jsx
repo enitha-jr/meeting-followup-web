@@ -12,7 +12,7 @@ const Details = () => {
   // const { id } = location.state || {};
   const { meetingid } = useParams();
   const [meetingdetails, setMeetingdetails] = useState([]);
-  const [isCompleted, setIsCompleted] = useState(false);
+  // const [isCompleted, setIsCompleted] = useState(false);
   const navigate = useNavigate()
 
   useEffect(() => {
@@ -41,14 +41,13 @@ const Details = () => {
       </div>
     )
   }
-  console.log("Meeting Title:", meetingdetails.title);
-
+  // console.log("Meeting Title:", meetingdetails.title);
 
   const handleFollowUp = () => {
     navigate('/newmeeting');
   };
 
-  console.log(meetingdetails.status)
+  // console.log(meetingdetails.status);
 
   return (
     <div>

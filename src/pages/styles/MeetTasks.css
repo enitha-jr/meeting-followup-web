@@ -1,22 +1,169 @@
 .meettask-content{
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
     /* align-items: center; */
     height: 100%;
     overflow-y: auto;
 }
-
 .add-button{
     display: flex;
     justify-content: center;
     align-items: center;
     width: 6vw;
     height: 5vh;
-    border-radius: 7px;
+    border-radius: 6px;
     background-color: #0077B5;
     color: white;
-    margin: 50px 0 100px 50px;
+    font-weight:400;
+    margin: 50px 0 0 50px;
     cursor: pointer;
-    padding: 2px;
+    padding: 0 2px;
 }
+.task-form-content ,.overlay{
+    position: fixed;    
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+.overlay {
+    display: flex;
+    flex-direction: column;
+    background: rgba(0, 0, 0, 0.5);
+}
+.task-form-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    width: 35vw;
+    height: 65vh;
+    background-color: white;
+    border-radius: 10px;
+    z-index: 10; 
+    padding: 10px 0;
+}
+.head4{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 5vh;
+    color: #005f8b;
+}
+
+.meettask-form{
+    width: 35vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    /* border:2px solid red; */
+}
+
+.meettask-form div{
+    width:100%;
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    margin-top: 10px;
+    gap:10px;
+    padding: 0 20px;
+}
+
+.meettask-form label {
+    display: block;
+    font-size: medium;
+    color: #555;
+    margin-left: 5px;
+    /* text-align: center; */
+}
+
+.meettask-form input[type="text"],
+.meettask-form input[type='date'],
+.meettask-form textarea,
+.meettask-form select{
+    width: 20vw;
+    padding: 10px;
+    border: 1px solid #0077B5;
+    border-radius: 2.5px;
+    font-size: 1rem;
+    background-color: #F6F9FF;
+}
+.meettask-form select{
+    width:21.5vw;
+}
+.meettask-form input[type="text"]:focus,
+.meettask-form input[type='date']:focus,
+.meettask-form textarea:focus,
+.meettask-form select:focus{
+    outline:none
+}
+.meettask-btn{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    /* border: 2px solid red; */
+}
+
+.meettask-btn button[type="submit"] {
+    padding: 10px;
+    font-family: Arial;
+    font-weight: 500;
+    color: #fff;
+    background-color: #0077B5;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 10vw;
+    height:5vh;
+    margin: 5px 140px;
+}
+.close-btn{
+    margin-top: 20px;
+}
+
+.task-container{
+    margin: 50px 0 100px 50px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: rgba(250, 250, 250, 0.554);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 55vw;
+}
+
+.task-table{
+    border-collapse: collapse;
+    width: calc(100% - 40px);
+    margin: 0px 20px;
+}
+
+.task-table tr{
+    border-bottom: 1px solid #0076b55a;
+}
+
+.task-table tr:last-child{
+    border-bottom: none;
+}
+
+.task-table td {
+  padding: 7px;
+  font-size: 17px;
+  text-align: center;
+}
+.task-table-row td:first-child {
+    font-weight:500;
+    /* width: 30px; */
+    color: rgb(0, 0, 54);
+    text-align: center;
+}
+
+
+
+

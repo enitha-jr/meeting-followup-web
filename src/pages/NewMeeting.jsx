@@ -42,17 +42,17 @@ function NewMeeting() {
   }
 
   return (
-    <div className='container'>
+    <div className='newmeeting-container'>
         <div className="head3">
           <h3>NEW-MEETING</h3>
         </div>
-        <form onSubmit={handleSubmit}>
+        <form className="newmeeting-form" onSubmit={handleSubmit}>
           <div className="details">
             <div className="left">
               <div>
                 <label htmlFor="follow-up">Follow-up:</label>
                 <select name="followup" value={followup} onChange={e => setFollowup(e.target.value)} required>
-                  <option value=''>select</option>
+                  <option value=''></option>
                   <option value="yes">Yes</option>
                   <option value="no">No</option>
                 </select>
@@ -108,7 +108,7 @@ function NewMeeting() {
               </div>
             </div>
           </div>
-          <div className="btn">
+          <div className="newmeeting-btn">
             <button type="submit">CREATE MEETING</button>
           </div>
         </form>

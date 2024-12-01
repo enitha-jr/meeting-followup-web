@@ -15,7 +15,6 @@ const Sidebar = () => {
                 <div>MEETMINUTES</div>
             </div>
             <div>
-
             </div>
                 <NavLink to='/newmeeting' className='custom-link inner'>
                     <img src={add} />

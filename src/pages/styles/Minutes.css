@@ -39,9 +39,9 @@
     color: rgb(0, 0, 54);
     text-align: center;
 }
-.minute-table-row td:nth-child(2) {
+/* .minute-table-row td:nth-child(2) {
     width: calc(100% - 30px);
-}
+} */
 
 .minute-input{
     position: absolute;
@@ -56,20 +56,27 @@
     /* border:  2px solid #0076b5; */
 }
 
-.minute-input input[type="text"] {
+.minute-form input[type="text"] {
     width: 60vw;
+    height: 6vh;
     font-size: 16px;
     border: 1px solid #ccc;
     border-radius: 5px;
     margin-right: 8px;
     box-shadow: 0 5px 5px rgba(0, 0, 0, 0.1);
-
+    border: 1px solid #0077B5;
+    background-color: #F6F9FF;
 }
+.minute-form input[type="text"]:focus {
+    outline: none;
+}   
+
 .minute-input form{
     display: flex;
     justify-content: center;
     align-items: center;
 }
+
 .minute-input button.minute-add {
     padding: 3px 4px;
     font-size:25px;
