@@ -1,12 +1,14 @@
-.container {
-  width:60vw;
+body{
+  background-color: rgba(213, 227, 255, 0.306);
+}
+.newmeeting-container {
+  width:55vw;
   height: 80vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin-top: 35px;
-  margin-left: 150px;
+  margin: 35px auto auto auto;
   border-radius: 10px;
   background-color: white;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
@@ -14,14 +16,16 @@
 }
 
 .head3,
-.btn {
+.newmeeting-btn {
   display: flex;
   align-items: center;
   justify-content: center;
+  color: #005f8b;
 }
 
 .details {
   display: flex;
+  justify-content: center;
   /* display: grid;
   grid-template-columns: 1fr 1fr; */
   font-weight: 600;
@@ -42,18 +46,19 @@
   margin-top: 10px;
 }
 
-label {
+.newmeeting-form label {
   display: block;
   font-size: 1rem;
   color: #555;
   margin-bottom: 5px;
 }
 
-input[type="text"],
-input[type="date"],
-input[type="time"],
-input[type="number"],
-textarea {
+.newmeeting-form  input[type="text"],
+.newmeeting-form input[type="date"],
+.newmeeting-form input[type="time"],
+.newmeeting-form input[type="number"],
+.newmeeting-form textarea,
+.newmeeting-form select {
   width: 20vw;
   padding: 10px;
   border: 1px solid #0077B5;
@@ -62,8 +67,12 @@ textarea {
   background-color: #F6F9FF;
 }
 
-input[type="date"],
-input[type="time"]{
+.newmeeting-form select {
+  width: 21.7vw;
+}
+
+.newmeeting-form input[type="date"],
+.newmeeting-form input[type="time"]{
   padding: 8px;
 }
 
@@ -72,37 +81,30 @@ input[type="number"]::-webkit-outer-spin-button {
     -webkit-appearance: none;
 }
 
-select{
-  padding: 10px;
-  border: 1px solid #0077B5;
-  border-radius: 2.5px;
-  font-size: 1rem;
-  background-color: #F6F9FF;
-}
+
 
 textarea {
   resize: none;
   min-height: 80px;
 }
 
-input[type="text"]:focus,
-input[type="date"]:focus,
-input[type="time"]:focus,
-input[type="number"]:focus,
-select:focus,
-textarea:focus {
+.newmeeting-form input[type="text"]:focus,
+.newmeeting-form input[type="date"]:focus,
+.newmeeting-form input[type="time"]:focus,
+.newmeeting-form input[type="number"]:focus,
+.newmeeting-form select:focus,
+.newmeeting-form textarea:focus {
   outline: none;
-  border-color: #0077B5;
 }
 
-.btn {
+.newmeeting-btn{
   display: flex;
   justify-content: center;
   align-items: center;
   margin-top: 20px;
 }
 
-.btn button[type="submit"] {
+.newmeeting-btn button[type="submit"] {
   padding: 10px 20px;
   font-size: 1rem;
   font-family: Arial;
@@ -113,6 +115,6 @@ textarea:focus {
   cursor: pointer;
 }
 
-.btn button[type="submit"]:hover {
+.newmeeting-btn button[type="submit"]:hover {
   background-color: #005f8b;
 }

@@ -29,7 +29,6 @@
 
 .meet-overview {
     background-color: white;
-    box-shadow: 8.0px 16.0px 16.0px hsl(0deg 0% 0% / 0.25);
     border-radius: 10px;
     display: flex;
     flex-direction: column;
@@ -37,6 +36,12 @@
     align-items: center;
     cursor: pointer;
     width: 270px;
+    box-shadow: 4px 8px 10px rgba(0, 0, 0, 0.15);
+    transition: box-shadow 0.3s ease; 
+}
+
+.meet-overview:hover{
+    box-shadow: 6px 12px 15px rgba(0, 0, 0, 0.25);
 }
 
 .meet-body {

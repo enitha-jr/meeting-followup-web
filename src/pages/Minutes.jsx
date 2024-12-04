@@ -10,10 +10,10 @@ const Minutes = () => {
   const [note, setNote] = useState("")
   const handleSubmit = async (e) => {
     // e.preventDefault();
-    const newminute = { meetingid, minute: note };
+    const newminute = {minute:note};
     // console.log(newminute);
     // console.log(meetingid);
-    axios.post(`http://localhost:5000/meetings/${meetingid}/minutes`, newminute)
+    await axios.post(`http://localhost:5000/meetings/${meetingid}/minutes`, newminute)
       .then((response) => {
         console.log(response.data);
       }).catch((error) => {
@@ -38,15 +38,16 @@ const Minutes = () => {
 
   const [meetingdetails, setMeetingdetails] = useState([]);
   useEffect(() => {
-    axios.get(`http://localhost:5000/meetings/${meetingid}/details`)
-      .then((response) => {
-        setMeetingdetails(response.data);
-      }).catch((error) => {
-        console.log(error);
-      });
-  }, [])
-
-  // console.log(meetingdetails.status)
+    if (meetingid) {
+      axios.get(`http://localhost:5000/meetings/${meetingid}/details`)
+        .then((response) => {
+          setMeetingdetails(response.data[0]);
+        })
+        .catch((error) => {
+          console.error('Error fetching meeting details:', error);
+        });
+    }
+  }, [meetingid]);
 
   return (
     <div className='minute-content'>
@@ -54,8 +55,8 @@ const Minutes = () => {
         <div className="minute-container">
           <table className='minute-table'>
             <tbody>
-              {minutelist.map((eachminute, index) => (
-                <tr className='minute-table-row' key={eachminute.minuteid}>
+              {minutelist.map((eachminute,index) => (
+                <tr className='minute-table-row' key={index}>
                   <td>{index + 1}</td><td>{eachminute.minute}</td>
                 </tr>
               ))}
@@ -63,14 +64,16 @@ const Minutes = () => {
           </table>
         </div>
       }
-
-      <div className="minute-input">
-        <form onSubmit={handleSubmit}>
-          <input type="text" value={note} placeholder="Enter minutes"
-            onChange={e => setNote(e.target.value)} required />
-          <button type="submit" className="minute-add"> <FiPlus /> </button>
-        </form>
-      </div>
+      {
+        meetingdetails.status === 'ongoing' &&
+        <div className="minute-input">
+          <form className="minute-form" onSubmit={handleSubmit}>
+            <input type="text" value={note} placeholder="Enter minutes"
+              onChange={e => setNote(e.target.value)} required />
+            <button type="submit" className="minute-add"> <FiPlus/> </button>
+          </form>
+        </div>
+      }
     </div>
   )
 }

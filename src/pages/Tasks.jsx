@@ -3,7 +3,7 @@ import './styles/Tasks.css'
 
 const Tasks = () => {
   return (
-    <div className='task-container'>
+    <div>
       Tasks
     </div>
   )
