@@ -33,8 +33,7 @@
 }
 
 .custom-link:hover{
-    background-color: rgba(255, 255, 255, 0.643);
-    color: #0077B5;
+    background-color: rgba(255, 255, 255, 0.4);
     border-radius: 100px 0px 0px 100px;
     font-weight: bold;
 }
@@ -46,6 +45,10 @@
     font-weight: bold;
 }
 
-.custom-link:hover img, .active img {
+/* .custom-link:hover img{
+    filter: brightness(0) saturate(100%) invert(29%) sepia(85%) saturate(747%) hue-rotate(189deg) brightness(92%) contrast(89%);
+} */
+
+.active img {
     filter: brightness(0) saturate(100%) invert(29%) sepia(85%) saturate(747%) hue-rotate(189deg) brightness(92%) contrast(89%);
 }
