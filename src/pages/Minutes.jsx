@@ -47,7 +47,7 @@ const Minutes = () => {
           console.error('Error fetching meeting details:', error);
         });
     }
-  }, [meetingid]);
+  }, []);
 
   return (
     <div className='minute-content'>

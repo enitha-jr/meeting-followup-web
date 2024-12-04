@@ -47,7 +47,23 @@ const Details = () => {
     navigate('/newmeeting');
   };
 
+  const handleComplete = () => {
+    axios.put(`http://localhost:5000/meetings/${meetingid}/change-complete`)
+      .then((response) => {
+        console.log(response.data);
+        setMeetingdetails({ ...meetingdetails, status: 'completed' });
+        navigate('/meetings');
+      })
+      .catch((error) => {
+        console.error('Error completing meeting:', error);
+      });
+  }
   // console.log(meetingdetails.status);
+
+  const [showForm, setShowForm] = useState(false);
+  const showPopup = () => {
+    setShowForm(!showForm)
+  }
 
   return (
     <div>
@@ -64,7 +80,7 @@ const Details = () => {
       </div>
       <div className="action-buttons">
         {meetingdetails.status !== "completed" &&
-          <button>
+          <button className="end-meeting-btn" onClick={showPopup}>
            END THE MEETING
           </button>
         }
@@ -72,6 +88,20 @@ const Details = () => {
           FOLLOW UP
         </button>
       </div>
+      {showForm && (
+        <div className='task-form-content'>
+          <div className='overlay' onClick={showPopup}></div>
+          <div className='popup-container'>
+            <div className='head4'>
+              <h4>Are you sure to end the meeting?</h4>
+            </div>
+            <div className='popup-buttons'>
+              <button className='popup-close' onClick={showPopup}>close</button>
+              <button className='popup-confirm' onClick={handleComplete}>Confirm</button>
+            </div>
+          </div> 
+        </div>
+      )}
     </div>
   )
 }

@@ -66,7 +66,7 @@ const MeetTasks = () => {
       }).catch((error) => {
         console.log(error);
       });
-  }, [tasklist])
+  },[tasklist])
   // console.log(tasklist);
 
 
@@ -89,6 +89,7 @@ const MeetTasks = () => {
             <tbody>
               {tasklist.map((eachtask,index) => (
                 <tr className='task-table-row' key={index}>
+                  {console.log(eachtask)}
                   <td>{index + 1}</td>
                   <td>{eachtask.task}</td>
                   <td>{eachtask.description}</td>
