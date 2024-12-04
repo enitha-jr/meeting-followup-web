@@ -66,8 +66,8 @@ const MeetTasks = () => {
       }).catch((error) => {
         console.log(error);
       });
-  },[])
-  console.log(tasklist);
+  }, [tasklist])
+  // console.log(tasklist);
 
 
   return (
