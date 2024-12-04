@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './styles/NewMeeting.css';
@@ -26,13 +26,15 @@ function NewMeeting() {
       setName('');
     }
   }
+  // console.log(members);
 
-  console.log(members);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     const newDate = new Date(date).toISOString().slice(0,10);
-    const newMeeting = { followup, title, mid, dept, host, date:newDate, time, venue, desc, members };
+    const newMembers = JSON.stringify(members);
+    const newMeeting = { followup, title, mid, dept, host, date:newDate, time, venue, desc, members: newMembers};
+    // console.log(newMeeting);
     axios.post("http://localhost:5000/newmeeting", newMeeting)
       .then((response) => {
         console.log(response.data);
@@ -50,6 +52,7 @@ function NewMeeting() {
     setTime('');
     setVenue('');
     setDesc('');
+    setName('');
     setMembers([]);
   }
 
@@ -123,7 +126,10 @@ function NewMeeting() {
                 onKeyDown={handleAddMember}/>
                 <div className="members-list">
                   {members.map((member, index) => (
-                    <div key={index}>{member}</div>
+                    <div className="each-member" key={index}>
+                      <div className="memb-name">{member}</div>
+                      <div className="x" onClick={() => setMembers(members.filter((i) => i !== member))}>x</div>
+                    </div>
                   ))}
                 </div>
               </div>
