@@ -14,9 +14,20 @@ function NewMeeting() {
   const [time, setTime] = useState('');
   const [venue, setVenue] = useState('');
   const [desc, setDesc] = useState('');
-  const [members, setMembers] = useState('');
+  const [name, setName] = useState('');
+  const [members, setMembers] = useState([]);
 
   const navigate = useNavigate()
+
+  const handleAddMember = (e) => {
+    if (e.key === 'Enter' && name.trim()!==''){
+      e.preventDefault();
+      setMembers([...members, name]);
+      setName('');
+    }
+  }
+
+  console.log(members);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -25,6 +36,7 @@ function NewMeeting() {
     axios.post("http://localhost:5000/newmeeting", newMeeting)
       .then((response) => {
         console.log(response.data);
+        console.log('Meeting created successfully');
         navigate("/meetings/upcoming")
       }).catch((error) => {
         console.log(error);
@@ -38,7 +50,7 @@ function NewMeeting() {
     setTime('');
     setVenue('');
     setDesc('');
-    setMembers('');
+    setMembers([]);
   }
 
   return (
@@ -73,18 +85,20 @@ function NewMeeting() {
                   value={dept} onChange={e => setDept(e.target.value)} required />
               </div>
               <div>
+                <label htmlFor="host">Host:</label>
+                <input type="text" name="host" placeholder="Mr.Dharnesh"
+                  value={host} onChange={e => setHost(e.target.value)} required />
+              </div> 
+              <div>
                 <label htmlFor="desc">Description:</label>
                 <textarea name="desc" value={desc}
                   onChange={e => setDesc(e.target.value)}> </textarea>
               </div>
+
               
             </div>
             <div className="right">
-            <div>
-                <label htmlFor="host">Host:</label>
-                <input type="text" name="host" placeholder="Mr.Dharnesh"
-                  value={host} onChange={e => setHost(e.target.value)} required />
-              </div>
+             
               <div>
                 <label htmlFor="date">Date:</label>
                 <input type="date" name="date"
@@ -100,11 +114,18 @@ function NewMeeting() {
                 <input type="text" name="venue" placeholder="WW101"
                   value={venue} onChange={e => setVenue(e.target.value)} required/>
               </div>
-              
               <div>
                 <label htmlFor="members">Members:</label>
-                <textarea name="members" value={members}
-                  onChange={e => setMembers(e.target.value)}> </textarea>
+                <input
+                type="text"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                onKeyDown={handleAddMember}/>
+                <div className="members-list">
+                  {members.map((member, index) => (
+                    <div key={index}>{member}</div>
+                  ))}
+                </div>
               </div>
             </div>
           </div>
