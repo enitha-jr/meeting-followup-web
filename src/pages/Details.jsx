@@ -96,7 +96,7 @@ const Details = () => {
               <h4>Are you sure to end the meeting?</h4>
             </div>
             <div className='popup-buttons'>
-              <button className='popup-close' onClick={showPopup}>close</button>
+              <button className='popup-close' onClick={showPopup}>Close</button>
               <button className='popup-confirm' onClick={handleComplete}>Confirm</button>
             </div>
           </div> 
