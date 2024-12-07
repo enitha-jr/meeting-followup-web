@@ -12,7 +12,6 @@
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
 }
 
-
 .detail-item{
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -69,7 +68,6 @@
   opacity: 0.9;
 }
 
-
 .popup-container{
   display: flex;
   flex-direction: column;
@@ -102,8 +100,8 @@
 .popup-buttons button:hover{
   opacity: 1.5;
   box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.3);
+  transition: box-shadow 0.5s ease; 
 }
-
 
 .popup-buttons .popup-close{
   background-color: rgb(200, 0, 0);

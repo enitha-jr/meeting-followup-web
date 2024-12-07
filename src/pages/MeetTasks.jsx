@@ -1,7 +1,7 @@
 import React from 'react'
 import { FiPlus } from "react-icons/fi";
 import './styles/MeetTasks.css'
-import { useState ,useEffect} from 'react';
+import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { SlClose } from "react-icons/sl";
 import axios from 'axios';
@@ -20,25 +20,42 @@ const MeetTasks = () => {
       }).catch((error) => {
         console.log(error);
       });
-  }, [])
+  }, [meetingid])
   // console.log(minutelist);
+
+  const [members, setMembers] = useState([]);
+  useEffect(() => {
+    axios.get(`http://localhost:5000/meetings/${meetingid}/members`)
+      .then((response) => {
+        setMembers(response.data);
+      }).catch((error) => {
+        console.log(error);
+      });
+  }, [meetingid])
 
   const MinuteOptions = () => {
     return minutelist.map((minute) => (
       <option key={minute.minuteid}>{minute.minute}</option>
     ))
   }
+  const MembersOptions = () => {
+    return members.map((member) => (
+      <option key={member.attendanceid}>{member.staffname}</option>
+    ))
+  }
+  // console.log(members);
   const [minute, setMinute] = useState('');
   const [task, setTask] = useState('');
   const [desc, setDesc] = useState('');
-  const [assign, setAssign] = useState('');
+  const [assignby, setAssignby] = useState('');
+  const [assignto, setAssignto] = useState('');
   const [date, setDate] = useState('');
 
-  
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const newDate = new Date(date).toISOString().slice(0,10);
-    const newTask = {minute,task,desc,assign, date:newDate };
+    const newDate = new Date(date).toISOString().slice(0, 10);
+    const newTask = { minute, task, desc, assignby, assignto, date: newDate };
     setTasklist([...tasklist, newTask]);
     axios.post(`http://localhost:5000/meetings/${meetingid}/tasks`, newTask)
       .then((response) => {
@@ -49,7 +66,8 @@ const MeetTasks = () => {
     setMinute('');
     setTask('');
     setDesc('');
-    setAssign('');
+    setAssignby('');
+    setAssignto('');
     setDate('');
     setShowForm(false);
   }
@@ -66,13 +84,12 @@ const MeetTasks = () => {
       }).catch((error) => {
         console.log(error);
       });
-  },[tasklist])
+  }, [tasklist])
   // console.log(tasklist);
-
 
   return (
     <div className='meettask-content'>
-      <div className='add-button' onClick={showTaskform} ><FiPlus/>ADD</div>
+      <div className='add-button' onClick={showTaskform} ><FiPlus />ADD</div>
       {
         tasklist.length > 0 &&
         <div className='task-container'>
@@ -87,13 +104,12 @@ const MeetTasks = () => {
               </tr>
             </thead>
             <tbody>
-              {tasklist.map((eachtask,index) => (
+              {tasklist.map((eachtask, index) => (
                 <tr className='task-table-row' key={index}>
-                  {console.log(eachtask)}
                   <td>{index + 1}</td>
                   <td>{eachtask.task}</td>
                   <td>{eachtask.description}</td>
-                  <td>{eachtask.assigned}</td>
+                  <td>{eachtask.assignto}</td>
                   <td>{eachtask.date}</td>
                 </tr>
               ))}
@@ -118,26 +134,33 @@ const MeetTasks = () => {
               </div>
               <div>
                 <label>Task:</label>
-                <input type='text' onChange={e => setTask(e.target.value)} required/>
+                <input type='text' onChange={e => setTask(e.target.value)} required />
               </div>
               <div>
                 <label>Description:</label>
-                <textarea onChange={e => setDesc(e.target.value)} required/>
+                <textarea onChange={e => setDesc(e.target.value)} required />
+              </div>
+              <div>
+                <label>Assigned By:</label>
+                <select onChange={e => setAssignby(e.target.value)} required>
+                  <option value=''></option>
+                  {MembersOptions()}
+                </select>
               </div>
               <div>
                 <label>Assign To:</label>
-                <input type='text' onChange={e => setAssign(e.target.value)} required/>
+                <input type='text' onChange={e => setAssignto(e.target.value)} required />
               </div>
               <div>
                 <label>Due Date:</label>
-                <input type='date' onChange={e => setDate(e.target.value)}required/>
+                <input type='date' onChange={e => setDate(e.target.value)} required />
               </div>
               <div className="meettask-btn">
                 <button type="submit" >CREATE TASK</button>
               </div>
             </form>
-          </div> 
-          <div className='close-btn'onClick={showTaskform}><SlClose /></div>
+            <div className='close-btn' onClick={showTaskform}><SlClose size={30} color='#fff' /></div>
+          </div>
         </div>
       )}
     </div>

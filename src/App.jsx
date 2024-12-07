@@ -8,11 +8,11 @@ import Sidebar from './sidebar'
 const App = () => {
     return (
         <div className="content">
-            <Sidebar />
+            <Sidebar/>
             <div className="anti-sidebar">
-                <Header />
+                <Header/>
                 <div className="outlet-container">
-                    <Outlet />
+                    <Outlet/>
                 </div>
             </div>
         </div>
