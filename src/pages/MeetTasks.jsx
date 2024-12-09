@@ -156,7 +156,7 @@ const MeetTasks = () => {
                 <input type='date' onChange={e => setDate(e.target.value)} required />
               </div>
               <div className="meettask-btn">
-                <button type="submit" >CREATE TASK</button>
+                <button type="submit">CREATE TASK</button>
               </div>
             </form>
             <div className='close-btn' onClick={showTaskform}><SlClose size={30} color='#fff' /></div>
