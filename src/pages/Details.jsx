@@ -34,6 +34,10 @@ const Details = () => {
   }, [meetingid]);
 
   function EachDetail({ label, value }) {
+    if (label==='Members') {
+      console.log(value);
+      return
+    }
     return (
       <div className="detail-item">
         <div>{label}</div>

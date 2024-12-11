@@ -6,12 +6,13 @@
     width: 35vw;
     justify-content: space-between;
 }
-.m-details,.m-minutes,.m-tasks,.m-attendance,.m-report{
 
+.m-details,.m-minutes,.m-tasks,.m-attendance,.m-report{
     padding: 10px;
     padding-left:15px;
     padding-right: 15px;
 }
+
 .m-details:hover,.m-minutes:hover,.m-tasks:hover,.m-attendance:hover,.m-report:hover{
     background-color: #0077B5;
     color: white;

@@ -32,10 +32,12 @@ function NewMeeting() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const newDate = new Date(date).toISOString().slice(0,10);
-    const newMembers = JSON.stringify(members);
-    const newMeeting = { followup, title, mid, dept, host, date:newDate, time, venue, desc, members: newMembers};
+    // const newMembers = JSON.stringify(members);
+    // console.log(newMembers);
+    const newMeeting = { followup, title, mid, dept, host, date:newDate, time, venue, desc, members};
     // console.log(newMeeting);
-    axios.post("http://localhost:5000/newmeeting", newMeeting)
+    try{
+      axios.post("http://localhost:5000/newmeeting", newMeeting)
       .then((response) => {
         console.log(response.data);
         console.log('Meeting created successfully');
@@ -43,6 +45,9 @@ function NewMeeting() {
       }).catch((error) => {
         console.log(error);
       });
+    }catch(error){
+      console.log('Error creating meeting');
+    }
     setFollowup('');
     setTitle('');
     setMid('');
@@ -56,6 +61,20 @@ function NewMeeting() {
     setMembers([]);
   }
 
+  useEffect(() => {
+    if (followup === 'no') {
+      axios.get('http://localhost:5000/meetings/nextmid') 
+        .then(response => {
+          setMid(response.data.nextmid);
+        })
+        .catch(error => {
+          console.error('Error fetching next MID:', error);
+        });
+    } else {
+      setMid('');
+    }
+  }, [followup]);
+ 
   return (
     <div className='newmeeting-container'>
         <div className="head3">
@@ -79,8 +98,9 @@ function NewMeeting() {
               </div>
               <div>
                 <label htmlFor="mid">MID:</label>
-                <input type="number" name="mid" placeholder="98765"
-                  value={mid} onChange={e => setMid(e.target.value)} required />
+                <input type="number" name="mid" placeholder={followup === 'no' ? mid : 'Enter MID'}
+                  value={mid} onChange={e => setMid(e.target.value)} 
+                  disabled={followup === 'no'} required />
               </div>
               <div>
                 <label htmlFor="dept">Dept/Team:</label>
@@ -97,8 +117,6 @@ function NewMeeting() {
                 <textarea name="desc" value={desc}
                   onChange={e => setDesc(e.target.value)}> </textarea>
               </div>
-
-              
             </div>
             <div className="right">
              
