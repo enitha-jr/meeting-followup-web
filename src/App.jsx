@@ -13,7 +13,7 @@ const App = () => {
         <div className="content">
             <Sidebar/>
             <div className="anti-sidebar">
-                <Header user={userData.username}/>
+                <Header user={userData?.username || "Guest"}/>
                 <div className="outlet-container">
                     <Outlet/>
                 </div>

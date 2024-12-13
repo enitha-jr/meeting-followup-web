@@ -4,6 +4,8 @@ import { useState, useEffect } from 'react'
 import axios from 'axios';
 import './styles/Minutes.css'
 import { FiPlus } from "react-icons/fi";
+import { FiTrash2 } from 'react-icons/fi';
+import {FiEdit} from 'react-icons/fi';
 
 const Minutes = () => {
   const { meetingid } = useParams()
@@ -57,7 +59,14 @@ const Minutes = () => {
             <tbody>
               {minutelist.map((eachminute,index) => (
                 <tr className='minute-table-row' key={index}>
-                  <td>{index + 1}</td><td>{eachminute.minute}</td>
+                  <div>
+                    <td>{index + 1}</td>
+                    <td>{eachminute.minute}</td>
+                  </div>
+                  <div className='minute-handlers'>
+                    <FiEdit color="	#055aba" type='submit' role='button' className='minute-edit'/>
+                    <FiTrash2 color="#bb2124" type='submit' role='button' className='minute-delete'/>
+                  </div>
                 </tr>
               ))}
             </tbody>

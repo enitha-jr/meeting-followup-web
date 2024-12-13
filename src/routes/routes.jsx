@@ -12,6 +12,7 @@ import Minutes from '../pages/Minutes';
 import MeetTasks from '../pages/MeetTasks';
 import Attendance from '../pages/Attendance';
 import Report from '../pages/Report';
+import UpdateMeetingDetails from '../pages/UpdateMeetingDetails';
 
 
 const routes = [
@@ -59,7 +60,7 @@ const routes = [
             },
             {
                 path: 'details',
-                element: <Details />
+                element: <Details />,
             },
             {
                 path: 'minutes',
@@ -77,6 +78,10 @@ const routes = [
                 path: 'report',
                 element: <Report/>
             },
+            // {
+            //     path: '/updatemeetingdetails/:meetingid',
+            //     element: <UpdateMeetingDetails />
+            // }
         ]
     }
 ]
