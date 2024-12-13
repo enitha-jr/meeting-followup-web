@@ -32,8 +32,6 @@ function NewMeeting() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const newDate = new Date(date).toISOString().slice(0,10);
-    // const newMembers = JSON.stringify(members);
-    // console.log(newMembers);
     const newMeeting = { followup, title, mid, dept, host, date:newDate, time, venue, desc, members};
     // console.log(newMeeting);
     try{

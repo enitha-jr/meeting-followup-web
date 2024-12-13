@@ -40,9 +40,9 @@ const Details = () => {
           <div>{label}</div>
           {console.log(value)}
           <div  className="members-container">
-            {value.map((member, index) => (
+            {/* {value.map((member, index) => (
               <div key={index} className='member-name'>{member}</div>
-            ))}
+            ))} */}
           </div>
         </div>
       )
