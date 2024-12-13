@@ -8,6 +8,7 @@ import { FiTrash2 } from 'react-icons/fi';
 import {FiEdit} from 'react-icons/fi';
 
 const Details = () => {
+
   const { meetingid } = useParams();
   const [meetingdetails, setMeetingdetails] = useState({});
   const [showForm, setShowForm] = useState(false);

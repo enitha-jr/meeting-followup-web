@@ -7,7 +7,7 @@ import axios from 'axios';
 
 function UpdateMeetingDetails() {
 
-    const {meetingid} = useParams()
+  const {meetingid} = useParams()
 
   const [followup, setFollowup] = useState('');
   const [title, setTitle] = useState('');

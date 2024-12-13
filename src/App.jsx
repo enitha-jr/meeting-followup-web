@@ -8,7 +8,6 @@ import { useContext } from 'react'
 
 const App = () => {
     const { userData } = useContext(UserContext);
-    console.log(userData)
     return (
         <div className="content">
             <Sidebar/>
