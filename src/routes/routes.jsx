@@ -78,11 +78,11 @@ const routes = [
                 path: 'report',
                 element: <Report/>
             },
-            // {
-            //     path: '/updatemeetingdetails/:meetingid',
-            //     element: <UpdateMeetingDetails />
-            // }
         ]
+    },
+    {
+        path: '/updatemeetingdetails/:meetingid',
+        element: <UpdateMeetingDetails />
     }
 ]
 
