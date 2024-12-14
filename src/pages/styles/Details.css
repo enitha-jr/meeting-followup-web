@@ -1,123 +1,173 @@
 .details-content{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+  overflow-y: auto;
+}
+.details-card{
     display:flex;
     flex-direction: column;
     justify-content:space-around;
     padding: 20px;
     background-color: white; 
     border-radius: 10px;
-    height: 60vh;
+    height: 55vh;
     width: 40vw;
     margin: auto;
-    margin-top: 40px;
+    margin-top: 3vh;
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
 }
-
+.details-handlers {
+  display: flex;
+  width:40vw;
+  justify-content:end;
+  /* border:2px solid red; */
+  margin-top:3vh;
+}
+.details-handlers button{
+  width: 6vw;
+  height: 4vh;
+  border-radius: 15px;
+  background-color: #0088cc;
+  color: white;
+  font-weight:bold;
+  border: none;
+  cursor: pointer;
+}
+.details-handlers button:hover{
+  background-color: #0077B5;
+}
 .detail-item{
   display: grid;
   grid-template-columns: 1fr 1fr;
   width: 100%;
+  height: 100%;
   justify-items: center;
+  align-items: space-around;
+}
+
+.detail-item span{
+  font-weight: 600;
+}
+
+.detail-item-left, .detail-item-right{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: start;
+  /* border:2px solid red; */
+}
+ .scroll-description, .scroll-members{
+  height: 13vh;
+  width: 16vw;
+  padding: 10px;
+  margin-left: 7px;
+  border-radius: 10px;
+  background-color: #f5f5f5;
+  overflow-y: auto;
+  margin-top:5px;
 }
 
 .action-buttons{
-  margin-top: 20px;
-  display:flex;
-  justify-content: space-around;
+margin-top: 20px;
+display:flex;
+justify-content: space-around;
+margin-bottom: 25px;
 }
 
 .action-buttons button{
-  width: 11vw;
-  height: 5vh;
-  border-radius: 7px;
-  background-color: #0077B5;
-  color: white;
-  font-weight:bold;
-  border: none;
+width: 11vw;
+height: 5vh;
+border-radius: 7px;
+color: white;
+font-weight:bold;
+border: none;
 }
 
 .action-buttons {
-  display: flex;
-  gap: 20px;
-  justify-content: center;
+display: flex;
+gap: 20px;
+justify-content: center;
 }
 
 .end-meeting-btn,
 .follow-up-btn {
-  border-radius: 4px;
-  border: none;
-  color: white;
-  font-weight: 500;
-  cursor: pointer;
-  transition: background-color 0.3s;
+border-radius: 4px;
+border: none;
+color: white;
+font-weight: 500;
+cursor: pointer;
+transition: background-color 0.3s;
 }
 
 .end-meeting-btn {
-  background-color: #0077B5;
-}
-
-.end-meeting-btn.completed {
-  background-color: #28a745;
+background-color: #b30000;
 }
 
 .follow-up-btn {
-  background-color: #0077B5;
+background-color: #01872b;
+}
+
+.end-meeting-btn.completed {
+background-color: #28a745;
 }
 
 .end-meeting-btn:hover,
 .follow-up-btn:hover {
-  opacity: 0.9;
+opacity: 0.8;
 }
 
 .popup-container{
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-evenly;
-  width: 30vw;
-  height: 20vh;
-  background-color: white;
-  border-radius: 10px;
-  z-index: 10; 
-  padding: 10px 0;
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: space-evenly;
+width: 30vw;
+height: 20vh;
+background-color: white;
+border-radius: 10px;
+z-index: 10; 
+padding: 10px 0;
 }
 
 .popup-buttons{
-  display: flex;
-  width: 50%;
-  justify-content: space-evenly;
+display: flex;
+width: 50%;
+justify-content: space-evenly;
 }
 
 .popup-buttons button{
-  width: 6vw;
-  height: 5vh;
-  border-radius: 6px;
-  color: white;
-  font-weight:bold;
-  border: none;
-  cursor: pointer;
+width: 6vw;
+height: 5vh;
+border-radius: 6px;
+color: white;
+font-weight:bold;
+border: none;
+cursor: pointer;
 }
 
 .popup-buttons button:hover{
-  opacity: 1.5;
-  box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.3);
-  transition: box-shadow 0.5s ease; 
+opacity: 1.5;
+box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.3);
+transition: box-shadow 0.5s ease; 
 }
 
 .popup-buttons .popup-close{
-  background-color: rgb(200, 0, 0);
+background-color: rgb(200, 0, 0);
 }
 
 .popup-buttons .popup-confirm{
-  background-color: rgb(0, 150, 0);
+background-color: rgb(0, 150, 0);
 }
 
 .members-container{
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 75%;
-  height: 10vh;
-  border: 1px solid #0077B5;
-  border-radius: 15px;
-  overflow-y: auto;
+display: flex;
+flex-direction: column;
+align-items: center;
+width: 75%;
+height: 10vh;
+border: 1px solid #0077B5;
+border-radius: 15px;
+overflow-y: auto;
 }

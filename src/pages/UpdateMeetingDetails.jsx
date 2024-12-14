@@ -1,10 +1,13 @@
 import React, { useEffect } from 'react'
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import './styles/NewMeeting.css';
 import axios from 'axios';
 
-function NewMeeting() {
+function UpdateMeetingDetails() {
+
+    const {id} = useParams()
+
   const [followup, setFollowup] = useState('');
   const [title, setTitle] = useState('');
   const [mid, setMid] = useState('');
@@ -19,66 +22,35 @@ function NewMeeting() {
 
   const navigate = useNavigate()
 
-  const handleAddMember = (e) => {
-    if (e.key === 'Enter' && name.trim()!==''){
-      e.preventDefault();
-      setMembers([...members, name]);
-      setName('');
-    }
-  }
-  // console.log(members);
-
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    const newDate = new Date(date).toISOString().slice(0,10);
-    const newMeeting = { followup, title, mid, dept, host, date:newDate, time, venue, desc, members};
-    console.log(newMeeting);
-    try{
-      axios.post("http://localhost:5000/newmeeting", newMeeting)
-      .then((response) => {
-        console.log(response.data);
-        console.log('Meeting created successfully');
-        navigate("/meetings/upcoming")
-      }).catch((error) => {
-        console.log(error);
-      });
-    }catch(error){
-      console.log('Error creating meeting');
-    }
-    setFollowup('');
-    setTitle('');
-    setMid('');
-    setDept('');
-    setHost('');
-    setDate('');
-    setTime('');
-    setVenue('');
-    setDesc('');
-    setName('');
-    setMembers([]);
-  }
-
   useEffect(() => {
-    if (followup === 'no') {
-      axios.get('http://localhost:5000/meetings/nextmid') 
-        .then(response => {
-          setMid(response.data.nextmid);
-        })
-        .catch(error => {
-          console.error('Error fetching next MID:', error);
-        });
-    } else {
-      setMid('');
-    }
-  }, [followup]);
+    axios.get(`http://localhost:5000/meetings/${id}/details`)
+      .then((response) => {
+        const details = response.data[0];
+        if (details.date) {
+          details.date = details.date.split('T')[0];
+        }
+        setFollowup(details.followup);
+        setTitle(details.title);
+        setMid(details.mid);
+        setDept(details.dept);
+        setHost(details.host);
+        setDate(details.date);
+        setTime(details.time);
+        setVenue(details.venue);
+        setDesc(details.desc);
+        setMembers(details.members);
+      })
+      .catch((error) => {
+        console.error('Error fetching meeting details:', error);
+      });
+  })
  
   return (
     <div className='newmeeting-container'>
         <div className="head3">
-          <h3>NEW-MEETING</h3>
+          <h3>UPDATE-MEETING</h3>
         </div>
-        <form className="newmeeting-form" onSubmit={handleSubmit}>
+        <form className="newmeeting-form" onSubmit={handleUpdate}>
           <div className="details">
             <div className="left">
               <div>
@@ -152,11 +124,11 @@ function NewMeeting() {
             </div>
           </div>
           <div className="newmeeting-btn">
-            <button type="submit">CREATE MEETING</button>
+            <button type="submit">Update</button>
           </div>
         </form>
     </div>
   )
 }
 
-export default NewMeeting
+export default UpdateMeetingDetails
