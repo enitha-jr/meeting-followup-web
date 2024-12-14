@@ -39,6 +39,7 @@ function UpdateMeetingDetails() {
     axios.get(`http://localhost:5000/meetings/${meetingid}/details`)
       .then((response) => {
         const details = response.data[0];
+        console.log(details)
         if (details.date) {
           details.date = details.date.split('T')[0];
         }
@@ -50,7 +51,7 @@ function UpdateMeetingDetails() {
         setDate(details.date);
         setTime(details.time);
         setVenue(details.venue);
-        setDesc(details.desc);
+        setDesc(details.description);
         setMembers(details.members);
       })
       .catch((error) => {
@@ -70,6 +71,7 @@ function UpdateMeetingDetails() {
       console.log(err)
     })
   }
+  console.log(desc, host)
 
   return (
     <div className='newmeeting-container'>
@@ -110,7 +112,7 @@ function UpdateMeetingDetails() {
               </div> 
               <div>
                 <label htmlFor="desc">Description:</label>
-                <input name="desc" type='text' value={desc} onChange={(e) => setDesc(e.target.value)} />
+                <input type='text' name="desc" value={desc} onChange={(e) => setDesc(e.target.value)} required />
               </div>
             </div>
             <div className="right">
