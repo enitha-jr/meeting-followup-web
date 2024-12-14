@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { NavLink, useNavigate, useParams } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import './styles/Meetings.css';
 import './styles/Details.css';
@@ -9,6 +9,7 @@ import {FiEdit} from 'react-icons/fi';
 
 
 const Details = () => {
+
   const { meetingid } = useParams();
   const [meetingdetails, setMeetingdetails] = useState({});
   const [showForm, setShowForm] = useState(false);
@@ -52,7 +53,9 @@ const Details = () => {
   return (
     <div className="details-content">
       <div className='details-handlers'>
-            <button>Edit <FiEdit/></button>
+            <NavLink to="/updatemeetingdetails/:meetingid" >
+              <button>Edit <FiEdit/></button>
+            </NavLink>
       </div>
       <div className="details-card">
         <div className="detail-item">

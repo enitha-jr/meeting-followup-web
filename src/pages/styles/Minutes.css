@@ -35,7 +35,7 @@
 }
 .minute-table-row td:first-child {
     font-weight:500;
-    width: 30px;
+    width: 5%;
     color: rgb(0, 0, 54);
     text-align: center;
 }
@@ -44,13 +44,15 @@
     display: flex;
     justify-content: space-between;
 }
-/* .minute-table-row td:nth-child(2) {
-    width: calc(100% - 30px);
-} */
+.minute-table-row td:nth-child(2) {
+    width: 85%;
+    text-align: start;
+}
 
 .minute-handlers {
     display: flex;
-    width: 9%;
+    width: 10%;
+    height: 1vh;
     justify-content: space-between;
     align-items: center;
     margin: 10px 20px;
@@ -66,7 +68,6 @@
     padding: 5px;
     margin-left: 50px;
     margin-bottom: 15px;
-    /* border:  2px solid #0076b5; */
 }
 
 .minute-form input[type="text"] {
@@ -107,6 +108,9 @@
     background-color: #005a8c;
 }
 
+.minute-delete{
+    cursor: pointer;
+}
 
 
 

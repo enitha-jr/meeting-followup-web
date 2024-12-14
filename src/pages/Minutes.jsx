@@ -2,19 +2,19 @@ import React from 'react'
 import { useParams } from 'react-router-dom'
 import { useState, useEffect } from 'react'
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 import './styles/Minutes.css'
 import { FiPlus } from "react-icons/fi";
 import { FiTrash2 } from 'react-icons/fi';
 import {FiEdit} from 'react-icons/fi';
 
 const Minutes = () => {
+
   const { meetingid } = useParams()
   const [note, setNote] = useState("")
+
   const handleSubmit = async (e) => {
-    // e.preventDefault();
     const newminute = {minute:note};
-    // console.log(newminute);
-    // console.log(meetingid);
     await axios.post(`http://localhost:5000/meetings/${meetingid}/minutes`, newminute)
       .then((response) => {
         console.log(response.data);
@@ -23,8 +23,6 @@ const Minutes = () => {
       });
     setNote('');
   }
-
-  //changes added
 
   const [minutelist, setMinutelist] = useState([]);
 
@@ -36,7 +34,6 @@ const Minutes = () => {
         console.log(error);
       });
   }, [])
-  // console.log(response.data);
 
   const [meetingdetails, setMeetingdetails] = useState([]);
   useEffect(() => {
@@ -51,6 +48,22 @@ const Minutes = () => {
     }
   }, []);
 
+  const confirmDelete = (id) => {
+    if (window.confirm('Are you sure you want to delete this minute?')) {
+      handleDelete(id);
+    }
+  }
+
+  const handleDelete = (id) => {
+    axios.delete(`http://localhost:5000/meetings/${meetingid}/minutes/${id}`)
+      .then((res) => {
+        console.log(res.data);
+        setMinutelist(minutelist.filter((minute) => minute.minuteid !== id));
+      }).catch((err) => {
+        console.log(err);
+      });
+  }
+
   return (
     <div className='minute-content'>
       {minutelist.length>0 &&
@@ -59,14 +72,12 @@ const Minutes = () => {
             <tbody>
               {minutelist.map((eachminute,index) => (
                 <tr className='minute-table-row' key={index}>
-                  <div>
                     <td>{index + 1}</td>
                     <td>{eachminute.minute}</td>
-                  </div>
-                  <div className='minute-handlers'>
-                    <FiEdit color="	#055aba" type='submit' role='button' className='minute-edit'/>
-                    <FiTrash2 color="#bb2124" type='submit' role='button' className='minute-delete'/>
-                  </div>
+                  <td className='minute-handlers'>
+                    <Link to={`/meetings/${meetingid}/updateminutes/${eachminute.minuteid}`}><FiEdit color="#055aba" type='submit' role='button' className='minute-edit'/></Link>
+                    <FiTrash2 color="#bb2124" type='submit' role='button' className='minute-delete' onClick={() => confirmDelete(eachminute.minuteid)} />
+                  </td>
                 </tr>
               ))}
             </tbody>
@@ -80,7 +91,7 @@ const Minutes = () => {
             <input type="text" value={note} placeholder="Enter minutes"
               onChange={e => setNote(e.target.value)} required />
             <button type="submit" className="minute-add"> <FiPlus/> </button>
-          </form>
+          </form> 
         </div>
       }
     </div>

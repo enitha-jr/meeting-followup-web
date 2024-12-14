@@ -10,10 +10,6 @@ import { Navigate } from 'react-router-dom';
 
 const App = () => {
     const { userData } = useContext(UserContext);
-    // if (!userData) {
-    //     return <Navigate to="/login" />;
-    // }
-
     return (
         <div className="content">
             <Sidebar />

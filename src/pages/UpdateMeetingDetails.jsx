@@ -2,11 +2,12 @@ import React, { useEffect } from 'react'
 import { useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import './styles/NewMeeting.css';
+import './styles/UpdateMeetingDetails.css';
 import axios from 'axios';
 
 function UpdateMeetingDetails() {
 
-    const {id} = useParams()
+  const {meetingid} = useParams()
 
   const [followup, setFollowup] = useState('');
   const [title, setTitle] = useState('');
@@ -22,8 +23,20 @@ function UpdateMeetingDetails() {
 
   const navigate = useNavigate()
 
+  const handleAddMember = (e) => {
+    if (e.key === 'Enter' && name.trim()!==''){
+      e.preventDefault();
+      setMembers([...members, name]);
+      setName('');
+    }
+  }
+
+  const handleBack = () => {
+    navigate(-1)
+  }
+
   useEffect(() => {
-    axios.get(`http://localhost:5000/meetings/${id}/details`)
+    axios.get(`http://localhost:5000/meetings/${meetingid}/details`)
       .then((response) => {
         const details = response.data[0];
         if (details.date) {
@@ -37,20 +50,33 @@ function UpdateMeetingDetails() {
         setDate(details.date);
         setTime(details.time);
         setVenue(details.venue);
-        setDesc(details.desc);
+        setDesc(details.description);
         setMembers(details.members);
       })
       .catch((error) => {
         console.error('Error fetching meeting details:', error);
       });
-  })
- 
+  }, [meetingid])
+
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    const values = {followup, title, mid, dept, host, date, time, venue, desc, members}
+    axios.put('http://localhost:5000/meetings/updatemeetingdetails/'+meetingid, values)
+    .then(res => {
+      console.log(res)
+      navigate(-1)
+    })
+    .catch((err) => {
+      console.log(err)
+    })
+  }
+
   return (
     <div className='newmeeting-container'>
         <div className="head3">
           <h3>UPDATE-MEETING</h3>
         </div>
-        <form className="newmeeting-form" onSubmit={handleUpdate}>
+        <form className="newmeeting-form" onSubmit={handleSubmit}>
           <div className="details">
             <div className="left">
               <div>
@@ -84,12 +110,10 @@ function UpdateMeetingDetails() {
               </div> 
               <div>
                 <label htmlFor="desc">Description:</label>
-                <textarea name="desc" value={desc}
-                  onChange={e => setDesc(e.target.value)}> </textarea>
+                <input type='text' name="desc" value={desc} onChange={(e) => setDesc(e.target.value)} required />
               </div>
             </div>
             <div className="right">
-             
               <div>
                 <label htmlFor="date">Date:</label>
                 <input type="date" name="date"
@@ -123,8 +147,9 @@ function UpdateMeetingDetails() {
               </div>
             </div>
           </div>
-          <div className="newmeeting-btn">
-            <button type="submit">Update</button>
+          <div className="update-btn">
+            <button className='update-back' onClick={handleBack}>Back</button>
+            <button className='update-submit' type="submit">Update</button>
           </div>
         </form>
     </div>
