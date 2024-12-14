@@ -39,7 +39,6 @@ function UpdateMeetingDetails() {
     axios.get(`http://localhost:5000/meetings/${meetingid}/details`)
       .then((response) => {
         const details = response.data[0];
-        console.log(details)
         if (details.date) {
           details.date = details.date.split('T')[0];
         }
@@ -71,7 +70,6 @@ function UpdateMeetingDetails() {
       console.log(err)
     })
   }
-  console.log(desc, host)
 
   return (
     <div className='newmeeting-container'>
