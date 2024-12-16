@@ -144,6 +144,7 @@ const MeetTasks = () => {
                   <th>S.No</th>
                   <th>Task</th>
                   <th>Description</th>
+                  <th>Assigned By</th>
                   <th>Assigned To</th>
                   <th>Due Date</th>
                 </tr>
@@ -155,6 +156,7 @@ const MeetTasks = () => {
                       <td>{index + 1}</td>
                       <td>{eachtask.task}</td>
                       <td>{eachtask.description}</td>
+                      <td>{eachtask.assignby}</td>
                       <td>{eachtask.assignto}</td>
                       <td>{eachtask.date}</td>
                     </tr>
