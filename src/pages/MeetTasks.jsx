@@ -5,14 +5,25 @@ import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { SlClose } from "react-icons/sl";
 import axios from 'axios';
+import { UserContext } from '../UserContext'
+import { useContext } from 'react'
 
 const MeetTasks = () => {
-  const [showForm, setShowForm] = useState(false);
-  const showTaskform = () => {
-    setShowForm(!showForm)
-  }
+  
   const { meetingid } = useParams()
+  const [minute, setMinute] = useState('');
+  const [task, setTask] = useState('');
+  const [desc, setDesc] = useState('');
+  const [assignby, setAssignby] = useState('');
+  const [assignto, setAssignto] = useState('');
+  const [date, setDate] = useState('');
+
   const [minutelist, setMinutelist] = useState([]);
+  const [members, setMembers] = useState([]);
+  const [users,setUsers]=useState([])
+
+  const { userData } = useContext(UserContext);
+
   useEffect(() => {
     axios.get(`http://localhost:5000/meetings/${meetingid}/minutes`)
       .then((response) => {
@@ -21,9 +32,7 @@ const MeetTasks = () => {
         console.log(error);
       });
   }, [meetingid])
-  // console.log(minutelist);
 
-  const [members, setMembers] = useState([]);
   useEffect(() => {
     axios.get(`http://localhost:5000/meetings/${meetingid}/members`)
       .then((response) => {
@@ -33,6 +42,15 @@ const MeetTasks = () => {
       });
   }, [meetingid])
 
+  useEffect(() => {
+    axios.get(`http://localhost:5000/users`)
+    .then((response) => {
+      setUsers(response.data);
+    }).catch((error) => {
+      console.log(error);
+    });
+  }, [])
+
   const MinuteOptions = () => {
     return minutelist.map((minute) => (
       <option key={minute.minuteid}>{minute.minute}</option>
@@ -40,38 +58,44 @@ const MeetTasks = () => {
   }
   const MembersOptions = () => {
     return members.map((member) => (
-      <option key={member.attendanceid}>{member.staffname}</option>
+      <option key={member.staffid}>{member.staffname}</option>
     ))
   }
-  // console.log(members);
-  const [minute, setMinute] = useState('');
-  const [task, setTask] = useState('');
-  const [desc, setDesc] = useState('');
-  const [assignby, setAssignby] = useState('');
-  const [assignto, setAssignto] = useState('');
-  const [date, setDate] = useState('');
+  const UsersOptions = () => {
+    return users.map((user) => (
+      <option key={user.userid}>{user.username}</option>
+    ))
+  }
+  
+  const [showForm, setShowForm] = useState(false);
+  const showTaskform = () => {
+    setShowForm(!showForm)
+  }
 
+  const [tasklist, setTasklist] = useState([]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     const newDate = new Date(date).toISOString().slice(0, 10);
     const newTask = { minute, task, desc, assignby, assignto, date: newDate };
-    setTasklist([...tasklist, newTask]);
-    axios.post(`http://localhost:5000/meetings/${meetingid}/tasks`, newTask)
-      .then((response) => {
-        console.log(response.data);
-      }).catch((error) => {
-        console.log(error);
-      });
-    setMinute('');
-    setTask('');
-    setDesc('');
-    setAssignby('');
-    setAssignto('');
-    setDate('');
-    setShowForm(false);
+    console.log(newTask)
+    try{
+      await axios.post(`http://localhost:5000/meetings/${meetingid}/tasks`, newTask)
+      setTasklist([...tasklist, newTask]);
+
+      setMinute('');
+      setTask('');
+      setDesc('');
+      setAssignby('');
+      setAssignto('');
+      setDate('');
+      setShowForm(false);
+    } catch (error) {
+      console.log(error);
+    };
   }
-  const [tasklist, setTasklist] = useState([]);
+
+  
   useEffect(() => {
     axios.get(`http://localhost:5000/meetings/${meetingid}/tasks`)
       .then((response) => {
@@ -85,37 +109,60 @@ const MeetTasks = () => {
         console.log(error);
       });
   }, [tasklist])
-  // console.log(tasklist);
+
+  const [meetingdetails, setMeetingdetails] = useState([]);
+  useEffect(() => {
+    if (meetingid) {
+      axios.get(`http://localhost:5000/meetings/${meetingid}/details`)
+        .then((response) => {
+          setMeetingdetails(response.data[0]);
+        })
+        .catch((error) => {
+          console.error('Error fetching meeting details:', error);
+        });
+    }
+  }, [meetingid]);
+
+  const handleFilter = () => {
+    let filteredResults = tasklist.filter((eachtask) =>
+      userData?.username === meetingdetails?.host || 
+      eachtask.assignby === userData?.username
+    )
+    return filteredResults
+  }
+  const filteredResults = handleFilter()
 
   return (
     <div className='meettask-content'>
       <div className='add-button' onClick={showTaskform} ><FiPlus />ADD</div>
       {
-        tasklist.length > 0 &&
-        <div className='task-container'>
-          <table className='task-table'>
-            <thead>
-              <tr>
-                <th>S.No</th>
-                <th>Task</th>
-                <th>Description</th>
-                <th>Assigned To</th>
-                <th>Due Date</th>
-              </tr>
-            </thead>
-            <tbody>
-              {tasklist.map((eachtask, index) => (
-                <tr className='task-table-row' key={index}>
-                  <td>{index + 1}</td>
-                  <td>{eachtask.task}</td>
-                  <td>{eachtask.description}</td>
-                  <td>{eachtask.assignto}</td>
-                  <td>{eachtask.date}</td>
+        tasklist.length > 0 && (
+          <div className='task-container'>
+            <table className='task-table'>
+              <thead>
+                <tr>
+                  <th>S.No</th>
+                  <th>Task</th>
+                  <th>Description</th>
+                  <th>Assigned To</th>
+                  <th>Due Date</th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
+              </thead>
+              <tbody>
+                {
+                  filteredResults.map((eachtask, index) => (
+                    <tr  className='task-table-row' key={index}>
+                      <td>{index + 1}</td>
+                      <td>{eachtask.task}</td>
+                      <td>{eachtask.description}</td>
+                      <td>{eachtask.assignto}</td>
+                      <td>{eachtask.date}</td>
+                    </tr>
+                ))}
+              </tbody>  
+            </table>
+          </div>
+        ) 
       }
       {showForm && (
         <div className='task-form-content'>
@@ -149,7 +196,10 @@ const MeetTasks = () => {
               </div>
               <div>
                 <label>Assign To:</label>
-                <input type='text' onChange={e => setAssignto(e.target.value)} required />
+                <select onChange={e => setAssignto(e.target.value)} required>
+                  <option value=''></option>
+                  {UsersOptions()}
+                </select>
               </div>
               <div>
                 <label>Due Date:</label>

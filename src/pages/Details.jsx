@@ -11,7 +11,7 @@ import {FiEdit} from 'react-icons/fi';
 const Details = () => {
 
   const { meetingid } = useParams();
-  const [meetingdetails, setMeetingdetails] = useState({});
+  const [meetingdetails, setMeetingdetails] = useState([]);
   const [showForm, setShowForm] = useState(false);
   const navigate = useNavigate();
 
@@ -53,9 +53,7 @@ const Details = () => {
   return (
     <div className="details-content">
       <div className='details-handlers'>
-            <NavLink to="/updatemeetingdetails/:meetingid" >
-              <button>Edit <FiEdit/></button>
-            </NavLink>
+        <Link to={`/updatemeetingdetails/${meetingdetails.meetingid}`}><button>Edit <FiEdit/></button></Link>
       </div>
       <div className="details-card">
         <div className="detail-item">
