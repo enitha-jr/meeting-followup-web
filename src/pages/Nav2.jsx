@@ -1,9 +1,25 @@
 import React from 'react'
 import './styles/Nav1.css'
 import { NavLink } from 'react-router-dom'
-
+import { UserContext } from '../UserContext'
+import { useContext } from 'react'
+import { useState,useEffect} from 'react'
+import axios from 'axios'
 
 const Nav2 = ({meetingid}) => {
+  const { userData } = useContext(UserContext);
+  const [meetingdetails, setMeetingdetails] = useState([]);
+  useEffect(() => {
+    if (meetingid) {
+      axios.get(`http://localhost:5000/meetings/${meetingid}/details`)
+        .then((response) => {
+          setMeetingdetails(response.data[0]);
+        })
+        .catch((error) => {
+          console.error('Error fetching meeting details:', error);
+        });
+    }
+  }, []);
   return (
     <div className="navbar1">
         <NavLink to={`/meetings/${meetingid}/details`}>
@@ -21,16 +37,23 @@ const Nav2 = ({meetingid}) => {
             Tasks
           </div>
         </NavLink>
-        <NavLink to={`/meetings/${meetingid}/attendance`}>
-          <div className="nav1-button">
-            Attendance
-          </div>
-        </NavLink>
-        <NavLink to={`/meetings/${meetingid}/report`}>
-          <div className="nav1-button">
-            Report
-          </div>
-        </NavLink>
+        {
+          userData?.username === meetingdetails?.host &&(
+            <>
+              <NavLink to={`/meetings/${meetingid}/attendance`}>
+                <div className="nav1-button">
+                  Attendance
+                </div>
+              </NavLink>
+              <NavLink to={`/meetings/${meetingid}/report`}>
+                <div className="nav1-button">
+                  Report
+                </div>
+              </NavLink>
+            </>
+          )
+        }
+        
     </div>
   )
 }

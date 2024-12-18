@@ -42,21 +42,27 @@
     transform: scale(1.02); /* Slight zoom for emphasis */
     cursor: pointer;
 }
+.minute-table-row {
+    display: flex;
+    justify-content: space-between;
+}
 .minute-table-row td:first-child {
     font-weight:500;
     width: 5%;
     color: rgb(0, 0, 54);
     text-align: center;
 }
-
-.minute-table-row {
-    display: flex;
-    justify-content: space-between;
-}
 .minute-table-row td:nth-child(2) {
-    width: 85%;
+    width: 75%;
     text-align: start;
 }
+.minute-table-row td:nth-child(3) {
+    width: 5%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 
 .minute-handlers {
     display: flex;
@@ -64,7 +70,7 @@
     height: 1vh;
     justify-content: space-between;
     align-items: center;
-    margin: 10px 20px;
+    margin: 10px 10px;
 }
 
 .minute-input{

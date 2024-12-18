@@ -59,9 +59,9 @@ const AssignedTasks = () => {
                     {eachtask.status === "assigned" ? (
                       <button className={`mytasks-status-btn ${eachtask.status}`}>ASSIGNED</button>
                     ) : eachtask.status === "pending" ? (
-                      <button className={`mytasks-status-btn ${eachtask.status}`} onClick={() => handleSubmit(eachtask.taskid)}>REVIEW</button>
+                      <button className={`mytasks-status-btn ${eachtask.status}`}>REVIEW</button>
                     ) : eachtask.status === "completed" ? (
-                      <button className={`mytasks-status-btn ${eachtask.status}`} onClick={() => handleSubmit(eachtask.taskid)}>COMPLETED</button>
+                      <button className={`mytasks-status-btn ${eachtask.status}`}>COMPLETED</button>
                     ) : (
                       <></>
                     )}
@@ -89,8 +89,8 @@ const AssignedTasks = () => {
                 <div>{selectedTask.description}</div>
               </div>
               <div>
-                <label>Assigned By:</label>
-                <div>{selectedTask.assignby}</div>
+                <label>Assigned To:</label>
+                <div>{selectedTask.assignto}</div>
               </div>
               <div>
                 <label>Due Date:</label>

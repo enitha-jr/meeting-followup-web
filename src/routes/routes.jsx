@@ -16,6 +16,7 @@ import UpdateMeetingDetails from '../pages/UpdateMeetingDetails';
 import UpdateMinutes from '../pages/UpdateMinutes';
 import Mytasks from '../pages/Mytasks';
 import AssignedTasks from '../pages/AssignedTasks';
+import Mymeeting from '../pages/Mymeeting';
 
 
 const routes = [
@@ -42,6 +43,10 @@ const routes = [
             {
                 path: 'completed',
                 element: <Completed/>
+            },
+            {
+                path: 'mymeeting',
+                element: <Mymeeting />
             }
         ]
     },

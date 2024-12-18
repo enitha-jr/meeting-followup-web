@@ -210,3 +210,8 @@
     padding: 8px 15px;
   }
 }
+
+.mytasks-status-btn.not-assigned {
+  width:10vw;
+  background-color: rgb(254, 86, 86);
+}

@@ -57,9 +57,9 @@ const Mytasks = () => {
                   <td onClick={() => showTaskform(eachtask)}>{eachtask.date}</td>
                   <td>
                     {eachtask.status === "assigned" ? (
-                      <button className={`mytasks-status-btn ${eachtask.status}`} onClick={() => handleSubmit(eachtask.taskid)}>SUBMIT</button>
+                      <button className={`mytasks-status-btn ${eachtask.status}`}>SUBMIT</button>
                     ) : eachtask.status === "pending" ? (
-                      <button className={`mytasks-status-btn ${eachtask.status}`} onClick={() => handleSubmit(eachtask.taskid)}>PENDING</button>
+                      <button className={`mytasks-status-btn ${eachtask.status}`}>PENDING</button>
                     ) : eachtask.status === "completed" ? (
                       <button className={`mytasks-status-btn ${eachtask.status}`}>COMPLETED</button>
                     ) : (

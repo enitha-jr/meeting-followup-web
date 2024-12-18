@@ -82,3 +82,42 @@
   .search-input::placeholder {
     color: #cbd5e0;
   }
+
+  .attendance-btn {
+    padding: 8px 16px;
+    font-size: 14px;
+    font-weight: bold;
+    border: 2px solid transparent;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out; /* Smooth transition */
+    text-transform: uppercase;
+    width:  8vw;
+  }
+  
+  /* For present state */
+  .attendance-btn.present {
+    background-color: #4CAF50; /* Green for present */
+    color: white;
+    border-color: #4CAF50;
+  }
+  
+  .attendance-btn.present:hover {
+    background-color: #45a049; /* Darker green on hover */
+    box-shadow: 0 4px 8px rgba(0, 128, 0, 0.4); /* Green shadow on hover */
+    transform: scale(1.05); /* Slightly enlarge the button */
+  }
+  
+  /* For absent state */
+  .attendance-btn.absent {
+    background-color: #f44336; /* Red for absent */
+    color: white;
+    border-color: #f44336;
+  }
+  
+  .attendance-btn.absent:hover {
+    background-color: #e53935; /* Darker red on hover */
+    box-shadow: 0 4px 8px rgba(255, 0, 0, 0.4); /* Red shadow on hover */
+    transform: scale(1.05); /* Slightly enlarge the button */
+  }
+  

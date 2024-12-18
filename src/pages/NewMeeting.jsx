@@ -8,21 +8,23 @@
   import { useLocation } from 'react-router-dom';
 
   function NewMeeting() {
-    const [followup, setFollowup] = useState('');
-    const [title, setTitle] = useState('');
-    const [mid, setMid] = useState('');
-    const [dept, setDept] = useState('');
-    const [host, setHost] = useState('');
-    const [date, setDate] = useState('');
-    const [time, setTime] = useState('');
-    const [venue, setVenue] = useState('');
-    const [desc, setDesc] = useState('');
-    const [name, setName] = useState('');
-    const [members, setMembers] = useState([]);
 
     const navigate = useNavigate()
     const location = useLocation();
     const { userData } = useContext(UserContext);
+
+    const [followup, setFollowup] = useState('');
+    const [title, setTitle] = useState('');
+    const [mid, setMid] = useState('');
+    const [dept, setDept] = useState('');
+    const [host, setHost] = useState(userData?.username || '');
+    const [date, setDate] = useState('');
+    const [time, setTime] = useState('');
+    const [venue, setVenue] = useState('');
+    const [desc, setDesc] = useState('');
+    const [minutetaker, setMinutetaker] = useState(''); 
+    const [name, setName] = useState('');
+    const [members, setMembers] = useState([]);
 
     const handleAddMember = (e) => {
       if (e.key === 'Enter' && name.trim()!==''){
@@ -40,6 +42,7 @@
         setMid(meetingdetails.mid || '');
         setDept(meetingdetails.dept || '');
         setHost(meetingdetails.host || '');
+        setMinutetaker(meetingdetails.minutetaker || '');
         setDate(meetingdetails.date || '');
         setTime(meetingdetails.time || '');
         setVenue(meetingdetails.venue || '');
@@ -91,6 +94,7 @@
       setTime('');
       setVenue('');
       setDesc('');
+      setMinutetaker('');
       setName('');
       setMembers([]);
     }
@@ -148,8 +152,7 @@
                 </div>
                 <div>
                   <label htmlFor="host">Host:</label>
-                  <input type="text" name="host" placeholder="Mr.Dharnesh"
-                    value={host} onChange={e => setHost(e.target.value)} required />
+                  <input type="text" value={host} readOnly/>
                 </div> 
                 <div>
                   <label htmlFor="desc">Description:</label>
@@ -173,6 +176,15 @@
                   <label htmlFor="venue">Venue:</label>
                   <input type="text" name="venue" placeholder="WW101"
                     value={venue} onChange={e => setVenue(e.target.value)} required/>
+                </div>
+                <div>
+                  <label>Minute Taker:</label>
+                  <select
+                  value={minutetaker}
+                  onChange={(e) => setMinutetaker(e.target.value)}>
+                      <option value=''></option>
+                      {UsersOptions()}
+                  </select>
                 </div>
                 <div> 
                   <label htmlFor="members">Members:</label>

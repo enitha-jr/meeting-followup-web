@@ -56,11 +56,12 @@ const Details = () => {
 
   return (
     <div className="details-content">
-      {userData?.username === meetingdetails?.host &&(
+      
         <div className='details-handlers'>
-          <Link to={`/updatemeetingdetails/${meetingdetails.meetingid}`}><button>Edit <FiEdit/></button></Link>
+          {userData?.username === meetingdetails?.host &&(
+          <Link to={`/updatemeetingdetails/${meetingdetails.meetingid}`}><button>Edit <FiEdit/></button></Link> 
+          )}
         </div>
-      )}
       <div className="details-card">
         <div className="detail-item">
           <div className="detail-item-left">
@@ -70,6 +71,7 @@ const Details = () => {
             <div><span>Host :</span> {meetingdetails.host || 'N/A'}</div>
             <div><span>Date :</span> {meetingdetails.date || 'N/A'}</div>
             <div><span>Time :</span> {meetingdetails.time || 'N/A'}</div>
+            <div><span>Minute Taker :</span> {meetingdetails.minutetaker || 'N/A'}</div>
           </div>
           <div className="detail-item-right">
             <div><span>Venue :</span> {meetingdetails.venue || 'N/A'}</div>
