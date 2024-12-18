@@ -14,6 +14,7 @@ import Attendance from '../pages/Attendance';
 import Report from '../pages/Report';
 import UpdateMeetingDetails from '../pages/UpdateMeetingDetails';
 import UpdateMinutes from '../pages/UpdateMinutes';
+import UpdateTasks from '../pages/UpdateTasks';
 
 const routes = [
     {
@@ -87,6 +88,10 @@ const routes = [
     {
         path: '/meetings/:meetingid/updateminutes/:minuteid',
         element: <UpdateMinutes />
+    },
+    {
+        path: '/meetings/updatetasks/:taskid',
+        element: <UpdateTasks />
     }
 ]
 

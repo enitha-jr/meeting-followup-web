@@ -119,6 +119,7 @@ const UpdateTasks = () => {
             console.error('Error updating task:', error);
         });
     }
+    
 
   return (
     <div className='task-form-content'>

@@ -2,9 +2,11 @@ import React from 'react'
 import { FiPlus } from "react-icons/fi";
 import './styles/MeetTasks.css'
 import { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { SlClose } from "react-icons/sl";
 import axios from 'axios';
+import { FiTrash2 } from 'react-icons/fi';
+import {FiEdit} from 'react-icons/fi';
 
 const MeetTasks = () => {
   const [showForm, setShowForm] = useState(false);
@@ -87,6 +89,22 @@ const MeetTasks = () => {
   }, [tasklist])
   // console.log(tasklist);
 
+  const confirmDelete = (id) => {
+    if (window.confirm('Are you sure you want to delete this minute?')) {
+      handleDelete(id);
+    }
+  }
+
+  const handleDelete = (id) => {
+    axios.delete(`http://localhost:5000/meetings/${meetingid}/tasks/${id}`)
+      .then((res) => {
+        console.log(res.data);
+        setTasklist(tasklist.filter((task) => task.taskid !== id));
+      }).catch((err) => {
+        console.log(err);
+      });
+  }
+
   return (
     <div className='meettask-content'>
       <div className='add-button' onClick={showTaskform} ><FiPlus />ADD</div>
@@ -111,6 +129,10 @@ const MeetTasks = () => {
                   <td>{eachtask.description}</td>
                   <td>{eachtask.assignto}</td>
                   <td>{eachtask.date}</td>
+                  <td>
+                    <Link to={`/meetings/updatetasks/${eachtask.taskid}`}><FiEdit color="#055aba" type='submit' role='button' /></Link>
+                    <FiTrash2 color="#bb2124" type='submit' role='button' onClick={() => confirmDelete(eachtask.taskid)} />
+                  </td>
                 </tr>
               ))}
             </tbody>
