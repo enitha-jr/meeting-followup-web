@@ -1,10 +1,12 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { FiPlus } from "react-icons/fi";
 import './styles/MeetTasks.css'
-import { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { SlClose } from "react-icons/sl";
 import axios from 'axios';
+import { UserContext } from '../UserContext';
+import { FiEdit } from 'react-icons/fi';
+import { FiTrash2 } from 'react-icons/fi';
 
 const MeetTasks = () => {
 

@@ -14,14 +14,10 @@ import Attendance from '../pages/Attendance';
 import Report from '../pages/Report';
 import UpdateMeetingDetails from '../pages/UpdateMeetingDetails';
 import UpdateMinutes from '../pages/UpdateMinutes';
-<<<<<<< HEAD
 import UpdateTasks from '../pages/UpdateTasks';
-=======
+import Mymeeting from '../pages/Mymeeting';
 import Mytasks from '../pages/Mytasks';
 import AssignedTasks from '../pages/AssignedTasks';
-import Mymeeting from '../pages/Mymeeting';
-
->>>>>>> 2224573a058ca52a1914b7f8e83e9b428fc74641
 
 const routes = [
     {

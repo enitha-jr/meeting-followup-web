@@ -1,12 +1,11 @@
 import React, { useContext, useEffect } from 'react'
 import { useNavigate, useParams } from 'react-router-dom';
 import { useState } from 'react';
-import { UserContext } from '../UserContext';
 import axios from 'axios';
 
 const UpdateTasks = () => {
 
-    const { meetingid, minuteid } = useParams()
+    const { meetingid } = useParams()
     const [minute, setMinute] = useState('');
     const [task, setTask] = useState('');
     const [desc, setDesc] = useState('');
@@ -23,10 +22,11 @@ const UpdateTasks = () => {
     useEffect(() => {
         axios.get(`http://localhost:5000/meetings/${meetingid}/tasks`)
           .then((response) => {
-            setTask(response.data[0].task)
-            setDesc(response.data[0].description)
-            setAssignby(response.data[0].assignby)
-            setAssignto(response.data[0].assignto)
+            console.log(response.data)
+            // setTask(response.data[0].task)
+            // setDesc(response.data[0].description)
+            // setAssignby(response.data[0].assignby)
+            // setAssignto(response.data[0].assignto)
             for (let item of response.data) {
               if (item.date) {
                 item.date = String(item.date).split('T')[0];
@@ -48,7 +48,7 @@ const UpdateTasks = () => {
         console.log(error);
         });
     }, [meetingid])
-    // console.log(minutelist)
+    console.log(minutelist,members,users)
     
 
     useEffect(() => {
