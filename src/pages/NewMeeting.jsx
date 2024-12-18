@@ -5,6 +5,7 @@
   import axios from 'axios';
   import { UserContext } from '../UserContext'
   import { useContext } from 'react'
+  import { useLocation } from 'react-router-dom';
 
   function NewMeeting() {
     const [followup, setFollowup] = useState('');
@@ -20,7 +21,7 @@
     const [members, setMembers] = useState([]);
 
     const navigate = useNavigate()
-
+    const location = useLocation();
     const { userData } = useContext(UserContext);
 
     const handleAddMember = (e) => {
@@ -30,6 +31,22 @@
         setName('');
       }
     }
+
+    useEffect(() => {
+      const meetingdetails = location.state?.meetingdetails;
+      if (meetingdetails) {
+        setFollowup('yes');
+        setTitle(meetingdetails.title || '');
+        setMid(meetingdetails.mid || '');
+        setDept(meetingdetails.dept || '');
+        setHost(meetingdetails.host || '');
+        setDate(meetingdetails.date || '');
+        setTime(meetingdetails.time || '');
+        setVenue(meetingdetails.venue || '');
+        setDesc(meetingdetails.description || '');
+        setMembers(meetingdetails.members || []);
+      }
+    }, [location.state]);
     
     const [users,setUsers]=useState([])
     useEffect(() => {
@@ -87,10 +104,15 @@
           .catch(error => {
             console.error('Error fetching next MID:', error);
           });
+      } else if (followup === 'yes') {
+        const meetingdetails = location.state?.meetingdetails;
+        if (meetingdetails) {
+          setMid(meetingdetails.mid || ''); 
+        }
       } else {
         setMid('');
       }
-    }, [followup]);
+    }, [followup, location.state]);
   
     return (
       <div className='newmeeting-container'>

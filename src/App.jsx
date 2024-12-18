@@ -10,6 +10,8 @@ import { Navigate } from 'react-router-dom';
 
 const App = () => {
     const { userData } = useContext(UserContext);
+    // console.log(userData);
+
     return (
         <div className="content">
             <Sidebar />

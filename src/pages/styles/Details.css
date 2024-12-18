@@ -4,6 +4,7 @@
   align-items: center;
   height: 100%;
   overflow-y: auto;
+  /* border:2px solid red; */
 }
 .details-card{
     display:flex;
@@ -104,20 +105,22 @@ transition: background-color 0.3s;
 }
 
 .end-meeting-btn {
-background-color: #b30000;
+background-color: #ef2626;
 }
 
 .follow-up-btn {
-background-color: #01872b;
+background-color: #28a745;
 }
 
 .end-meeting-btn.completed {
 background-color: #28a745;
 }
 
-.end-meeting-btn:hover,
+.end-meeting-btn:hover{
+  background-color: #C9302C;
+}
 .follow-up-btn:hover {
-opacity: 0.8;
+background-color: #1b6f2f;
 }
 
 .popup-container{

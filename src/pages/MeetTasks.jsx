@@ -9,7 +9,7 @@ import { UserContext } from '../UserContext'
 import { useContext } from 'react'
 
 const MeetTasks = () => {
-  
+
   const { meetingid } = useParams()
   const [minute, setMinute] = useState('');
   const [task, setTask] = useState('');
@@ -20,7 +20,7 @@ const MeetTasks = () => {
 
   const [minutelist, setMinutelist] = useState([]);
   const [members, setMembers] = useState([]);
-  const [users,setUsers]=useState([])
+  const [users, setUsers] = useState([])
 
   const { userData } = useContext(UserContext);
 
@@ -44,29 +44,48 @@ const MeetTasks = () => {
 
   useEffect(() => {
     axios.get(`http://localhost:5000/users`)
-    .then((response) => {
-      setUsers(response.data);
-    }).catch((error) => {
-      console.log(error);
-    });
+      .then((response) => {
+        setUsers(response.data);
+      }).catch((error) => {
+        console.log(error);
+      });
   }, [])
 
   const MinuteOptions = () => {
-    return minutelist.map((minute) => (
-      <option key={minute.minuteid}>{minute.minute}</option>
-    ))
+    
+    if (minutelist.length) {
+
+      return minutelist.map((minute) => (
+        <option key={minute.minuteid}>{minute.minute}</option>
+      ))
+    }
+    else {
+      return <></>
+    }
+
   }
   const MembersOptions = () => {
-    return members.map((member) => (
-      <option key={member.staffid}>{member.staffname}</option>
-    ))
+    if (members.length) {
+
+      return members.map((member) => (
+        <option key={member.attendanceid}>{member.staffname}</option>
+      ))
+    }
+    else {
+      return <></>
+    }
   }
   const UsersOptions = () => {
-    return users.map((user) => (
-      <option key={user.userid}>{user.username}</option>
-    ))
+    if (users.length) {
+
+      return users.map((user) => (
+        <option key={user.userid}>{user.username}</option>
+      ))
+    }
+    else {
+      return <></>
+    }
   }
-  
   const [showForm, setShowForm] = useState(false);
   const showTaskform = () => {
     setShowForm(!showForm)
@@ -79,7 +98,7 @@ const MeetTasks = () => {
     const newDate = new Date(date).toISOString().slice(0, 10);
     const newTask = { minute, task, desc, assignby, assignto, date: newDate };
     console.log(newTask)
-    try{
+    try {
       await axios.post(`http://localhost:5000/meetings/${meetingid}/tasks`, newTask)
       setTasklist([...tasklist, newTask]);
 
@@ -95,7 +114,7 @@ const MeetTasks = () => {
     };
   }
 
-  
+
   useEffect(() => {
     axios.get(`http://localhost:5000/meetings/${meetingid}/tasks`)
       .then((response) => {
@@ -125,7 +144,7 @@ const MeetTasks = () => {
 
   const handleFilter = () => {
     let filteredResults = tasklist.filter((eachtask) =>
-      userData?.username === meetingdetails?.host || 
+      userData?.username === meetingdetails?.host ||
       eachtask.assignby === userData?.username
     )
     return filteredResults
@@ -136,7 +155,7 @@ const MeetTasks = () => {
     <div className='meettask-content'>
       <div className='add-button' onClick={showTaskform} ><FiPlus />ADD</div>
       {
-        tasklist.length > 0 && (
+        !filteredResults.length ? (<div className='task-container'>No Data</div>) : (
           <div className='task-container'>
             <table className='task-table'>
               <thead>
@@ -152,7 +171,7 @@ const MeetTasks = () => {
               <tbody>
                 {
                   filteredResults.map((eachtask, index) => (
-                    <tr  className='task-table-row' key={index}>
+                    <tr className='task-table-row' key={index}>
                       <td>{index + 1}</td>
                       <td>{eachtask.task}</td>
                       <td>{eachtask.description}</td>
@@ -160,11 +179,11 @@ const MeetTasks = () => {
                       <td>{eachtask.assignto}</td>
                       <td>{eachtask.date}</td>
                     </tr>
-                ))}
-              </tbody>  
+                  ))}
+              </tbody>
             </table>
           </div>
-        ) 
+        )
       }
       {showForm && (
         <div className='task-form-content'>

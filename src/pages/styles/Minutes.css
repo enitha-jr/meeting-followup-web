@@ -21,17 +21,26 @@
     width: calc(100% - 40px);
     margin: 0px 20px;
 }
-.minute-table tr{
-    border-bottom: 1px solid #0076b55a;
-}
 
 .minute-table tr:last-child{
     border-bottom: none;
 }
 
 .minute-table td {
-  padding: 7px;
+  padding: 8px;
   font-size: 17px;
+}
+.minute-table tr {
+    background-color: rgba(103, 153, 180, 0.126);
+    transition: background-color 0.3s ease, box-shadow 0.3s ease; /* Smooth transition */
+    border-radius: 8px; /* Rounded corners */
+    margin: 5px 0; 
+} 
+.minute-table tr:hover {
+    background-color: rgba(0, 118, 181, 0.2); /* Light blue hover color */
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15); /* Subtle shadow on hover */
+    transform: scale(1.02); /* Slight zoom for emphasis */
+    cursor: pointer;
 }
 .minute-table-row td:first-child {
     font-weight:500;

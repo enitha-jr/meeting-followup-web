@@ -6,7 +6,7 @@ import Tasks from "../pages/Tasks"
 import Calendar from "../pages/Calendar"
 import Completed from "../pages/Completed"
 import Upcoming from '../pages/Upcoming';
-import Meetinfo from '../pages/MeetInfo';
+import Meetinfo from '../pages/Meetinfo';
 import Details from "../pages/Details"
 import Minutes from '../pages/Minutes';
 import MeetTasks from '../pages/MeetTasks';
@@ -14,6 +14,9 @@ import Attendance from '../pages/Attendance';
 import Report from '../pages/Report';
 import UpdateMeetingDetails from '../pages/UpdateMeetingDetails';
 import UpdateMinutes from '../pages/UpdateMinutes';
+import Mytasks from '../pages/Mytasks';
+import AssignedTasks from '../pages/AssignedTasks';
+
 
 const routes = [
     {
@@ -44,7 +47,21 @@ const routes = [
     },
     {
         path: '/tasks',
-        element: <Tasks/>
+        element: <Tasks/>,
+        children: [
+            {
+                path: '',
+                element: <Navigate to="mytasks" />  
+            },
+            {
+                path: 'mytasks',
+                element: <Mytasks/>
+            },
+            {
+                path: 'assignedtasks',
+                element: <AssignedTasks/>
+            }
+        ]
     },
     {
         path: '/calendar',
