@@ -16,22 +16,38 @@ const Attendance = () => {
       }).catch((error) => {
         console.log(error);
       });
-  }, [])
+  }, [meetingid])
   const filteredmember = members.filter((member) => {
     return (
       member.staffname.toLowerCase().includes(searchQuery.toLowerCase())
     );
   });
 
+  const handleCheck = (attendanceid,currentstatus) => {
+    console.log("Clicked attendanceid:", attendanceid); 
 
-  const handleCheck = (e) => {
-    axios.post(`http://localhost:5000/meetings/${meetingid}/attendance`, { attendance: e.target.value })
+    setMembers(prevMembers => 
+      prevMembers.map(member => 
+        member.attendanceid === attendanceid 
+          ? { ...member, status: currentstatus === 1 ? 0 : 1 }
+          : member
+      )
+    );
+    axios.put(`http://localhost:5000/meetings/attendance`, {attendanceid: attendanceid} )
       .then((response) => {
         console.log(response.data);
       }).catch((error) => {
         console.log(error);
+        setMembers(prevMembers => 
+          prevMembers.map(member => 
+            member.attendanceid === attendanceid 
+              ? { ...member, status: currentstatus === 1 ? 0 : 1 }
+              : member
+          )
+        );
       });
   }
+
   return (
     <div className='attendance-content'>
       <div className="search-container">
@@ -48,7 +64,13 @@ const Attendance = () => {
                 <tr className='attendance-table-row' key={index}>
                   <td>{index + 1}</td>
                   <td>{eachmember.staffname}</td>
-                  <td><input type="checkbox" value={eachmember.staffname} onChange={handleCheck} defaultChecked={eachmember.status === 1} ></input></td>
+                  <td>
+                    <button
+                      className={`attendance-btn ${eachmember.status === 1 ? 'present' : 'absent'}`}
+                      onClick={() => handleCheck(eachmember.attendanceid, eachmember.status)}>
+                      {eachmember.status === 0 ? 'ABSENT' : 'PRESENT'}
+                    </button>
+                  </td>
                 </tr>
               ))}
             </tbody>

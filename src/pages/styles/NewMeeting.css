@@ -120,7 +120,7 @@ textarea {
 .members-list{
   display: flex;
   flex-direction: column;
-  height: 17vh;
+  height: 14vh;
   overflow-y:auto;
   width: 20vw;
   padding: 10px;

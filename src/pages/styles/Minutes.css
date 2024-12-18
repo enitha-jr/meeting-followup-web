@@ -21,17 +21,30 @@
     width: calc(100% - 40px);
     margin: 0px 20px;
 }
-.minute-table tr{
-    border-bottom: 1px solid #0076b55a;
-}
 
 .minute-table tr:last-child{
     border-bottom: none;
 }
 
 .minute-table td {
-  padding: 7px;
+  padding: 8px;
   font-size: 17px;
+}
+.minute-table tr {
+    background-color: rgba(103, 153, 180, 0.126);
+    transition: background-color 0.3s ease, box-shadow 0.3s ease; /* Smooth transition */
+    border-radius: 8px; /* Rounded corners */
+    margin: 5px 0; 
+} 
+.minute-table tr:hover {
+    background-color: rgba(0, 118, 181, 0.2); /* Light blue hover color */
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15); /* Subtle shadow on hover */
+    transform: scale(1.02); /* Slight zoom for emphasis */
+    cursor: pointer;
+}
+.minute-table-row {
+    display: flex;
+    justify-content: space-between;
 }
 .minute-table-row td:first-child {
     font-weight:500;
@@ -39,15 +52,17 @@
     color: rgb(0, 0, 54);
     text-align: center;
 }
-
-.minute-table-row {
-    display: flex;
-    justify-content: space-between;
-}
 .minute-table-row td:nth-child(2) {
-    width: 85%;
+    width: 75%;
     text-align: start;
 }
+.minute-table-row td:nth-child(3) {
+    width: 5%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 
 .minute-handlers {
     display: flex;
@@ -55,7 +70,7 @@
     height: 1vh;
     justify-content: space-between;
     align-items: center;
-    margin: 10px 20px;
+    margin: 10px 10px;
 }
 
 .minute-input{

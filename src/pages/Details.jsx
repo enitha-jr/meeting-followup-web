@@ -6,12 +6,14 @@ import './styles/Details.css';
 import axios from 'axios';
 import { FiTrash2 } from 'react-icons/fi';
 import {FiEdit} from 'react-icons/fi';
+import { UserContext } from '../UserContext'
+import { useContext } from 'react'
 
 
 const Details = () => {
 
   const { meetingid } = useParams();
-  const [meetingdetails, setMeetingdetails] = useState({});
+  const [meetingdetails, setMeetingdetails] = useState([]);
   const [showForm, setShowForm] = useState(false);
   const navigate = useNavigate();
 
@@ -34,7 +36,7 @@ const Details = () => {
   // console.log("Meeting Title:", meetingdetails.title);
 
   const handleFollowUp = () => {
-    navigate('/newmeeting');
+    navigate('/newmeeting',{ state: { meetingdetails } });
   };
 
   const handleComplete = () => {
@@ -50,13 +52,16 @@ const Details = () => {
 
   const togglePopup = () => setShowForm(!showForm);
 
+  const { userData } = useContext(UserContext);
+
   return (
     <div className="details-content">
-      <div className='details-handlers'>
-            <NavLink to="/updatemeetingdetails/:meetingid" >
-              <button>Edit <FiEdit/></button>
-            </NavLink>
-      </div>
+      
+        <div className='details-handlers'>
+          {userData?.username === meetingdetails?.host &&(
+          <Link to={`/updatemeetingdetails/${meetingdetails.meetingid}`}><button>Edit <FiEdit/></button></Link> 
+          )}
+        </div>
       <div className="details-card">
         <div className="detail-item">
           <div className="detail-item-left">
@@ -66,6 +71,7 @@ const Details = () => {
             <div><span>Host :</span> {meetingdetails.host || 'N/A'}</div>
             <div><span>Date :</span> {meetingdetails.date || 'N/A'}</div>
             <div><span>Time :</span> {meetingdetails.time || 'N/A'}</div>
+            <div><span>Minute Taker :</span> {meetingdetails.minutetaker || 'N/A'}</div>
           </div>
           <div className="detail-item-right">
             <div><span>Venue :</span> {meetingdetails.venue || 'N/A'}</div>
@@ -90,16 +96,19 @@ const Details = () => {
           </div>
         </div>
       </div>
-      <div className="action-buttons">
-        {meetingdetails.status !== 'completed' && (
-          <button className="end-meeting-btn" onClick={togglePopup}>
-            END THE MEETING
+      {userData?.username === meetingdetails?.host &&(
+        <div className="action-buttons">
+          {meetingdetails.status !== 'completed' && (
+            <button className="end-meeting-btn" onClick={togglePopup}>
+              END THE MEETING
+            </button>
+          )}
+          <button className="follow-up-btn" onClick={handleFollowUp}>
+            FOLLOW UP
           </button>
-        )}
-        <button className="follow-up-btn" onClick={handleFollowUp}>
-          FOLLOW UP
-        </button>
-      </div>
+        </div>
+      )}
+      
       {showForm && (
         <div className="task-form-content">
           <div className="overlay" onClick={togglePopup}></div>

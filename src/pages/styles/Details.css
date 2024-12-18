@@ -2,8 +2,10 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   height: 100%;
   overflow-y: auto;
+  /* border:2px solid red; */
 }
 .details-card{
     display:flex;
@@ -21,6 +23,7 @@
 .details-handlers {
   display: flex;
   width:40vw;
+  height: 5vh;
   justify-content:end;
   /* border:2px solid red; */
   margin-top:3vh;
@@ -54,13 +57,15 @@
 .detail-item-left, .detail-item-right{
   display: flex;
   flex-direction: column;
-  justify-content: space-evenly;
+  justify-content: space-between;
   align-items: start;
+  margin:10%;
+  width:90%;
   /* border:2px solid red; */
 }
  .scroll-description, .scroll-members{
-  height: 13vh;
-  width: 16vw;
+  height: 12vh;
+  width: 15vw;
   padding: 10px;
   margin-left: 7px;
   border-radius: 10px;
@@ -102,20 +107,22 @@ transition: background-color 0.3s;
 }
 
 .end-meeting-btn {
-background-color: #b30000;
+background-color: #ef2626;
 }
 
 .follow-up-btn {
-background-color: #01872b;
+background-color: #28a745;
 }
 
 .end-meeting-btn.completed {
 background-color: #28a745;
 }
 
-.end-meeting-btn:hover,
+.end-meeting-btn:hover{
+  background-color: #C9302C;
+}
 .follow-up-btn:hover {
-opacity: 0.8;
+background-color: #1b6f2f;
 }
 
 .popup-container{

@@ -1,23 +1,40 @@
-import React from 'react'
-import bell from './assets/icons/bell.svg'
-import account from './assets/icons/account.svg'
+import React, { useState } from 'react'
 import './styles/header.css'
+import { FaRegCircleUser } from "react-icons/fa6";
+import { UserContext } from './UserContext';
+import { useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const Header = ({user}) => {
+  const navigate = useNavigate()
+  const { setUserData } = useContext(UserContext);
+  const [showDropdown,setshowDropdown] = useState(false);
+
+  const handleLogout = () => {
+    setUserData(null);
+    navigate('/login')
+};
+  const handleDropdown = () =>{
+    setshowDropdown(!showDropdown);
+  }
   return (
     <div className="header">
-        <div className="left-section">
-        </div>
-        <div className="middle-section"> 
-        </div>
-        <div className="right-section">
-            <div className="bell-icon-container">
-                <img className="bell-icon" src={bell}/>
-            </div>
+        <div className="head-container">
             <div className="name-container">
                 <div className="name">{user}</div>
             </div>
-            <img className="current-user-picture" src={account}/>
+            <div className="dropdown-container">
+              <FaRegCircleUser className="user-icon"size={25} onClick={handleDropdown}/>
+              {showDropdown && 
+                <div className="dropdown-menu">
+                  <ul>
+                      <li>Profile</li>
+                      <li>Settings</li>
+                      <li onClick={handleLogout} >Logout</li>
+                  </ul>
+                </div>
+              }
+            </div>
         </div>
     </div>
   )

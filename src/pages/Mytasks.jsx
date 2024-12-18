@@ -4,13 +4,12 @@ import axios from 'axios'
 import { UserContext } from '../UserContext'
 import { useContext } from 'react'
 import './styles/Mytasks.css'
-import { useParams } from 'react-router-dom'
+import { SlClose } from "react-icons/sl";
 
-const Report = () => {
-  const { meetingid } = useParams();
+const Mytasks = () => {
+  
   const { userData } = useContext(UserContext);
   const [tasklist, setTasklist] = useState([])
-  const [notasklist, setNotasklist] = useState([])
   const [selectedTask, setSelectedTask] = useState(null);
 
   const [showpopup, setShowpopup] = useState(false);
@@ -19,10 +18,19 @@ const Report = () => {
     setShowpopup(!showpopup)
   }
 
+  const handleSubmit = (taskid) => {
+    console.log(taskid);
+    try {
+      axios.put(`http://localhost:5000/meetings/updatemytasks`, { id: taskid })
+    } catch (error) {
+      console.log(error);
+    };
+  }
+
   useEffect(() => {
     // console.log(userData);
     if (userData?.username) {
-      axios.get(`http://localhost:5000/meetings/${meetingid}/alltasks`)
+      axios.post(`http://localhost:5000/meetings/mytasks`, { username: userData.username })
         .then((response) => {
           for (let item of response.data) {
             if (item.date) {
@@ -34,19 +42,7 @@ const Report = () => {
           console.log(error);
         });
     }
-  }, [userData.username])
-
-  useEffect(() => {
-    // console.log(userData);
-    if (userData?.username) {
-      axios.get(`http://localhost:5000/meetings/${meetingid}/notassigned`)
-        .then((response) => {
-          setNotasklist(response.data);
-        }).catch((error) => {
-          console.log(error);
-        });
-    }
-  })
+  }, [userData.username, handleSubmit])
 
   return (
     <div className='mytasks-content'>
@@ -55,13 +51,13 @@ const Report = () => {
           <table className='mytasks-table'>
             <tbody>
               {tasklist.map((eachtask, index) => (
-                <tr className='mytasks-table-row' key={index} onClick={() => showTaskform(eachtask)}>
+                <tr className='mytasks-table-row' key={index}>
                   <td>{index + 1}</td>
-                  <td>{eachtask.task}</td>
-                  <td>{eachtask.date}</td>
+                  <td onClick={() => showTaskform(eachtask)}>{eachtask.task}</td>
+                  <td onClick={() => showTaskform(eachtask)}>{eachtask.date}</td>
                   <td>
                     {eachtask.status === "assigned" ? (
-                      <button className={`mytasks-status-btn ${eachtask.status}`}>ASSIGNED</button>
+                      <button className={`mytasks-status-btn ${eachtask.status}`}>SUBMIT</button>
                     ) : eachtask.status === "pending" ? (
                       <button className={`mytasks-status-btn ${eachtask.status}`}>PENDING</button>
                     ) : eachtask.status === "completed" ? (
@@ -69,23 +65,6 @@ const Report = () => {
                     ) : (
                       <></>
                     )}
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-      }
-      {notasklist.length > 0 &&
-        <div className="mytasks-container">
-          <table className='mytasks-table'>
-            <tbody>
-              {notasklist.map((item, index) => (
-                <tr className='mytasks-table-row' key={index}>
-                  <td>{index + 1}</td>
-                  <td>{item.minute}</td>
-                  <td>
-                    <button className={`mytasks-status-btn ${item.status}`}>NOT ASSIGNED</button>
                   </td>
                 </tr>
               ))}
@@ -114,12 +93,19 @@ const Report = () => {
                 <div>{selectedTask.assignby}</div>
               </div>
               <div>
-                <label>Assigned To:</label>
-                <div>{selectedTask.assignto}</div>
-              </div>
-              <div>
                 <label>Due Date:</label>
                 <div>{selectedTask.date}</div>
+              </div>
+              <div className="mytasks-btn">
+                  {selectedTask.status === "assigned" ? (
+                    <button className={`mytasks-status-btn ${selectedTask.status}`} onClick={() => { handleSubmit(selectedTask.taskid); showTaskform(false); }}>SUBMIT</button>
+                  ) : selectedTask.status === "pending" ? (
+                    <button className={`mytasks-status-btn ${selectedTask.status}`} onClick={() => { handleSubmit(selectedTask.taskid); showTaskform(false); }}>PENDING</button>
+                  ) : selectedTask.status === "completed" ? (
+                    <button className={`mytasks-status-btn ${selectedTask.status}`}>COMPLETED</button>
+                  ) : (
+                    <></>
+                  )}
               </div>
             </div>
           </div>
@@ -129,4 +115,4 @@ const Report = () => {
   )
 }
 
-export default Report
+export default Mytasks
