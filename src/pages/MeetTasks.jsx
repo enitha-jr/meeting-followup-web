@@ -83,7 +83,7 @@ const MeetTasks = () => {
     axios.post(`http://localhost:5000/meetings/${meetingid}/tasks`, newTask)
       .then((response) => {
         handleClose();
-        // console.log(response.data);
+
       }).catch((error) => {
         console.log(error);
       });

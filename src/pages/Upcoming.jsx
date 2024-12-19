@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 // import './styles/Meetings.css'
 import axios from 'axios';
 import schedule from '../assets/icons/schedule.png'
@@ -6,7 +6,9 @@ import calendar from '../assets/icons/calendar.png'
 import person from '../assets/icons/person.png'
 import venue from '../assets/icons/apartment.png'
 import meetimg from '../assets/icons/meeting.png'
+import hostimg from '../assets/icons/host.png'
 import { useNavigate } from 'react-router-dom';
+
 function Upcoming() {
 
     const [details, setDetails] = useState([]);

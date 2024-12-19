@@ -17,16 +17,7 @@ const Minutes = () => {
   const [note, setNote] = useState("")
   const [istask,setIstask] =useState(0)
 
-  const handleSubmit = async (e) => {
-    const newminute = {minute:note, istask:istask};
-    await axios.post(`http://localhost:5000/meetings/${meetingid}/minutes`, newminute)
-      .then((response) => {
-        console.log(response.data);
-      }).catch((error) => {
-        console.log(error);
-      });
-    setNote('');
-  }
+ 
 
   const [minutelist, setMinutelist] = useState([]);
 
@@ -70,6 +61,16 @@ const Minutes = () => {
       });
   }
 
+  const handleSubmit = async (e) => {
+    const newminute = {minute:note, istask:istask , mid:meetingdetails.mid};
+    await axios.post(`http://localhost:5000/meetings/${meetingid}/minutes`, newminute)
+      .then((response) => {
+        console.log(response.data);
+      }).catch((error) => {
+        console.log(error);
+      });
+    setNote('');
+  }
   
 
   return (
