@@ -125,7 +125,7 @@ const UpdateTasks = () => {
         <div className='overlay'></div>
         <div className='task-form-container'>
         <div className='head4'>
-            <h4>ADD NEW TASK</h4>
+            <h4>UPDATE TASK</h4>
         </div>
         <form className='meettask-form' onSubmit={handleSubmit}>
             <div>
@@ -145,10 +145,7 @@ const UpdateTasks = () => {
             </div>
             <div>
             <label>Assigned By:</label>
-            <select value={assignby} onChange={e => setAssignby(e.target.value)} required>
-                <option value=''></option>
-                {MembersOptions()}
-            </select>
+            <input type='text' value={assignby} readOnly />
             </div>
             <div>
             <label>Assign To:</label>

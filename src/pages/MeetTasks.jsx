@@ -72,6 +72,7 @@ const MeetTasks = () => {
   const handleClose = () => {
     setShowpopup(false);
     setSelectedTask(null);
+    setAssignby(userData?.username || '');
   };
 
   const handleSubmit = async (e) => {
@@ -81,6 +82,7 @@ const MeetTasks = () => {
     setTasklist([...tasklist, newTask]);
     axios.post(`http://localhost:5000/meetings/${meetingid}/tasks`, newTask)
       .then((response) => {
+        handleClose();
         // console.log(response.data);
       }).catch((error) => {
         console.log(error);
@@ -120,6 +122,8 @@ const MeetTasks = () => {
       .then((res) => {
         console.log(res.data);
         setMinutelist(tasklist.filter((task) => task.taskid !== id));
+        showTaskform(false)
+        handleClose();
       }).catch((err) => {
         console.log(err);
       });
@@ -148,10 +152,6 @@ const MeetTasks = () => {
                   <td>{eachtask.assignby}</td>
                   <td>{eachtask.assignto}</td>
                   <td>{eachtask.date}</td>
-                  <td>
-                    <Link to={`/meetings/${meetingid}/updatetasks/${eachtask.taskid}`}><FiEdit color="#055aba" className='task-edit-button' type='submit' role='button' /></Link>
-                    <FiTrash2 color="#bb2124" type='submit' role='button' onClick={() => confirmDelete(eachtask.taskid)} />
-                  </td>
                 </tr>
               ))}
             </tbody>
@@ -189,6 +189,10 @@ const MeetTasks = () => {
                 <div>
                   <label>Due Date:</label>
                   <div>{selectedTask.date}</div>
+                </div>
+                <div className='task-btn'>
+                  <Link to={`/meetings/${meetingid}/updatetasks/${selectedTask.taskid}`}><FiEdit color="#055aba" size={20} className='task-edit-button' type='submit' role='button' /></Link>
+                  <FiTrash2 color="#bb2124" size={20} type='submit' role='button' onClick={() => confirmDelete(selectedTask.taskid)} />
                 </div>
               </div>
             ) : (

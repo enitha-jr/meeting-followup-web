@@ -195,7 +195,11 @@
 .task-table-row td{
     max-height:10vh;
 }
-
+.task-btn{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 
 
 
