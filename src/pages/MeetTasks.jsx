@@ -25,9 +25,12 @@ const MeetTasks = () => {
   const [minutelist, setMinutelist] = useState([]);
   const [users, setUsers] = useState([]);
 
+// console.log(meetingid)
   useEffect(() => {
     axios.get(`http://localhost:5000/meetings/${meetingid}/taskminutes`)
-      .then(response => setMinutelist(response.data))
+      .then(response => {
+        setMinutelist(response.data)
+      })
       .catch(error => console.log(error));
   }, [meetingid]);
 
@@ -78,7 +81,7 @@ const MeetTasks = () => {
     setTasklist([...tasklist, newTask]);
     axios.post(`http://localhost:5000/meetings/${meetingid}/tasks`, newTask)
       .then((response) => {
-        console.log(response.data);
+        // console.log(response.data);
       }).catch((error) => {
         console.log(error);
       });
@@ -106,6 +109,22 @@ const MeetTasks = () => {
   }, [tasklist])
   // console.log(tasklist);
 
+  const confirmDelete = (id) => {
+    if (window.confirm('Are you sure you want to delete this task?')) {
+      handleDelete(id);
+    }
+  }
+
+  const handleDelete = (id) => {
+    axios.delete(`http://localhost:5000/meetings/${meetingid}/tasks/${id}`)
+      .then((res) => {
+        console.log(res.data);
+        setMinutelist(tasklist.filter((task) => task.taskid !== id));
+      }).catch((err) => {
+        console.log(err);
+      });
+  }
+
   return (
     <div className='meettask-content'>
       <div className='add-button' onClick={() => showTaskform()}><FiPlus /> ADD</div>
@@ -130,7 +149,7 @@ const MeetTasks = () => {
                   <td>{eachtask.assignto}</td>
                   <td>{eachtask.date}</td>
                   <td>
-                    <Link to={`/meetings/updatetasks/${eachtask.taskid}`}><FiEdit color="#055aba" type='submit' role='button' /></Link>
+                    <Link to={`/meetings/${meetingid}/updatetasks/${eachtask.taskid}`}><FiEdit color="#055aba" className='task-edit-button' type='submit' role='button' /></Link>
                     <FiTrash2 color="#bb2124" type='submit' role='button' onClick={() => confirmDelete(eachtask.taskid)} />
                   </td>
                 </tr>

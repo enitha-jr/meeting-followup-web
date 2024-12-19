@@ -111,7 +111,7 @@ const routes = [
         element: <UpdateMinutes />
     },
     {
-        path: '/meetings/updatetasks/:taskid',
+        path: '/meetings/:meetingid/updatetasks/:taskid',
         element: <UpdateTasks />
     }
 ]

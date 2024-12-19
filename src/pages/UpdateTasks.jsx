@@ -23,10 +23,10 @@ const UpdateTasks = () => {
         axios.get(`http://localhost:5000/meetings/${meetingid}/tasks`)
           .then((response) => {
             console.log(response.data)
-            // setTask(response.data[0].task)
-            // setDesc(response.data[0].description)
-            // setAssignby(response.data[0].assignby)
-            // setAssignto(response.data[0].assignto)
+            setTask(response.data[0].task)
+            setDesc(response.data[0].description)
+            setAssignby(response.data[0].assignby)
+            setAssignto(response.data[0].assignto)
             for (let item of response.data) {
               if (item.date) {
                 item.date = String(item.date).split('T')[0];
@@ -48,7 +48,6 @@ const UpdateTasks = () => {
         console.log(error);
         });
     }, [meetingid])
-    console.log(minutelist,members,users)
     
 
     useEffect(() => {
