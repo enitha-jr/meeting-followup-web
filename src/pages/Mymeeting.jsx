@@ -11,10 +11,8 @@ import { UserContext } from '../UserContext'
 import { useContext } from 'react'
 
 function Mymeeting() {
-
     const [details, setDetails] = useState([]);
     const { userData } = useContext(UserContext);
-
     useEffect(() => {
         axios.post("http://localhost:5000/meetings/mymeeting", { host: userData?.username })
         .then((response) => {

@@ -18,6 +18,9 @@ import UpdateTasks from '../pages/UpdateTasks';
 import Mymeeting from '../pages/Mymeeting';
 import Mytasks from '../pages/Mytasks';
 import AssignedTasks from '../pages/AssignedTasks';
+import Request from '../pages/Request';
+
+
 
 const routes = [
     {
@@ -71,6 +74,10 @@ const routes = [
     {
         path: '/calendar',
         element: <MyCalendar/>
+    },
+    {
+        path: '/request',
+        element: <Request/>
     },
     {
         path: '/meetings/:meetingid',

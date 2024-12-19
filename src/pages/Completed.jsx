@@ -7,13 +7,16 @@ import person from '../assets/icons/person.png'
 import venue from '../assets/icons/apartment.png'
 import meetimg from '../assets/icons/meeting.png'
 import { useNavigate } from 'react-router-dom';
+import { UserContext } from '../UserContext'
+import { useContext } from 'react'
 
 const Completed = () => {
 
     const [details, setDetails] = useState([]);
+    const { userData } = useContext(UserContext);
 
     useEffect(() => {
-        axios.get("http://localhost:5000/meetings/completed")
+        axios.post("http://localhost:5000/meetings/completed",{ username: userData.username })
         .then((response) => {
             setDetails(response.data);
         }).catch((error) => {

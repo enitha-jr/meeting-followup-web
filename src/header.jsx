@@ -21,7 +21,7 @@ const Header = ({user}) => {
     <div className="header">
         <div className="head-container">
             <div className="name-container">
-                <div className="name">{user}</div>
+                <div className="name">HELLO, {user}</div>
             </div>
             <div className="dropdown-container">
               <FaRegCircleUser className="user-icon"size={25} onClick={handleDropdown}/>

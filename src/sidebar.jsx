@@ -6,8 +6,13 @@ import task from './assets/icons/task.svg'
 import calendar from './assets/icons/calendar.svg'
 import './styles/sidebar.css'
 import { NavLink } from 'react-router-dom'
+import { UserContext } from './UserContext'
+import { useContext } from 'react'
 
 const Sidebar = () => {
+    const { userData } = useContext(UserContext);
+    console.log(userData?.role);
+
     return (
         <div className='sidebar'>
             <div className='logo-box'>
@@ -31,7 +36,15 @@ const Sidebar = () => {
                 <NavLink to='/calendar' className='custom-link inner'>
                     <img src={calendar} />
                     <div className="sidebar-title">Calendar</div>
-                </NavLink>    
+                </NavLink>
+                {
+                    userData.role === 'superadmin' ? (
+                        <NavLink to='/request' className='custom-link inner'>
+                            <img src={groups} />
+                            <div className="sidebar-title">Meeting Requests</div>
+                        </NavLink>
+                    ): null
+                }
             </div>
     )
 }
