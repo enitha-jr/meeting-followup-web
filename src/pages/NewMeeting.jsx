@@ -71,8 +71,8 @@
     const handleSubmit = async (e) => {
       e.preventDefault();
       const newDate = new Date(date).toISOString().slice(0,10);
-      const newMeeting = { followup, title, mid, dept, host, date:newDate, time, venue, desc, members};
-      console.log(newMeeting);
+      const newMeeting = { followup, title, mid, dept, host, date:newDate, time, venue, desc, members,minutetaker};
+      // console.log(newMeeting);
       try{
         axios.post("http://localhost:5000/newmeeting", newMeeting)
         .then((response) => {

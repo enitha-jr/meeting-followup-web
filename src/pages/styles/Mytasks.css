@@ -123,7 +123,9 @@
 .mytask-popup-container {
   position: relative;
   background: #fff;
-  width: 400px;
+  /* width: 400px; */
+  width: 35vw;
+
   max-width: 90%;
   padding: 20px;
   border-radius: 8px;
