@@ -72,6 +72,7 @@ const MeetTasks = () => {
   const handleClose = () => {
     setShowpopup(false);
     setSelectedTask(null);
+    setAssignby(userData?.username || '');
   };
 
   const handleSubmit = async (e) => {
@@ -81,7 +82,8 @@ const MeetTasks = () => {
     setTasklist([...tasklist, newTask]);
     axios.post(`http://localhost:5000/meetings/${meetingid}/tasks`, newTask)
       .then((response) => {
-        // console.log(response.data);
+        handleClose();
+
       }).catch((error) => {
         console.log(error);
       });
