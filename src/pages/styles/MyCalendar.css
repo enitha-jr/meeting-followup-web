@@ -1,0 +1,8 @@
+.calendar-content{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: auto;
+    overflow-y:auto;
+    background-color: rgba(213, 227, 255, 0.306);
+}

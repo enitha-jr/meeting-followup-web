@@ -3,7 +3,7 @@ import { Navigate } from 'react-router-dom';
 import NewMeeting from "../pages/NewMeeting"
 import Meetings from "../pages/Meetings"
 import Tasks from "../pages/Tasks"
-import Calendar from "../pages/Calendar"
+import MyCalendar from "../pages/MyCalendar"
 import Completed from "../pages/Completed"
 import Upcoming from '../pages/Upcoming';
 import Meetinfo from '../pages/Meetinfo';
@@ -46,7 +46,7 @@ const routes = [
             },
             {
                 path: 'mymeeting',
-                element: <Mymeeting />
+                element: <Mymeeting/>
             }
         ]
     },
@@ -70,7 +70,7 @@ const routes = [
     },
     {
         path: '/calendar',
-        element: <Calendar/>
+        element: <MyCalendar/>
     },
     {
         path: '/meetings/:meetingid',
