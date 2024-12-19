@@ -72,12 +72,41 @@
       e.preventDefault();
       const newDate = new Date(date).toISOString().slice(0,10);
       const newMeeting = { followup, title, mid, dept, host, date:newDate, time, venue, desc, members,minutetaker};
-      // console.log(newMeeting);
+      console.log(newMeeting);
       try{
         axios.post("http://localhost:5000/newmeeting", newMeeting)
         .then((response) => {
           console.log(response.data);
-          console.log('Meeting created successfully');
+          navigate("/meetings/upcoming")
+        }).catch((error) => {
+          console.log(error);
+        });
+      }catch(error){
+        console.log('Error creating meeting');
+      }
+      setFollowup('');
+      setTitle('');
+      setMid('');
+      setDept('');
+      setHost('');
+      setDate('');
+      setTime('');
+      setVenue('');
+      setDesc('');
+      setMinutetaker('');
+      setName('');
+      setMembers([]);
+    }
+
+    const handleRequest = async (e) => {
+      e.preventDefault();
+      const newDate = new Date(date).toISOString().slice(0,10);
+      const newMeeting = { followup, title, mid, dept, host, date:newDate, time, venue, desc, members,minutetaker};
+      console.log(newMeeting);
+      try{
+        axios.post("http://localhost:5000/requestmeeting", newMeeting)
+        .then((response) => {
+          console.log(response.data);
           navigate("/meetings/upcoming")
         }).catch((error) => {
           console.log(error);
@@ -123,7 +152,7 @@
           <div className="head3">
             <h3>NEW-MEETING</h3>
           </div>
-          <form className="newmeeting-form" onSubmit={handleSubmit}>
+          <form className="newmeeting-form">
             <div className="details">
               <div className="left">
                 <div>
@@ -207,7 +236,13 @@
               </div>
             </div>
             <div className="newmeeting-btn">
-              <button type="submit">CREATE MEETING</button>
+              {
+                userData?.role === 'user' ? (
+                  <button type="submit" onClick={handleRequest}>REQUEST MEETING</button>
+                ) : (
+                  <button type="submit" onClick={handleSubmit}>CREATE MEETING</button>
+                ) 
+              }
             </div>
           </form>
       </div>

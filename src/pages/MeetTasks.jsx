@@ -21,7 +21,6 @@ const MeetTasks = () => {
   const [assignby, setAssignby] = useState(userData?.username || '');
   const [assignto, setAssignto] = useState('');
   const [date, setDate] = useState('');
-
   const [minutelist, setMinutelist] = useState([]);
   const [users, setUsers] = useState([]);
 
@@ -73,6 +72,7 @@ const MeetTasks = () => {
     setShowpopup(false);
     setSelectedTask(null);
     setAssignby(userData?.username || '');
+    setAssignby(userData?.username || '');
   };
 
   const handleSubmit = async (e) => {
@@ -83,7 +83,8 @@ const MeetTasks = () => {
     axios.post(`http://localhost:5000/meetings/${meetingid}/tasks`, newTask)
       .then((response) => {
         handleClose();
-
+        console.log("asdf", response);
+        
       }).catch((error) => {
         console.log(error);
       });
@@ -93,7 +94,6 @@ const MeetTasks = () => {
     setAssignby('');
     setAssignto('');
     setDate('');
-    setShowForm(false);
   }
   const [tasklist, setTasklist] = useState([]);
   useEffect(() => {
@@ -129,10 +129,32 @@ const MeetTasks = () => {
       });
   }
 
+  const [meetingdetails, setMeetingdetails] = useState([]);
+  useEffect(() => {
+    if (meetingid) {
+      axios.get(`http://localhost:5000/meetings/${meetingid}/details`)
+        .then((response) => {
+          setMeetingdetails(response.data[0]);
+        })
+        .catch((error) => {
+          console.error('Error fetching meeting details:', error);
+        });
+    }
+  }, [meetingid]);
+
+  const handleFilter = () => {
+    let filteredResults = tasklist.filter((eachtask) =>
+      userData?.username === meetingdetails?.host ||
+      eachtask.assignby === userData?.username
+    )
+    return filteredResults
+  }
+  const filteredResults = handleFilter()
+
   return (
     <div className='meettask-content'>
       <div className='add-button' onClick={() => showTaskform()}><FiPlus /> ADD</div>
-      {tasklist.length > 0 ? (
+      {filteredResults.length ? (
         <div className='task-container'>
           <table className='task-table'>
             <thead>
@@ -145,7 +167,7 @@ const MeetTasks = () => {
               </tr>
             </thead>
             <tbody>
-              {tasklist.map((eachtask, index) => (
+              {filteredResults.map((eachtask, index) => (
                 <tr className='task-table-row' key={index} onClick={() => showTaskform(eachtask)}>
                   <td>{index + 1}</td>
                   <td>{eachtask.task}</td>
