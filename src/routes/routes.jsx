@@ -14,10 +14,10 @@ import Attendance from '../pages/Attendance';
 import Report from '../pages/Report';
 import UpdateMeetingDetails from '../pages/UpdateMeetingDetails';
 import UpdateMinutes from '../pages/UpdateMinutes';
+import UpdateTasks from '../pages/UpdateTasks';
+import Mymeeting from '../pages/Mymeeting';
 import Mytasks from '../pages/Mytasks';
 import AssignedTasks from '../pages/AssignedTasks';
-import Mymeeting from '../pages/Mymeeting';
-
 
 const routes = [
     {
@@ -109,6 +109,10 @@ const routes = [
     {
         path: '/meetings/:meetingid/updateminutes/:minuteid',
         element: <UpdateMinutes />
+    },
+    {
+        path: '/meetings/:meetingid/updatetasks/:taskid',
+        element: <UpdateTasks />
     }
 ]
 

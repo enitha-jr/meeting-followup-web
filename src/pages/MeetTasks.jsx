@@ -1,17 +1,17 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { FiPlus } from "react-icons/fi";
+import './styles/MeetTasks.css'
+import { Link, useParams } from 'react-router-dom';
 import { SlClose } from "react-icons/sl";
-import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import { UserContext } from '../UserContext';
-import './styles/MeetTasks.css';
+import { FiEdit } from 'react-icons/fi';
+import { FiTrash2 } from 'react-icons/fi';
 
 const MeetTasks = () => {
 
   const { meetingid } = useParams();
   const { userData } = useContext(UserContext);
-
-  const [tasklist, setTasklist] = useState([]);
   const [selectedTask, setSelectedTask] = useState(null);
   const [showpopup, setShowpopup] = useState(false);
 
@@ -25,9 +25,12 @@ const MeetTasks = () => {
   const [minutelist, setMinutelist] = useState([]);
   const [users, setUsers] = useState([]);
 
+// console.log(meetingid)
   useEffect(() => {
     axios.get(`http://localhost:5000/meetings/${meetingid}/taskminutes`)
-      .then(response => setMinutelist(response.data))
+      .then(response => {
+        setMinutelist(response.data)
+      })
       .catch(error => console.log(error));
   }, [meetingid]);
 
@@ -75,14 +78,52 @@ const MeetTasks = () => {
     e.preventDefault();
     const newDate = new Date(date).toISOString().slice(0, 10);
     const newTask = { minute, task, desc, assignby, assignto, date: newDate };
-    try {
-      await axios.post(`http://localhost:5000/meetings/${meetingid}/tasks`, newTask);
-      setTasklist([...tasklist, newTask]);
-      handleClose();
-    } catch (error) {
-      console.log(error);
+    setTasklist([...tasklist, newTask]);
+    axios.post(`http://localhost:5000/meetings/${meetingid}/tasks`, newTask)
+      .then((response) => {
+        // console.log(response.data);
+      }).catch((error) => {
+        console.log(error);
+      });
+    setMinute('');
+    setTask('');
+    setDesc('');
+    setAssignby('');
+    setAssignto('');
+    setDate('');
+    setShowForm(false);
+  }
+  const [tasklist, setTasklist] = useState([]);
+  useEffect(() => {
+    axios.get(`http://localhost:5000/meetings/${meetingid}/tasks`)
+      .then((response) => {
+        for (let item of response.data) {
+          if (item.date) {
+            item.date = String(item.date).split('T')[0];
+          }
+        }
+        setTasklist(response.data);
+      }).catch((error) => {
+        console.log(error);
+      });
+  }, [tasklist])
+  // console.log(tasklist);
+
+  const confirmDelete = (id) => {
+    if (window.confirm('Are you sure you want to delete this task?')) {
+      handleDelete(id);
     }
-  };
+  }
+
+  const handleDelete = (id) => {
+    axios.delete(`http://localhost:5000/meetings/${meetingid}/tasks/${id}`)
+      .then((res) => {
+        console.log(res.data);
+        setMinutelist(tasklist.filter((task) => task.taskid !== id));
+      }).catch((err) => {
+        console.log(err);
+      });
+  }
 
   return (
     <div className='meettask-content'>
@@ -107,6 +148,10 @@ const MeetTasks = () => {
                   <td>{eachtask.assignby}</td>
                   <td>{eachtask.assignto}</td>
                   <td>{eachtask.date}</td>
+                  <td>
+                    <Link to={`/meetings/${meetingid}/updatetasks/${eachtask.taskid}`}><FiEdit color="#055aba" className='task-edit-button' type='submit' role='button' /></Link>
+                    <FiTrash2 color="#bb2124" type='submit' role='button' onClick={() => confirmDelete(eachtask.taskid)} />
+                  </td>
                 </tr>
               ))}
             </tbody>

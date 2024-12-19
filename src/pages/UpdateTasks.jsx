@@ -1,12 +1,11 @@
 import React, { useContext, useEffect } from 'react'
 import { useNavigate, useParams } from 'react-router-dom';
 import { useState } from 'react';
-import { UserContext } from '../UserContext';
 import axios from 'axios';
 
 const UpdateTasks = () => {
 
-    const { meetingid, minuteid } = useParams()
+    const { meetingid } = useParams()
     const [minute, setMinute] = useState('');
     const [task, setTask] = useState('');
     const [desc, setDesc] = useState('');
@@ -23,6 +22,7 @@ const UpdateTasks = () => {
     useEffect(() => {
         axios.get(`http://localhost:5000/meetings/${meetingid}/tasks`)
           .then((response) => {
+            console.log(response.data)
             setTask(response.data[0].task)
             setDesc(response.data[0].description)
             setAssignby(response.data[0].assignby)
@@ -48,7 +48,6 @@ const UpdateTasks = () => {
         console.log(error);
         });
     }, [meetingid])
-    // console.log(minutelist)
     
 
     useEffect(() => {
@@ -119,6 +118,7 @@ const UpdateTasks = () => {
             console.error('Error updating task:', error);
         });
     }
+    
 
   return (
     <div className='task-form-content'>

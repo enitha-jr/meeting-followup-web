@@ -166,20 +166,31 @@
 }
 
 .task-table-row td:nth-child(2){
-    width:45%;
+    width:20%;
     /* border:2px solid red */
 }
 .task-table-row td:nth-child(3){
-    width:10%;
+    width:13%;
     /* border:2px solid red */
 }
 .task-table-row td:nth-child(4){
-    width: 10%;
+    width: 13%;
     /* border:2px solid red */
 }
 .task-table-row td:nth-child(5){
+    width:13%;
+    /* border:2px solid red */
+}
+.task-table-row td:nth-child(5){
+    width:13%;
+    /* border:2px solid red */
+}
+.task-table-row td:nth-child(6){
     width:10%;
     /* border:2px solid red */
+}
+.task-edit-button {
+    margin-right: 25px;
 }
 .task-table-row td{
     max-height:10vh;
