@@ -6,6 +6,7 @@ import routes from './routes/routes';
 import App from './App.jsx'
 import Login from './Login.jsx'
 import { UserProvider } from './UserContext.jsx'
+import SignUp from './SignUp.jsx';
 
 
 const router = createBrowserRouter([
@@ -17,6 +18,10 @@ const router = createBrowserRouter([
   {
     path: "/login",
     element: <Login/>,
+  },
+  {
+    path: "/register",
+    element: <SignUp/>,
   }
 ]);
 
