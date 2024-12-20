@@ -9,18 +9,12 @@ import meetimg from '../assets/icons/meeting.png'
 import hostimg from '../assets/icons/host.png'
 import { useNavigate } from 'react-router-dom';
 
-import { UserContext } from '../UserContext'
-import { useContext } from 'react'
-
 function Upcoming() {
-    const navigate = useNavigate();
-    const { userData } = useContext(UserContext);
-    if (!userData) {
-        navigate('/login');
-    }
+
     const [details, setDetails] = useState([]);
+
     useEffect(() => {
-        axios.post("http://localhost:5000/meetings/upcoming", { username: userData?.username })
+        axios.get("http://localhost:5000/meetings/upcoming")
         .then((response) => {
             for (let item of response.data) {
                 if (item.date) {
@@ -32,6 +26,8 @@ function Upcoming() {
             console.log(error);
         });
     }, [])
+
+    const navigate = useNavigate()
 
     const handleDetail=(meetingid)=>{ 
         navigate(`/meetings/${meetingid}`);

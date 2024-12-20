@@ -121,3 +121,69 @@
     transform: scale(1.05); /* Slightly enlarge the button */
   }
   
+  /* Keyframe for slide-in effect on smaller screens */
+@keyframes slideInFromLeft {
+  from {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+/* Keyframe for fade-in and zoom effect */
+@keyframes fadeInZoom {
+  from {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* Keyframe for attention-grabbing bounce effect */
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-10px);
+  }
+  60% {
+    transform: translateY(-5px);
+  }
+}
+
+/* Responsive animations using media queries */
+@media (max-width: 768px) {
+  .attendance-container {
+    width: 90vw;
+    animation: slideInFromLeft 0.8s ease-out;
+  }
+  
+  .search-input-container {
+    animation: fadeInZoom 0.5s ease-in-out;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1200px) {
+  .attendance-container {
+    width: 60vw;
+    animation: fadeInZoom 0.7s ease-in-out;
+  }
+  
+  .attendance-btn {
+    animation: bounce 1.5s infinite; /* Infinite bounce effect for buttons */
+  }
+}
+
+@media (min-width: 1201px) {
+  .attendance-container {
+    width: 40vw;
+    animation: fadeInZoom 0.5s ease-in-out;
+  }
+}
