@@ -54,7 +54,7 @@
     // export default Login
 
 import React, { useState, useEffect, useContext } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import './styles/login.css';
 import login from "./assets/icons/loginillustration.png";
 import axios from 'axios';
@@ -150,6 +150,10 @@ const Login = () => {
                     </div>
                 </form>
                 <div id="googleSignInDiv" className='google-sign-in'></div>
+                <div className='register-div'>
+                    dont have an account ? 
+                    <Link to="/register"><span>register</span></Link>
+                </div>
             </div>
         </div>
     );
