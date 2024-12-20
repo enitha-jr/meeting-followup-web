@@ -10,11 +10,12 @@ const SignUp = () => {
 
     const navigate = useNavigate();
 
-    const handleSubmit = () => {
+    const handleSubmit = (e) => {
+        e.preventDefault();
         const values = { username, password, email };
         axios.post("http://localhost:5000/register", values)
         .then((response) => {
-            console.log(response);
+            // console.log(response.data);
             navigate('/login');
         })
         .catch((err) => {

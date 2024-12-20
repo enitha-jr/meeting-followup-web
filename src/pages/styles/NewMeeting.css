@@ -1,14 +1,25 @@
 body{
   background-color: rgba(213, 227, 255, 0.306);
 }
+
+.newmeeting-content{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  height: calc(100vh - 60px);
+  overflow-y: auto;
+  /* border:2px solid red; */
+}
+
 .newmeeting-container {
   width:55vw;
-  height: 80vh;
+  height: fit-content;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin: 35px auto auto auto;
+  margin: 50px auto 50px auto;
   border-radius: 10px;
   background-color: white;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
@@ -39,7 +50,7 @@ body{
   justify-content: space-between;
 }
 
-.details .left > div,
+.details .left>div,
 .details .right > div {
   display: flex;
   flex-direction: column;
@@ -53,7 +64,7 @@ body{
   margin-bottom: 5px;
 }
 
-.newmeeting-form  input[type="text"],
+.newmeeting-form input[type="text"],
 .newmeeting-form input[type="date"],
 .newmeeting-form input[type="time"],
 .newmeeting-form input[type="number"],
@@ -99,7 +110,6 @@ textarea {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 20px;
 }
 
 .newmeeting-btn button[type="submit"] {
@@ -153,64 +163,4 @@ textarea {
   cursor: pointer;
   text-align: center;
   /* border:2px solid */
-}
-
-/* For small screens (e.g., laptops with smaller resolutions) */
-@media (max-width: 1024px) {
-  .newmeeting-container {
-    width: 70vw;
-    height: auto; /* Allow height to adjust based on content */
-    padding: 15px;
-  }
-
-  .newmeeting-form input[type="text"],
-  .newmeeting-form input[type="date"],
-  .newmeeting-form input[type="time"],
-  .newmeeting-form input[type="number"],
-  .newmeeting-form textarea,
-  .newmeeting-form select {
-    width: 90%; /* Use almost full width */
-  }
-
-  .newmeeting-form select {
-    width: 92%;
-  }
-
-  .members-list {
-    width: 90%;
-  }
-
-  .newmeeting-btn button[type="submit"] {
-    width: 100%; /* Make the button full-width */
-  }
-}
-
-/* For very small screens (e.g., tablets or mobile devices) */
-@media (max-width: 768px) {
-  .newmeeting-container {
-    width: 90vw; /* Almost full width */
-    margin: 20px auto;
-    padding: 20px;
-  }
-
-  .newmeeting-form input[type="text"],
-  .newmeeting-form input[type="date"],
-  .newmeeting-form input[type="time"],
-  .newmeeting-form input[type="number"],
-  .newmeeting-form textarea,
-  .newmeeting-form select {
-    width: 100%; /* Full width */
-  }
-
-  .members-list {
-    width: 100%; /* Adjust to full width */
-  }
-
-  .newmeeting-btn {
-    margin-top: 15px;
-  }
-
-  .newmeeting-btn button[type="submit"] {
-    width: 100%; /* Full width */
-  }
 }

@@ -59,6 +59,7 @@ import './styles/login.css';
 import login from "./assets/icons/loginillustration.png";
 import axios from 'axios';
 import { UserContext } from './UserContext';
+import host from './assets/icons/host.png';
 
 const Login = () => {
     const navigate = useNavigate();
@@ -136,7 +137,7 @@ const Login = () => {
     return (
         <div className="content">
             <div className="loginimgdiv">
-                <img className="loginimg" src={login} alt="" />
+                <img width={600} className="loginimg" src={host} alt="" />
             </div>
             <div className="login-container">
                 <div className="login-head">

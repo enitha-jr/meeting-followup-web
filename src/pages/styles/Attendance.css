@@ -51,6 +51,8 @@
     display: flex;
     justify-content: flex-start;
     padding: 1rem;
+    width:25vw;
+    height:5vh;
   }
   
   .search-input-container {

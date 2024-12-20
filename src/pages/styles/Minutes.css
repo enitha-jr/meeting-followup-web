@@ -160,7 +160,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 50px;
+    height: 5vh;
     padding: 5px;
     margin-left: 50px;
     margin-bottom: 15px;
@@ -169,7 +169,7 @@
 
 .minute-form input[type="text"] {
     width: 60vw;
-    height: 6vh;
+    height: 4vh;
     font-size: 16px;
     border: 1px solid #ccc;
     border-radius: 5px;
