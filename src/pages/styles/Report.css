@@ -37,7 +37,7 @@
     margin: 5px 0; 
 } 
 
-.report-table tr.assigned {
+/* .report-table tr.assigned {
     background-color: rgba(123, 123, 123, 0.2); 
 }
 
@@ -50,14 +50,14 @@
 }
 .report-table tr.not-assigned {
     background-color: rgba(252, 3, 3, 0.2); 
-}
+} */
 
 .report-table tr:hover { 
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15); 
     transform: scale(1.02); 
     cursor: pointer;
 }
- 
+/*  
 .report-table tr.assigned:hover {
     background-color: rgba(123, 123, 123, 0.4); 
 }
@@ -71,7 +71,7 @@
 }
 .report-table tr.not-assigned:hover {
     background-color: rgba(250, 4, 4, 0.3); 
-}
+} */
 
 .report-table-row {
     display: flex;

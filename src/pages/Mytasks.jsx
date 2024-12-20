@@ -46,7 +46,7 @@ const Mytasks = () => {
 
   return (
     <div className='mytasks-content'>
-      {!tasklist.length ? (<div className='no-tasks'>No tasks assigned !</div>) :
+      {!tasklist.length ? (<div className='mytasks-container'>No tasks assigned !</div>) :
         <div className="mytasks-container">
           <table className='mytasks-table'>
             <tbody>

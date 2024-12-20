@@ -19,6 +19,7 @@ import Mymeeting from '../pages/Mymeeting';
 import Mytasks from '../pages/Mytasks';
 import AssignedTasks from '../pages/AssignedTasks';
 import Request from '../pages/Request';
+import Tobediscussed from '../pages/Tobediscussed';
 
 
 
@@ -90,6 +91,10 @@ const routes = [
             {
                 path: 'details',
                 element: <Details />,
+            },
+            {
+                path: 'tobediscussed',
+                element: <Tobediscussed />,
             },
             {
                 path: 'minutes',
