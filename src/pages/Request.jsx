@@ -2,7 +2,11 @@ import React from 'react'
 
 const Request = () => {
   return (
-    <div>Request</div>
+    <div className='tasks-content'>
+      <div className='minute-container'>
+        NO REQUESTS !!
+      </div>
+    </div>
   )
 }
 

@@ -88,16 +88,15 @@
     font-size: 14px;
     font-weight: bold;
     border: 2px solid transparent;
-    border-radius: 4px;
+    border-radius: 20px;
     cursor: pointer;
-    transition: all 0.3s ease-in-out; /* Smooth transition */
+    transition: all 0.3s ease-in-out; 
     text-transform: uppercase;
     width:  8vw;
   }
   
-  /* For present state */
   .attendance-btn.present {
-    background-color: #4CAF50; /* Green for present */
+    background-color: #4CAF50; 
     color: white;
     border-color: #4CAF50;
   }

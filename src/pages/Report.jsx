@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react'
 import axios from 'axios'
 import { UserContext } from '../UserContext'
 import { useContext } from 'react'
-import './styles/Mytasks.css'
+import './styles/Report.css'
 import { useParams } from 'react-router-dom'
 
 const Report = () => {
@@ -12,6 +12,9 @@ const Report = () => {
   const [tasklist, setTasklist] = useState([])
   const [notasklist, setNotasklist] = useState([])
   const [selectedTask, setSelectedTask] = useState(null);
+  const [assignedlist, setAssignedlist] = useState([]);
+  const [pendinglist, setPendinglist] = useState([]);
+  const [completedlist, setCompletedlist] = useState([]);
 
   const [showpopup, setShowpopup] = useState(false);
   const showTaskform = (task) => {
@@ -48,51 +51,70 @@ const Report = () => {
     }
   })
 
+  useEffect(() => {
+    const assigned = tasklist.filter(task => task.status === 'assigned');
+    const pending = tasklist.filter(task => task.status === 'pending');
+    const completed = tasklist.filter(task => task.status === 'completed');
+
+    setAssignedlist(assigned);
+    setPendinglist(pending);
+    setCompletedlist(completed);
+  }, [tasklist]);
+
   return (
-    <div className='mytasks-content'>
-      {tasklist.length > 0 &&
-        <div className="mytasks-container">
-          <table className='mytasks-table'>
-            <tbody>
-              {tasklist.map((eachtask, index) => (
-                <tr className='mytasks-table-row' key={index} onClick={() => showTaskform(eachtask)}>
-                  <td>{index + 1}</td>
-                  <td>{eachtask.task}</td>
-                  <td>{eachtask.date}</td>
-                  <td>
-                    {eachtask.status === "assigned" ? (
-                      <button className={`mytasks-status-btn ${eachtask.status}`}>ASSIGNED</button>
-                    ) : eachtask.status === "pending" ? (
-                      <button className={`mytasks-status-btn ${eachtask.status}`}>PENDING</button>
-                    ) : eachtask.status === "completed" ? (
-                      <button className={`mytasks-status-btn ${eachtask.status}`}>COMPLETED</button>
-                    ) : (
-                      <></>
-                    )}
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-      }
-      {notasklist.length > 0 &&
-        <div className="mytasks-container">
-          <table className='mytasks-table'>
-            <tbody>
-              {notasklist.map((item, index) => (
-                <tr className='mytasks-table-row' key={index}>
-                  <td>{index + 1}</td>
-                  <td>{item.minute}</td>
-                  <td>
-                    <button className={`mytasks-status-btn ${item.status}`}>NOT ASSIGNED</button>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-      }
+    <div className='report-content'>
+      <div className="report-container">
+        {assignedlist.length > 0 &&
+            <table className='report-table'>
+              <tbody>
+                {assignedlist.map((eachtask, index) => (
+                  <tr className={`report-table-row ${eachtask.status}`} key={index} onClick={() => showTaskform(eachtask)}>
+                    <td>{eachtask.task}</td>
+                    <td><button className={`report-status-btn ${eachtask.status}`}>ASSIGNED</button></td>  
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+        }
+        {pendinglist.length > 0 &&
+            <table className='report-table'>
+              <tbody>
+                {pendinglist.map((eachtask, index) => (
+                  <tr className={`report-table-row ${eachtask.status}`} key={index} onClick={() => showTaskform(eachtask)}>
+                    <td>{eachtask.task}</td>
+                    <td><button className={`report-status-btn ${eachtask.status}`}>PENDING</button></td>  
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+        }
+        {completedlist.length > 0 &&
+            <table className='report-table'>
+              <tbody>
+                {completedlist.map((eachtask, index) => (
+                  <tr className={`report-table-row ${eachtask.status}`} key={index} onClick={() => showTaskform(eachtask)}>
+                    <td>{eachtask.task}</td>
+                    <td><button className={`report-status-btn ${eachtask.status}`}>COMPLETED</button></td>  
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+        }
+        {notasklist.length > 0 &&
+            <table className='report-table'>
+              <tbody>
+                {notasklist.map((item, index) => (
+                  <tr className={`report-table-row ${item.status}`} key={index}>
+                    <td>{item.minute}</td>
+                    <td>
+                      <button className={`report-status-btn ${item.status}`}>NOT ASSIGNED</button>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+        }
+      </div>
       {showTaskform && selectedTask && (
         <div className='task-content'>
           <div className='overlay' onClick={() => showTaskform(false)}></div>

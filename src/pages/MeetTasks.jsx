@@ -83,8 +83,7 @@ const MeetTasks = () => {
     axios.post(`http://localhost:5000/meetings/${meetingid}/tasks`, newTask)
       .then((response) => {
         handleClose();
-        console.log("asdf", response);
-        
+        console.log("task", response);
       }).catch((error) => {
         console.log(error);
       });
@@ -180,7 +179,7 @@ const MeetTasks = () => {
           </table>
         </div>
       ) : (
-        <div className='task-container'>No Data</div>
+        <div className='task-container'>No Task</div>
       )}
 
       {showpopup && (
@@ -254,7 +253,6 @@ const MeetTasks = () => {
                 </div>
               </form>
             )}
-            <div className='close-btn' onClick={handleClose}><SlClose size={30} color='#fff' /></div>
           </div>
         </div>
       )}

@@ -1,4 +1,4 @@
-.mytasks-content{
+.report-content{
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -7,7 +7,7 @@
     overflow-y: auto;
 }
 
-.mytasks-container {
+.report-container {
     margin: 50px 0 50px 50px;
     padding: 10px;
     border: 1px solid #ddd;
@@ -16,59 +16,82 @@
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     width: 55vw;
 }
-.mytasks-table{
+.report-table{
     border-collapse: collapse;
     width: calc(100% - 40px);
     margin: 20px 20px;
 }
 
-.mytasks-table tr:last-child{
+.report-table tr:last-child{
     border-bottom: none;
 }
 
-.mytasks-table td {
+.report-table td {
   padding: 8px;
   font-size: 17px;
 }
-.mytasks-table tr {
+.report-table tr {
     background-color: rgba(103, 153, 180, 0.126);
-    transition: background-color 0.3s ease, box-shadow 0.3s ease; /* Smooth transition */
-    border-radius: 8px; /* Rounded corners */
+    transition: background-color 0.3s ease, box-shadow 0.3s ease; 
+    border-radius: 8px; 
     margin: 5px 0; 
 } 
-.mytasks-table tr:hover {
-    background-color: rgba(0, 118, 181, 0.2); /* Light blue hover color */
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15); /* Subtle shadow on hover */
-    transform: scale(1.02); /* Slight zoom for emphasis */
+
+.report-table tr.assigned {
+    background-color: rgba(123, 123, 123, 0.2); 
+}
+
+.report-table tr.pending {
+    background-color: rgba(229, 157, 41, 0.2); 
+}
+
+.report-table tr.completed {
+    background-color: rgba(34, 139, 34, 0.2); 
+}
+.report-table tr.not-assigned {
+    background-color: rgba(252, 3, 3, 0.2); 
+}
+
+.report-table tr:hover { 
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15); 
+    transform: scale(1.02); 
     cursor: pointer;
 }
-.mytasks-table-row {
+ 
+.report-table tr.assigned:hover {
+    background-color: rgba(123, 123, 123, 0.4); 
+}
+
+.report-table tr.pending:hover {
+    background-color: rgba(229, 157, 41, 0.4); 
+}
+
+.report-table tr.completed:hover {
+    background-color: rgba(34, 139, 34, 0.4); 
+}
+.report-table tr.not-assigned:hover {
+    background-color: rgba(250, 4, 4, 0.3); 
+}
+
+.report-table-row {
     display: flex;
     justify-content: space-between;
 }
-.mytasks-table-row td:first-child {
+.report-table-row td:first-child {
     font-weight:500;
-    width: 5%;
-    color: rgb(0, 0, 54);
-    text-align: center;
-}
-.mytasks-table-row td:nth-child(2) {
-    width: 60%;
+    width: 80%;
+    /* color: rgb(0, 0, 54); */
     text-align: start;
+    margin-left: 25px;
 }
-.mytasks-table-row td:nth-child(3) {
+.report-table-row td:nth-child(2) {
     width: 20%;
-    text-align: center;
-}
-.mytasks-table-row td:nth-child(4) {
-    width: 15%;
     text-align: center;
     margin-right: 15px;
 }
 
 
-
-.mytasks-status-btn {
+.report-status-btn {
     padding: 8px 10px;
     border: none;
     border-radius: 10px;
@@ -80,22 +103,18 @@
     width: 8vw;
     transition: all 0.3s ease;
   }
-.mytasks-status-btn.assigned {
+
+.report-status-btn.assigned {
     background-color: grey;
-  }
-  
-  /* Pending */
-  .mytasks-status-btn.pending {
+}
+
+.report-status-btn.pending {
     background-color: #E59D29;
-  }
-  
-  /* Completed */
-  .mytasks-status-btn.completed {
+}
+
+.report-status-btn.completed {
     background-color: green;
-  }
-
-
-  /* General container for the popup */
+}
 .task-content {
   position: fixed;
   top: 0;
@@ -177,13 +196,13 @@
   margin-bottom: 5px;
 }
 
-.mytasks-btn {
+.report-btn {
     display: flex;
     justify-content: center;
     margin-top: 15px;
   }
 
-.mytasks-btn button {
+.report-btn button {
   color: white;
   border: none;
   padding: 8px 10px;
@@ -206,13 +225,13 @@
     font-size: 1rem;
   }
 
-  .mytasks-btn button {
+  .report-btn button {
     font-size: 0.9rem;
     padding: 8px 15px;
   }
 }
 
-.mytasks-status-btn.not-assigned {
+.report-status-btn.not-assigned {
   width:10vw;
   background-color: rgb(254, 86, 86);
 }

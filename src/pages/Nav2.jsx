@@ -38,7 +38,7 @@ const Nav2 = ({meetingid}) => {
           </div>
         </NavLink>
         {
-          userData?.username === meetingdetails?.host &&(
+          userData?.username === meetingdetails?.host && meetingdetails?.minutetaker &&(
             <>
               <NavLink to={`/meetings/${meetingid}/attendance`}>
                 <div className="nav1-button">
