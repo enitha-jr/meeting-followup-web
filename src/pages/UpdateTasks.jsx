@@ -12,9 +12,7 @@ const UpdateTasks = () => {
     const [assignby, setAssignby] = useState('');
     const [assignto, setAssignto] = useState('');
     const [date, setDate] = useState('');
-
     const [minutelist, setMinutelist] = useState([]);
-    const [members, setMembers] = useState([]);
     const [users, setUsers] = useState([])
 
     const navigate = useNavigate()
@@ -49,16 +47,6 @@ const UpdateTasks = () => {
         });
     }, [meetingid])
     
-
-    useEffect(() => {
-    axios.get(`http://localhost:5000/meetings/${meetingid}/members`)
-        .then((response) => {
-        setMembers(response.data);
-        }).catch((error) => {
-        console.log(error);
-        });
-    }, [meetingid])
-
     useEffect(() => {
     axios.get(`http://localhost:5000/users`)
         .then((response) => {
@@ -80,19 +68,6 @@ const UpdateTasks = () => {
           return <></>
         }
     }
-
-    const MembersOptions = () => {
-        if (members.length) {
-    
-          return members.map((member) => (
-            <option key={member.attendanceid}>{member.staffname}</option>
-          ))
-        }
-        else {
-          return <></>
-        }
-    }
-
     const UsersOptions = () => {
         if (users.length) {
     
@@ -119,7 +94,6 @@ const UpdateTasks = () => {
         });
     }
     
-
   return (
     <div className='task-form-content'>
         <div className='overlay'></div>

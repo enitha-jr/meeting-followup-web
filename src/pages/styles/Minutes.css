@@ -2,13 +2,13 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    /* align-items: center; */
+    align-items: center;
     height: 100%;
     overflow-y: auto;
 }
 
 .minute-container {
-    margin: 50px 0 100px 50px;
+    margin: 50px 0 100px 0;
     padding: 10px;
     border: 1px solid #ddd;
     border-radius: 8px;
@@ -37,9 +37,9 @@
     margin: 5px 0; 
 } 
 .minute-table tr:hover {
-    background-color: rgba(0, 118, 181, 0.2); /* Light blue hover color */
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15); /* Subtle shadow on hover */
-    transform: scale(1.02); /* Slight zoom for emphasis */
+    background-color: rgba(0, 118, 181, 0.2);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15); 
+    transform: scale(1.02); 
     cursor: pointer;
 }
 .minute-table-row {
@@ -73,7 +73,7 @@
     margin: 10px 10px;
 }
 
-.minute-input{
+/* .minute-input{
     position: absolute;
     bottom: 0;
     display:flex;
@@ -121,7 +121,7 @@
 }
 .minute-input button.minute-add:hover {
     background-color: #005a8c;
-}
+} */
 
 .minute-delete{
     cursor: pointer;
@@ -134,3 +134,84 @@
     margin: 0 20px;
 } */
 
+@keyframes checkboxBounce {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.3);
+    }
+}
+
+@keyframes slideIn {
+    0% {
+        transform: translateY(100%);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.minute-input {
+    position: absolute;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50px;
+    padding: 5px;
+    margin-left: 50px;
+    margin-bottom: 15px;
+    animation: slideIn 0.5s ease-out;
+}
+
+.minute-form input[type="text"] {
+    width: 60vw;
+    height: 6vh;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-right: 8px;
+    box-shadow: 0 5px 5px rgba(0, 0, 0, 0.1);
+    border: 1px solid #0077B5;
+    background-color: #F6F9FF;
+}
+.minute-form input[type="text"]:focus {
+    outline: none;
+}   
+
+.minute-form input[type="checkbox"] {
+    transform: scale(1.5);
+    accent-color: #0077B5;
+    transition: transform 0.2s;
+    margin-right: 10px;
+}
+.minute-form input[type="checkbox"]:hover {
+    animation: checkboxBounce 0.3s ease-in-out;
+}
+
+.minute-input form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.minute-input button.minute-add {
+    padding: 3px 4px;
+    font-size: 25px;
+    background-color: #0076b5;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    box-shadow: 0 5px 5px rgba(0, 0, 0, 0.1);
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.minute-input button.minute-add:hover {
+    background-color: #005a8c;
+}
