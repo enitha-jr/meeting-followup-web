@@ -72,8 +72,9 @@ const Minutes = () => {
 
   return (
     <div className='minute-content'>
-      {minutelist.length>0 &&
         <div className="minute-container">
+        {!minutelist.length>0 ? (<div style={{ textAlign: "center" }}>No minutes!</div>) :
+        <>
           <h3 className='head3'>Minutes</h3>
           <table className='minute-table'>
             <tbody>
@@ -94,8 +95,9 @@ const Minutes = () => {
               ))}
             </tbody>
           </table>
-        </div>
+        </>
       }
+        </div>
       {
         meetingdetails.status === 'ongoing' && (userData?.username === meetingdetails?.host || userData?.username === meetingdetails?.minutetaker) &&(
         <div className="minute-input">

@@ -148,8 +148,7 @@ function NewMeeting() {
   }, [followup, location.state]);
 
   return (
-    <div className='newmeeting-content'>
-
+ 
       <div className='newmeeting-container'>
         <div className="head3">
           <h3>NEW-MEETING</h3>
@@ -248,7 +247,7 @@ function NewMeeting() {
           </div>
         </form>
       </div>
-    </div>
+
 
   )
 }
