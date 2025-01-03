@@ -42,7 +42,8 @@
 }
 
 .attendance-table-row td:last-child {
-    font-weight:500;
+    font-weight:400;
+    font-size:small;
     width:10%;
     color: rgb(0, 0, 54);
 }
@@ -50,16 +51,16 @@
 .search-container {
     display: flex;
     justify-content: flex-start;
-    padding: 1rem;
     width:25vw;
-    height:5vh;
+    margin-top:15px;
+    /* border:2px solid red; */
   }
   
   .search-input-container {
     display: flex;
     align-items: center;
     width: 100%;
-    max-width: 28rem;
+    height: max-content;
     background-color: #ffffff;
     border-radius: 18px;
     box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
@@ -86,7 +87,7 @@
   }
 
   .attendance-btn {
-    padding: 8px 16px;
+    padding: 5px 12px;
     font-size: 14px;
     font-weight: bold;
     border: 2px solid transparent;
@@ -94,7 +95,8 @@
     cursor: pointer;
     transition: all 0.3s ease-in-out; 
     text-transform: uppercase;
-    width:  8vw;
+    width:  7vw;
+    text-align: center;
   }
   
   .attendance-btn.present {

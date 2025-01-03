@@ -58,7 +58,7 @@ const Details = () => {
     <div className="details-content">
         <div className='details-handlers'>
           {userData?.username === meetingdetails?.host &&(
-          <Link to={`/updatemeetingdetails/${meetingdetails.meetingid}`}><button>Edit <FiEdit/></button></Link> 
+          <Link to={`/updatemeetingdetails/${meetingdetails.meetingid}`}><button> EDIT <FiEdit/></button></Link> 
           )}
         </div>
       <div className="details-card">

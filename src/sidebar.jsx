@@ -1,52 +1,65 @@
-import React from 'react'
-import add from './assets/icons/add.svg'
-import logo from './assets/icons/logo.png'
-import groups from './assets/icons/groups.svg'
-import task from './assets/icons/task.svg'
-import calendar from './assets/icons/calendar.svg'
-import './styles/sidebar.css'
-import { NavLink } from 'react-router-dom'
-import { UserContext } from './UserContext'
-import { useContext } from 'react'
+import React from 'react';
+import logo from './assets/icons/logo.png';
+import { FaRegPlusSquare } from 'react-icons/fa';
+import { MdOutlineGroups } from 'react-icons/md';
+import { IoAlertCircleOutline } from 'react-icons/io5';
+import { FaTasks } from 'react-icons/fa';
+import { IoCalendarNumberSharp } from 'react-icons/io5';
+import { NavLink } from 'react-router-dom';
+import { UserContext } from './UserContext';
+import { useContext } from 'react';
+import "./styles/sidebar.css";
 
 const Sidebar = () => {
     const { userData } = useContext(UserContext);
-    console.log(userData?.role);
 
     return (
-        <div className='sidebar'>
-            <div className='logo-box'>
-                <img src={logo} width="100px"/>
-                <div>MEETMINUTES</div>
+        <div className="sidebar">
+            <div className="logo-container">
+                <img src={logo} alt="Logo" className="logo" />
+                <h1 className="title">MEETMINUTES</h1> 
             </div>
-            <div>
+            <div className="menu">
+                <NavLink
+                    to="/newmeeting"
+                    className="menu-item"
+                >
+                    <FaRegPlusSquare className="icon" />
+                    <span>New Meeting</span>
+                </NavLink>
+                <NavLink
+                    to="/meetings"
+                    className="menu-item"
+                >
+                    <MdOutlineGroups className="icon" />
+                    <span>Meetings</span>
+                </NavLink>
+                <NavLink
+                    to="/tasks"
+                    className="menu-item"
+                >
+                    <FaTasks className="icon" />
+                    <span>Tasks</span>
+                </NavLink>
+                <NavLink
+                    to="/calendar"
+                    className="menu-item"
+                >
+                    <IoCalendarNumberSharp className="icon" />
+                    <span>Calendar</span>
+                </NavLink>
+                {userData?.role === 'superadmin' && (
+                    <NavLink
+                        to="/request"
+                        className="menu-item"
+                    >
+                        <IoAlertCircleOutline className="icon" />
+                        <span>Meeting Requests</span>
+                    </NavLink>
+                )}
             </div>
-                <NavLink to='/newmeeting' className='custom-link inner'>
-                    <img src={add} />
-                    <div className="sidebar-title">New Meeting</div>
-                </NavLink>
-                <NavLink to='/meetings' className='custom-link inner'>
-                    <img src={groups} />
-                    <div className="sidebar-title">Meetings</div>
-                </NavLink>
-                <NavLink to='/tasks' className='custom-link inner'>
-                    <img src={task} />
-                    <div className="sidebar-title">Tasks</div>
-                </NavLink>
-                <NavLink to='/calendar' className='custom-link inner'>
-                    <img src={calendar} />
-                    <div className="sidebar-title">Calendar</div>
-                </NavLink>
-                {
-                    userData.role === 'superadmin' ? (
-                        <NavLink to='/request' className='custom-link inner'>
-                            <img src={groups} />
-                            <div className="sidebar-title">Meeting Requests</div>
-                        </NavLink>
-                    ): null
-                }
-            </div>
-    )
-}
+        </div>
+    );
+};
 
-export default Sidebar
+export default Sidebar;

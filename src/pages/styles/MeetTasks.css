@@ -167,6 +167,7 @@
 
 .task-table-row td:nth-child(2){
     width:20%;
+    text-align: left;
     /* border:2px solid red */
 }
 .task-table-row td:nth-child(3){

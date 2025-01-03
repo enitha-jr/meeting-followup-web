@@ -5,6 +5,7 @@
     display: flex;
     width: 35vw;
     justify-content: space-between;
+    
 }
 
 .m-details,.m-minutes,.m-tasks,.m-attendance,.m-report{

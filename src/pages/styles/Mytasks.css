@@ -48,24 +48,22 @@
 }
 .mytasks-table-row td:first-child {
     font-weight:500;
-    width: 5%;
     color: rgb(0, 0, 54);
     text-align: center;
+    /* border:2px solid red; */
 }
 .mytasks-table-row td:nth-child(2) {
-    width: 60%;
+    width:40%;    
     text-align: start;
+    /* border:2px solid red; */
 }
 .mytasks-table-row td:nth-child(3) {
-    width: 20%;
     text-align: center;
 }
-.mytasks-table-row td:nth-child(4) {
-    width: 15%;
+.mytasks-table-row td:last-child{
+    width: 25%;
     text-align: center;
-    margin-right: 15px;
 }
-
 
 
 .mytasks-status-btn {
@@ -73,8 +71,9 @@
     border: none;
     border-radius: 10px;
     color: #fff;
+    font-size:small;
     font-weight: bold;
-    cursor: pointer;
+    cursor: pointer;  
     transition: background-color 0.3s ease;
     outline: none;
     width: 8vw;

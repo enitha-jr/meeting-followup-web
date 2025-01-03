@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 // import './styles/Meetings.css'
 import axios from 'axios';
 import schedule from '../assets/icons/schedule.png'
-import calendar from '../assets/icons/calendar.png'
+import { IoCalendarNumberSharp } from 'react-icons/io5';
 import person from '../assets/icons/person.png'
 import venue from '../assets/icons/apartment.png'
 import meetimg from '../assets/icons/meeting.png'
@@ -49,7 +49,7 @@ function Mymeeting() {
                                 <div>{detail.host}</div>
                             </div>
                             <div className='meet-details-container'>
-                                <img src={calendar} width={22} />
+                                <IoCalendarNumberSharp size={22} />
                                 <div>{detail.date}</div>
                             </div>
                             <div className='meet-details-container'>

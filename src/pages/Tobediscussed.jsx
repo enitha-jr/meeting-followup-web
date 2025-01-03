@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react'
 import axios from 'axios';
 import { UserContext } from '../UserContext'
 import { useContext } from 'react'
+import './styles/Tobe.css'
 
 const Tobediscussed = () => {
     const { meetingid } = useParams()
@@ -64,26 +65,25 @@ const Tobediscussed = () => {
     console.log(tobediscussed);
     console.log(notassigned);
     return (
-        <div className='minute-content'>
-            <div className="mytasks-container">
+        <div className='tobe-content'>
+            <div className="tobe-container">
                 {
                     tobediscussed.length > 0 && meetingdetails.followup === 'yes' &&
                     <>
                         <h3 className='head3'>To be discussed</h3>
-                        <table className='mytasks-table'>
+                        <table className='tobe-table'>
                             <tbody>
                                 {tobediscussed.map((eachtask, index) => (
-                                    <tr className='mytasks-table-row' key={index} onClick={() => showTaskform(eachtask)}>
-                                        <td>{index + 1}</td>
-                                        <td>{eachtask.task}</td>
-                                        <td>{eachtask.date}</td>
-                                        <td>
+                                    <tr className='tobe-table-row' key={index} onClick={() => showTaskform(eachtask)}>
+                                        <td data-label="Task">{eachtask.task}</td>
+                                        <td data-label="Date">{eachtask.date}</td>
+                                        <td data-label="Status">
                                             {eachtask.status === "assigned" ? (
-                                                <button className={`mytasks-status-btn ${eachtask.status}`}>ASSIGNED</button>
+                                                <button className={`tobe-status-btn ${eachtask.status}`}>ASSIGNED</button>
                                             ) : eachtask.status === "pending" ? (
-                                                <button className={`mytasks-status-btn ${eachtask.status}`}>PENDING</button>
+                                                <button className={`tobe-status-btn ${eachtask.status}`}>PENDING</button>
                                             ) : eachtask.status === "completed" ? (
-                                                <button className={`mytasks-status-btn ${eachtask.status}`}>COMPLETED</button>
+                                                <button className={`tobe-status-btn ${eachtask.status}`}>COMPLETED</button>
                                             ) : (
                                                 <></>
                                             )}
@@ -96,14 +96,14 @@ const Tobediscussed = () => {
                 }
                 {notassigned.length > 0 && meetingdetails.followup === 'yes' &&
                     <>
-                        <table className='mytasks-table'>
+                        <table className='tobe-table'>
                             <tbody>
                                 {notassigned.map((item, index) => (
-                                    <tr className='mytasks-table-row' key={index}>
-                                        <td>{index + 1}</td>
-                                        <td>{item.minute}</td>
-                                        <td>
-                                            <button className={`mytasks-status-btn ${item.status}`}>NOT ASSIGNED</button>
+                                    <tr className='tobe-table-row' key={index}>
+                                        <td data-label="Task" className='Task'>{item.minute}</td>
+                                        <td data-label="Date"></td>
+                                        <td data-label="Status">
+                                            <button className={`tobe-status-btn ${item.status}`}>NOT ASSIGNED</button>
                                         </td>
                                     </tr>
                                 ))}

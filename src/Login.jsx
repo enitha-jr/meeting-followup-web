@@ -65,7 +65,7 @@ const Login = () => {
     const navigate = useNavigate();
     const [user, setUser] = useState('');
     const [pass, setPass] = useState('');
-    const { setUserData } = useContext(UserContext);
+    const { setUserData, userData } = useContext(UserContext);
 
     // Google Client ID
     const clientId = "17992968099-bg7q3k8s23iphc611hn6aiv23e6rpcqq.apps.googleusercontent.com";
@@ -102,6 +102,7 @@ const Login = () => {
                 token: response.credential,
             });
             const data = result.data;
+            console.log(data);
 
             if (data) {
                 setUserData(data);
@@ -124,6 +125,7 @@ const Login = () => {
 
             if (data) {
                 setUserData(data[0]);
+                console.log(userData);
                 navigate('/');
             } else {
                 alert('Invalid Username or Password');

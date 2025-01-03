@@ -15,38 +15,39 @@ const Request = () => {
 
   const [meetingdetails, setMeetingdetails] = useState([]);
   useEffect(() => {
+    try {
       axios.get(`http://localhost:5000/meetings/request`)
         .then((response) => {
           setMeetingdetails(response.data);
           console.log(response.data);
         })
-        .catch((error) => {
-          console.error('Error fetching meeting details:', error);
-        });
-  }, []);
+    }catch (error){
+      console.error('Error fetching meeting details:', error);
+    };
+}, []);
 
-  return (
-    <div className='report-content'>
-      <div className="report-container">
-        {meetingdetails.length > 0 ? (
-          <table className='report-table'>
-            <tbody>
-              {meetingdetails.map((item, index) => (
-                <tr className={`report-table-row ${item.status}`} key={index}>
-                  <td>{item.title}</td>
-                  <td><button className={`report-status-btn`}>ACCEPT</button></td>
-                  <td><button className={`report-status-btn`}>REJECT</button></td>
-                </tr>
-              ))}
-            </tbody>
-          </table>) : (
-            <div>
-              <h3>No Request</h3>
-            </div>
-          )
-        }
-      </div>
-      {/* {showTaskform && selectedTask && (
+return (
+  <div className='report-content'>
+    <div className="report-container">
+      {meetingdetails.length > 0 ? (
+        <table className='report-table'>
+          <tbody>
+            {meetingdetails.map((item, index) => (
+              <tr className={`report-table-row ${item.status}`} key={index}>
+                <td>{item.title}</td>
+                <td><button className={`report-status-btn`}>ACCEPT</button></td>
+                <td><button className={`report-status-btn`}>REJECT</button></td>
+              </tr>
+            ))}
+          </tbody>
+        </table>) : (
+        <div>
+          <h3>No Request</h3>
+        </div>
+      )
+      }
+    </div>
+    {/* {showTaskform && selectedTask && (
         <div className='task-content'>
           <div className='overlay' onClick={() => showTaskform(false)}></div>
           <div className="details-card">
@@ -86,8 +87,8 @@ const Request = () => {
         </div>
 
       )} */}
-    </div>
-  )
+  </div>
+)
 }
 
 export default Request

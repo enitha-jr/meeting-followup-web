@@ -6,7 +6,7 @@ import axios from 'axios';
 import { UserContext } from '../UserContext'
 import { useContext } from 'react'
 import { useLocation } from 'react-router-dom';
-
+import bg from "../assets/icons/login-illustration.png";
 function NewMeeting() {
 
   const navigate = useNavigate()
@@ -66,6 +66,24 @@ function NewMeeting() {
       <option key={user.userid}>{user.username}</option>
     ))
   }
+
+  useEffect(() => {
+    if (host && title) {
+      axios
+        .get(`http://localhost:5000/getmembers`, { params: { host, title } })
+        .then((response) => {
+          console.log(response.data);
+          const fetchedMembers = Array.isArray(response.data) ? response.data : [];
+          setMembers((prevMembers) => {
+            return [...new Set([...prevMembers, ...fetchedMembers])];
+          });
+        })
+        .catch((error) => {
+          console.error("Error fetching members:", error);
+        });
+    }
+  }, [host, title]);
+
 
 
   const handleSubmit = async (e) => {
@@ -148,7 +166,7 @@ function NewMeeting() {
   }, [followup, location.state]);
 
   return (
- 
+    <div className="newmeeting-content">
       <div className='newmeeting-container'>
         <div className="head3">
           <h3>NEW-MEETING</h3>
@@ -220,18 +238,30 @@ function NewMeeting() {
                 <label htmlFor="members">Members:</label>
                 <select
                   value={name}
-                  onChange={(e) => setName(e.target.value)}
-                  onKeyDown={handleAddMember}>
-                  <option value=''></option>
+                  onChange={(e) => {
+                    const selectedName = e.target.value;
+                    if (selectedName.trim() !== '') {
+                      setMembers((prevMembers) =>
+                        prevMembers.includes(selectedName) ? prevMembers : [...prevMembers, selectedName]
+                      );
+                      setName('');
+                    }
+                  }}
+                >
+                  <option value=''>Select a member</option>
                   {UsersOptions()}
                 </select>
                 <div className="members-list">
-                  {members.map((member, index) => (
-                    <div className="each-member" key={index}>
-                      <div className="memb-name">{member}</div>
-                      <div className="x" onClick={() => setMembers(members.filter((i) => i !== member))}>x</div>
-                    </div>
-                  ))}
+                  {members.length > 0 ? (
+                    members.map((member, index) => (
+                      <div className="each-member" key={index}>
+                        <div className="memb-name">{member}</div>
+                        <div className="x" onClick={() => setMembers(members.filter((i) => i !== member))}>x</div>
+                      </div>
+                    ))
+                  ) : (
+                    <p>ADD MEMBERS</p>
+                  )}
                 </div>
               </div>
             </div>
@@ -247,8 +277,7 @@ function NewMeeting() {
           </div>
         </form>
       </div>
-
-
+    </div>
   )
 }
 

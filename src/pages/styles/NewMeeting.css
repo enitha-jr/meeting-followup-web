@@ -2,20 +2,27 @@ body{
   background-color: rgba(213, 227, 255, 0.306);
 }
 
-
-
-.newmeeting-container {
-  width:55vw;
-  height: fit-content;
+.newmeeting-content{
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin: 5px auto;
+  /* height: calc(100vh - 55px); */
+  /* border:2px solid red; */
+  /* overflow-y:scroll; */
+}
+
+.newmeeting-container {
+  width:55vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   border-radius: 10px;
-  background-color: white;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
-  padding: 10px 0px;
+  /* border: 2px solid; */
+  background: #fff;
+  margin-top: 4px;
 }
 
 .head3,
@@ -24,6 +31,7 @@ body{
   align-items: center;
   justify-content: center;
   color: #005f8b;
+  font-weight: bold;
 }
 
 .details {
@@ -39,7 +47,6 @@ body{
 .right {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
 }
 
 .details .left>div,
@@ -70,13 +77,13 @@ body{
   background-color: #F6F9FF;
 }
 
-.newmeeting-form select {
-  width: 21.7vw;
+.newmeeting-form select{
+  width: 21.5vw;
 }
 
 .newmeeting-form input[type="date"],
 .newmeeting-form input[type="time"]{
-  padding: 8px;
+  height: 2.8vh;
 }
 
 input[type="number"]::-webkit-inner-spin-button,
@@ -86,7 +93,10 @@ input[type="number"]::-webkit-outer-spin-button {
 
 textarea {
   resize: none;
-  min-height: 80px;
+}
+
+.newmeeting-form textarea {
+  height: 14.5vh;
 }
 
 .newmeeting-form input[type="text"]:focus,
@@ -96,6 +106,7 @@ textarea {
 .newmeeting-form select:focus,
 .newmeeting-form textarea:focus {
   outline: none;
+  box-shadow: 0 0 5px rgba(0, 119, 181, 0.5);
 }
 
 .newmeeting-btn{
@@ -113,7 +124,7 @@ textarea {
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  margin-top: 20px;
+  margin: 10px;
 }
 
 .newmeeting-btn button[type="submit"]:hover {
@@ -123,7 +134,7 @@ textarea {
 .members-list{
   display: flex;
   flex-direction: column;
-  height: 14vh;
+  height: 15vh;
   overflow-y:auto;
   width: 20vw;
   padding: 10px;
@@ -134,7 +145,7 @@ textarea {
   font-weight:bold;
   font-style: italic;
   color:#303030;
-  margin-top:15px;
+  margin-top:25px;
 }
 
 .each-member {
@@ -155,5 +166,5 @@ textarea {
   /* margin-right: 10px; */
   cursor: pointer;
   text-align: center;
-  /* border:2px solid */
 }
+
