@@ -3,15 +3,24 @@ import { Navigate } from 'react-router-dom';
 import NewMeeting from "../pages/NewMeeting"
 import Meetings from "../pages/Meetings"
 import Tasks from "../pages/Tasks"
-import Calendar from "../pages/Calendar"
+import MyCalendar from "../pages/MyCalendar"
 import Completed from "../pages/Completed"
 import Upcoming from '../pages/Upcoming';
-import Meetinfo from '../pages/MeetInfo';
+import Meetinfo from '../pages/Meetinfo';
 import Details from "../pages/Details"
 import Minutes from '../pages/Minutes';
 import MeetTasks from '../pages/MeetTasks';
 import Attendance from '../pages/Attendance';
 import Report from '../pages/Report';
+import UpdateMeetingDetails from '../pages/UpdateMeetingDetails';
+import UpdateMinutes from '../pages/UpdateMinutes';
+import UpdateTasks from '../pages/UpdateTasks';
+import Mymeeting from '../pages/Mymeeting';
+import Mytasks from '../pages/Mytasks';
+import AssignedTasks from '../pages/AssignedTasks';
+import Request from '../pages/Request';
+import Tobediscussed from '../pages/Tobediscussed';
+
 
 
 const routes = [
@@ -38,16 +47,38 @@ const routes = [
             {
                 path: 'completed',
                 element: <Completed/>
+            },
+            {
+                path: 'mymeeting',
+                element: <Mymeeting/>
             }
         ]
     },
     {
         path: '/tasks',
-        element: <Tasks/>
+        element: <Tasks/>,
+        children: [
+            {
+                path: '',
+                element: <Navigate to="mytasks" />  
+            },
+            {
+                path: 'mytasks',
+                element: <Mytasks/>
+            },
+            {
+                path: 'assignedtasks',
+                element: <AssignedTasks/>
+            }
+        ]
     },
     {
         path: '/calendar',
-        element: <Calendar/>
+        element: <MyCalendar/>
+    },
+    {
+        path: '/request',
+        element: <Request/>
     },
     {
         path: '/meetings/:meetingid',
@@ -59,7 +90,11 @@ const routes = [
             },
             {
                 path: 'details',
-                element: <Details />
+                element: <Details />,
+            },
+            {
+                path: 'tobediscussed',
+                element: <Tobediscussed />,
             },
             {
                 path: 'minutes',
@@ -78,6 +113,18 @@ const routes = [
                 element: <Report/>
             },
         ]
+    },
+    {
+        path: '/updatemeetingdetails/:meetingid',
+        element: <UpdateMeetingDetails />
+    },
+    {
+        path: '/meetings/:meetingid/updateminutes/:minuteid',
+        element: <UpdateMinutes />
+    },
+    {
+        path: '/meetings/:meetingid/updatetasks/:taskid',
+        element: <UpdateTasks />
     }
 ]
 

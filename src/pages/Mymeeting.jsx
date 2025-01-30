@@ -12,15 +12,15 @@ import { useNavigate } from 'react-router-dom';
 import { UserContext } from '../UserContext'
 import { useContext } from 'react'
 
-function Upcoming() {
+function Mymeeting() {
     const navigate = useNavigate();
     const { userData } = useContext(UserContext);
-    // if (!userData) {
-    //     navigate('/login');
-    // }
+    if (!userData) {
+        navigate('/login');
+    }
     const [details, setDetails] = useState([]);
     useEffect(() => {
-        axios.post("http://localhost:5000/meetings/upcoming", { username: userData?.username })
+        axios.post("http://localhost:5000/meetings/completed", { username: userData?.username })
             .then((response) => {
                 for (let item of response.data) {
                     if (item.date) {
@@ -32,7 +32,6 @@ function Upcoming() {
                 console.log(error);
             });
     }, [])
-
     const handleDetail = (meetingid) => {
         navigate(`/meetings/${meetingid}`);
     }
@@ -81,4 +80,4 @@ function Upcoming() {
     )
 }
 
-export default Upcoming
+export default Mymeeting

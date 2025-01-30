@@ -1,51 +1,57 @@
 .sidebar {
-    min-width: 230px;
-    width: 20vw;
     min-height: 100vh;
-    background-color: #0077B5;
-    color: white; 
-    font-weight: bold;
-    /* border: 2px solid red; */
-}
-
-.logo-box {
-    display: flex;
-    align-items: center;
-}
-
-.logo-box img{
-    /* width: 100px; */
-    height: auto;
-}
-
-.sidebar-title {
-    padding-left: 15px;
-    font-size: 17px;
-}
-
-.custom-link {
-    margin-left: 25px;
-    display: flex;
-    align-items: center;
+    width: 22vw;
+    background-color: #0077b5;
     color: white;
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 20px;
+}
+
+.logo {
+    height: 40px;
+    width: 80px;
+    margin-right: 12px;
+}
+
+.title {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.menu {
+    margin-top: 20px;
+    padding: 0 20px;
+}
+
+.menu-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 12px 32px;
+    border-radius: 12px;
+    transition: all 0.3s ease;
     text-decoration: none;
-    padding: 15px 0 15px 15px;
+    color: white;
+    font-size:large;
+    margin-bottom: 7px;
 }
 
-.custom-link:hover{
-    background-color: rgba(255, 255, 255, 0.643);
-    color: #0077B5;
-    border-radius: 100px 0px 0px 100px;
-    font-weight: bold;
+.menu-item:hover {
+    background-color: rgba(255, 255, 255, 0.3);
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-.active{
-    background-color: white !important;
-    color: #0077B5;
-    border-radius: 100px 0px 0px 100px;
-    font-weight: bold;
+.menu-item.active {
+    background-color: white;
+    color:#0077b5;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-.custom-link:hover img, .active img {
-    filter: brightness(0) saturate(100%) invert(29%) sepia(85%) saturate(747%) hue-rotate(189deg) brightness(92%) contrast(89%);
+.icon {
+    font-size: 1.25rem;
 }

@@ -15,7 +15,7 @@ const Nav1 = () => {
             Completed
           </div>
         </NavLink>
-        <NavLink to='/meetings/completed'>
+        <NavLink to='/meetings/mymeeting'>
           <div className="nav1-button">
             My meeetings
           </div>
