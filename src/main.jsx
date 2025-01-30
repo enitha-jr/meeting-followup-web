@@ -7,12 +7,12 @@ import App from './App.jsx'
 import Login from './Login.jsx'
 import { UserProvider } from './UserContext.jsx'
 import SignUp from './SignUp.jsx';
-
+import ProtectedRoute from './ProtectedRoute.jsx';
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <App/>,
+    element: <ProtectedRoute> <App/> </ProtectedRoute>,
     children: routes
   },
   {
@@ -21,7 +21,7 @@ const router = createBrowserRouter([
   },
   {
     path: "/register",
-    element: <SignUp/>,
+    element: <ProtectedRoute users={["admin"]}> <SignUp/> </ProtectedRoute>,
   }
 ]);
 

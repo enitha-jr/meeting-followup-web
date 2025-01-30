@@ -59,24 +59,32 @@
     /* border:2px solid red;    */
 }
 
-.image, .meet-head {
+.meet-head {
     padding-bottom: 15px;
 }
 
-.image img {
+.meet-image img {
     border-radius: 10px;
 }
-.image {
-    padding-top: 20px;
-}
+
 .meet-details-container div {
     padding-left: 15px;
 }
 .meet-title {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
     font-size: 18px;
     font-weight: 500;
 }
 .meet-by {
     font-size: 14px;
     opacity: 0.6;
+}
+
+.followup-badge{
+    margin-top: 5px;
+    display: flex !important;
+    justify-content: end !important;
+    width: 250px;
 }

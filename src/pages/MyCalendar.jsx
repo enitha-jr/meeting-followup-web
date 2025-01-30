@@ -34,6 +34,8 @@ function MyCalendar() {
                                 title: meeting.title,
                                 start: start.toISOString(),
                                 end: end.toISOString(),
+                                host: meeting.host,
+                                className: userData.username === meeting.host ? "event-host" : "event-default",
                             };
                         })
                     );
@@ -48,6 +50,18 @@ function MyCalendar() {
         console.log(event)
     }
 
+    const eventPropGetter = (event) => {
+        if (userData.username === event.host) {
+            return {
+                className: "event-host",
+            };
+        } else {
+            return {
+                className: "event-default",
+            };
+        }
+    };
+
     return (
         <div className='calendar-content'>
             <Calendar
@@ -59,6 +73,7 @@ function MyCalendar() {
                 events={events}
                 style={{ height: "90vh" }}
                 onSelectEvent={handleSelectEvent}
+                eventPropGetter={eventPropGetter} 
             />
         </div>
     )

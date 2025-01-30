@@ -6,7 +6,6 @@ import axios from 'axios';
 import { UserContext } from '../UserContext'
 import { useContext } from 'react'
 import { useLocation } from 'react-router-dom';
-import bg from "../assets/icons/login-illustration.png";
 function NewMeeting() {
 
   const navigate = useNavigate()
@@ -54,6 +53,12 @@ function NewMeeting() {
   const [users, setUsers] = useState([])
   useEffect(() => {
     axios.get(`http://localhost:5000/users`)
+      .then((response) => {
+        setUsers(response.data);
+      }).catch((error) => {
+        console.log(error);
+      });
+    axios.get(`http://localhost:5000/groups`)
       .then((response) => {
         setUsers(response.data);
       }).catch((error) => {

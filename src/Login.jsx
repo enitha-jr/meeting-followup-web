@@ -54,7 +54,7 @@
     // export default Login
 
 import React, { useState, useEffect, useContext } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate ,useLocation} from 'react-router-dom';
 import './styles/login.css';
 import login from "./assets/icons/loginillustration.png";
 import axios from 'axios';
@@ -67,6 +67,9 @@ const Login = () => {
     const [pass, setPass] = useState('');
     const { setUserData, userData } = useContext(UserContext);
 
+    const location = useLocation();
+    const nouser = location.state?.nouser || false;
+    console.log(nouser) 
     // Google Client ID
     const clientId = "17992968099-bg7q3k8s23iphc611hn6aiv23e6rpcqq.apps.googleusercontent.com";
 
@@ -138,6 +141,7 @@ const Login = () => {
 
     return (
         <div className="content">
+            {nouser && <div className="error-message">You have to log in first.</div>}
             <div className="loginimgdiv">
                 <img width={600} className="loginimg" src={host} alt="" />
             </div>
